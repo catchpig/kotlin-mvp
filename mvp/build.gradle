@@ -1,0 +1,77 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt' // 使用 kapt 注解处理工具
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.0"
+
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //dagger2
+    api "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    api "com.google.dagger:dagger-android:$dagger_version"
+    api "com.google.dagger:dagger-android-support:$dagger_version"
+    // if you use the support libraries
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+
+    //okhttp3
+    api "com.squareup.okhttp3:okhttp:$okhttp3_version"
+    api "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
+
+    //retrofit2
+    api "com.squareup.retrofit2:retrofit:$retrofit2_version"
+    api "com.squareup.retrofit2:adapter-rxjava2:$retrofit2_version"
+    api "com.squareup.retrofit2:converter-gson:$retrofit2_version"
+
+    //rxjava
+    api "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    api "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+
+    //gson
+    api "com.google.code.gson:gson:$gson_version"
+
+    api "luyao.util.ktx:AndroidUtilKTX:$AndroidUtilKTX_version"
+
+    api "com.github.catch-pig:LoadingView:$loading_version"
+
+    // 基础依赖包，必须要依赖
+    api "com.gyf.immersionbar:immersionbar:$immersionbar_version"
+    // fragment快速实现（可选）
+//    api "com.gyf.immersionbar:immersionbar-components:$immersionbar_version"
+    // kotlin扩展（可选）
+    api "com.gyf.immersionbar:immersionbar-ktx:$immersionbar_version"
+}
