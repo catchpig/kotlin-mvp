@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.catchpig.mvp.R
 import com.catchpig.mvp.base.BaseContract
 import com.catchpig.mvp.controller.TitleBarController
+import com.catchpig.mvp.ext.getColorPrimary
 import com.gyf.immersionbar.ktx.immersionBar
 import kotlinx.android.synthetic.main.view_root.*
 
@@ -22,17 +23,13 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
     override fun getBaseActivity(): BaseActivity? {
         return this
     }
-    lateinit var titleBarController:TitleBarController
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         super.setContentView(R.layout.view_root)
+        super.onCreate(savedInstanceState)
         immersionBar {
             statusBarView(R.id.top_view)
-            var typedValue = TypedValue()
-            theme.resolveAttribute(R.attr.colorPrimary, typedValue,true)
-            statusBarColorInt(typedValue.data)
+            statusBarColor(getColorPrimary())
         }
-        titleBarController = TitleBarController(this)
         setContentView(layoutId())
     }
 

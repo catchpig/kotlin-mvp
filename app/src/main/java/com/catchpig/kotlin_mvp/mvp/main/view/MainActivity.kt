@@ -5,11 +5,11 @@ import com.catchpig.kotlin_mvp.app.KotlinMvpApp
 import com.catchpig.kotlin_mvp.di.module.MainModule
 import com.catchpig.kotlin_mvp.mvp.main.MainContract
 import com.catchpig.kotlin_mvp.mvp.main.presenter.MainPresenter
+import com.catchpig.mvp.annotation.Title
 import com.catchpig.mvp.base.activity.BasePresenterActivity
-
+@Title("主页")
 class MainActivity : BasePresenterActivity<MainPresenter>(),MainContract.View {
     override fun initParam() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun injectComponent() {
@@ -17,7 +17,6 @@ class MainActivity : BasePresenterActivity<MainPresenter>(),MainContract.View {
     }
 
     override fun initView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun layoutId(): Int {
