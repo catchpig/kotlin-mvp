@@ -8,8 +8,11 @@
         tools:context=".mvp.main.view.MainActivity">
 
     <TextView
+            android:id="@+id/child"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:onClick="openChild"
             android:text="Hello World!"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

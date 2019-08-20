@@ -26,10 +26,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.setContentView(R.layout.view_root)
         super.onCreate(savedInstanceState)
-        immersionBar {
-            statusBarView(R.id.top_view)
-            statusBarColor(getColorPrimary())
-        }
         setContentView(layoutId())
     }
 
