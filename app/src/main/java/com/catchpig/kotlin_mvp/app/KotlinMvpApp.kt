@@ -5,7 +5,7 @@ import android.content.Context
 import com.catchpig.kotlin_mvp.di.component.AppComponent
 import com.catchpig.kotlin_mvp.di.component.DaggerAppComponent
 import com.catchpig.mvp.di.module.AppModule
-import com.catchpig.mvp.lifecycle.TitleBarLifecycleCallbacksImpl
+import com.catchpig.mvp.lifecycle.BarLifecycleCallbacksImpl
 
 /**
  * 创建时间:2019/8/18 0018<br/>
@@ -33,6 +33,6 @@ class KotlinMvpApp:Application() {
     override fun onCreate() {
         super.onCreate()
         application = this
-        registerActivityLifecycleCallbacks(TitleBarLifecycleCallbacksImpl())
+        registerActivityLifecycleCallbacks(BarLifecycleCallbacksImpl())
     }
 }

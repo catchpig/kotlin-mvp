@@ -14,6 +14,16 @@ import io.reactivex.subscribers.ResourceSubscriber
 interface BaseContract {
     interface View {
         fun getBaseActivity(): BaseActivity?
+        /**
+         * 出现loading动画
+         * @param isDialog 是否是dialog形式的
+         */
+        fun loadingView(isDialog:Boolean)
+
+        /**
+         * 隐藏loading动画
+         */
+        fun hideLoadingView()
     }
 
     interface Presenter {

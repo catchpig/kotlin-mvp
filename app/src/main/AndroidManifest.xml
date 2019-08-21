@@ -1,38 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:dist="http://schemas.android.com/apk/distribution"
-          package="com.catchpig.kotlin_mvp">
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    package="com.catchpig.kotlin_mvp">
 
-    <dist:module dist:instant="true"/>
+    <dist:module dist:instant="true" />
 
     <application
-            android:name=".app.KotlinMvpApp"
-            android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name"
-            android:maxAspectRatio="2.4"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsRtl="true"
-            android:theme="@style/AppTheme">
-
+        android:name=".app.KotlinMvpApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:maxAspectRatio="2.4"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".mvp.fullscreen.FullScreenActivity"/>
+        <activity android:name=".mvp.transparent.TransparentActivity" />
         <!-- 适配华为（huawei）刘海屏 -->
         <meta-data
-                android:name="android.notch_support"
-                android:value="true"/> <!-- 适配小米（xiaomi）刘海屏 -->
+            android:name="android.notch_support"
+            android:value="true" /> <!-- 适配小米（xiaomi）刘海屏 -->
         <meta-data
-                android:name="notch.config"
-                android:value="portrait|landscape"/>
+            android:name="notch.config"
+            android:value="portrait|landscape" />
 
-        <activity android:name=".mvp.main.view.MainActivity"
-            android:theme="@style/SplashTheme">
+        <activity
+            android:name=".mvp.main.view.MainActivity"
+            android:theme="@style/MainTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.child.ChildActivity">
-        </activity>
+        <activity android:name=".mvp.child.ChildActivity" />
     </application>
 
 </manifest>

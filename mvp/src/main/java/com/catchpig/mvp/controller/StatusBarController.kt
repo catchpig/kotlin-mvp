@@ -6,6 +6,7 @@ import com.catchpig.mvp.annotation.Title
 import com.catchpig.mvp.base.activity.BaseActivity
 import com.catchpig.mvp.config.Config
 import com.catchpig.mvp.ext.getColorPrimary
+import com.catchpig.mvp.ext.getTitleBackground
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ImmersionBar
 import com.gyf.immersionbar.ktx.immersionBar
@@ -17,19 +18,9 @@ import com.gyf.immersionbar.ktx.immersionBar
  * 修改时间: 2019/8/18 0018<br/>
  * 描述:状态栏处理器
  */
-class StatusBarController {
-    private val baseActivity: BaseActivity
-    private val title: Title?
-    private val statusBar: StatusBar?
+class StatusBarController(private val baseActivity: BaseActivity,private val title: Title?,private val statusBar: StatusBar?) {
 
-    constructor(baseActivity: BaseActivity, title: Title?, statusBar: StatusBar?) {
-        this.baseActivity = baseActivity
-        this.title = title
-        this.statusBar = statusBar
-        checkStatusBar()
-    }
-
-    private fun checkStatusBar() {
+    fun checkStatusBar() {
         //状态栏注解设置为不可用
         if (statusBar!=null&&statusBar.enabled) {
             return
@@ -40,7 +31,7 @@ class StatusBarController {
                 autoStatusBarDarkModeEnable(true,0.2f)
                 //设置状态栏颜色
                 if (title==null || title.backgroundColor==Config.NO_ASSIGNMENT) {
-                    statusBarColor(baseActivity.getColorPrimary())
+                    statusBarColor(baseActivity.getTitleBackground())
                 }else{
                     statusBarColor(title.backgroundColor)
                 }
@@ -71,7 +62,7 @@ class StatusBarController {
         }else{
             immersionBar.statusBarView(R.id.top_view)
             immersionBar.autoStatusBarDarkModeEnable(true,0.2f)
-            immersionBar.statusBarColor(baseActivity.getColorPrimary())
+            immersionBar.statusBarColor(baseActivity.getTitleBackground())
         }
     }
 }

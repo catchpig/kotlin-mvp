@@ -2,7 +2,6 @@ package com.catchpig.mvp.di.module
 
 import android.app.Application
 import com.catchpig.mvp.config.Config
-import com.catchpig.mvp.lifecycle.TitleBarLifecycleCallbacksImpl
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
