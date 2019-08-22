@@ -1,11 +1,9 @@
 package com.catchpig.kotlin_mvp.app
 
-import android.app.Application
-import android.content.Context
 import com.catchpig.kotlin_mvp.di.component.AppComponent
 import com.catchpig.kotlin_mvp.di.component.DaggerAppComponent
+import com.catchpig.mvp.app.BaseApplication
 import com.catchpig.mvp.di.module.AppModule
-import com.catchpig.mvp.lifecycle.BarLifecycleCallbacksImpl
 
 /**
  * 创建时间:2019/8/18 0018<br/>
@@ -14,13 +12,8 @@ import com.catchpig.mvp.lifecycle.BarLifecycleCallbacksImpl
  * 修改时间: 2019/8/18 0018<br/>
  * 描述:
  */
-class KotlinMvpApp:Application() {
+class KotlinMvpApp:BaseApplication() {
     companion object {
-        lateinit var application: Application
-        fun getContext(): Context {
-            return application
-        }
-
         private var mAppComponent: AppComponent? = null
         fun getAppComponent(): AppComponent {
             if (mAppComponent == null) {
@@ -29,10 +22,5 @@ class KotlinMvpApp:Application() {
             }
             return mAppComponent!!
         }
-    }
-    override fun onCreate() {
-        super.onCreate()
-        application = this
-        registerActivityLifecycleCallbacks(BarLifecycleCallbacksImpl())
     }
 }
