@@ -12,6 +12,6 @@
    ```
 添加依赖:
 ```
-implementation 'com.github.zhuazhu:SpiderView:1.0.1'
+implementation 'com.github.catch-pig:kotlin-mvp:last_version'
 ```
 
