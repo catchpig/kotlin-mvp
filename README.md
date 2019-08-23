@@ -10,6 +10,10 @@
     	}
     }
    ```
+在module的build.gradle的添加"
+```
+apply plugin: 'kotlin-kapt' // 使用 kapt 注解处理工具
+```
 添加依赖:
 ```
 implementation 'com.github.catch-pig:kotlin-mvp:last_version'
