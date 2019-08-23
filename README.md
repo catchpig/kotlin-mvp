@@ -1,6 +1,7 @@
 # kotlin-mvp
 [![](https://jitpack.io/v/catch-pig/kotlin-mvp.svg)](https://jitpack.io/#catch-pig/kotlin-mvp)
 
+###### 最低兼容:19
 ## Gradle
 在Project的build.gradle中添加:
    ```
