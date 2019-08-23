@@ -13,5 +13,7 @@
 添加依赖:
 ```
 implementation 'com.github.catch-pig:kotlin-mvp:last_version'
+kapt "com.google.dagger:dagger-compiler:2.23.2"
+kapt "com.google.dagger:dagger-android-processor:2.23.2"
 ```
 
