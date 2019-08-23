@@ -1,13 +1,12 @@
 package com.catchpig.mvp.ext
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.util.TypedValue
+import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import com.catchpig.mvp.R
-import luyao.util.ktx.ext.logd
-import luyao.util.ktx.ext.toast
 
 /**
  * 创建时间:2019/8/19 0019<br/>
@@ -58,8 +57,20 @@ fun Context.getTitleTextColor(): Int{
     return typedValue.data
 }
 
+/**
+ * 是否展示标题栏下方的线
+ */
 fun Context.showTitleLine():Boolean{
     var attrs = intArrayOf(R.attr.title_bar_show_line)
     val typedArray = theme.obtainStyledAttributes(attrs)
     return typedArray.getBoolean(0,false)
 }
+
+/**
+ * ColorRes 转 ColorInt
+ */
+@ColorInt
+fun Context.colorResToInt(colorRes: Int):Int{
+    return ContextCompat.getColor(this,colorRes)
+}
+
