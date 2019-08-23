@@ -22,7 +22,12 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
 ```
 ## 使用
 
-1. 实现的Application需要继承BaseApplication,如果不继承BaseApplication,请将BaseApplication中实现的放大搬到当前使用的Application中
+1. Application
+     * 继承BaseApplication
+     * 如果不继承BaseApplication,请在onCreate中添加如下代码:
+        ```
+        registerActivityLifecycleCallbacks(BarLifecycleCallbacksImpl())
+        ```
 2. 在需要使用状态栏、标题栏、加载动画的主题中配置全局参数:
     
     |属性|类型|默认|说明|
@@ -43,3 +48,10 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
         <!--全局标题栏和状态栏配置-->
     </style>
     ```
+3. Activity
+    * 使用MVP的继承BasePresenterActivity
+    * 不使用MVP的继承BaseActivity
+4. Fragment
+    * 使用MVP的继承BasePresenterFragment
+    * 不使用MVP的继承BaseFragment
+5. 如果使用RecycleView的时候,Adapter可以继承RecycleAdapter来使用
