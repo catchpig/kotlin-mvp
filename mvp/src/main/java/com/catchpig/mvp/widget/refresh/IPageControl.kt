@@ -13,7 +13,7 @@ interface IPageControl {
 
     var nextPageIndex:Int
 
-    var refreshStatus:RefreshState
+    fun getRefreshStatus():RefreshState
 
     fun resetPageIndex()
 

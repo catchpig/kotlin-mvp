@@ -149,7 +149,7 @@ abstract class RecyclerAdapter<M>: RecyclerView.Adapter<CommonViewHolder>,IAdapt
     override fun autoUpdateList(list: MutableList<M>?) {
         pageControl?.let {
             it.updateSuccess(list)
-            when (it.refreshStatus) {
+            when (it.getRefreshStatus()) {
                 RefreshState.Refreshing -> {
                     set(list)
                 }

@@ -48,8 +48,9 @@ class RefreshLayoutWrapper(
      * 一页的条目，默认16
      */
     private var pageSize = 16
-    override var refreshStatus: RefreshState = RefreshState.None
-        get() = state
+    override fun getRefreshStatus(): RefreshState {
+        return state
+    }
 
     /**
      * 设置单页加载数据数
