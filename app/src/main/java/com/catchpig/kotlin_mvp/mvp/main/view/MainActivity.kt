@@ -9,9 +9,12 @@ import com.catchpig.kotlin_mvp.mvp.child.ChildActivity
 import com.catchpig.kotlin_mvp.mvp.fullscreen.FullScreenActivity
 import com.catchpig.kotlin_mvp.mvp.main.MainContract
 import com.catchpig.kotlin_mvp.mvp.main.presenter.MainPresenter
+import com.catchpig.kotlin_mvp.mvp.recycle.RecycleActivity
 import com.catchpig.kotlin_mvp.mvp.transparent.TransparentActivity
 import com.catchpig.mvp.annotation.StatusBar
 import com.catchpig.mvp.base.activity.BasePresenterActivity
+import kotlinx.android.synthetic.main.activity_main.*
+
 @StatusBar(enabled = true)
 class MainActivity : BasePresenterActivity<MainPresenter>(),MainContract.View {
     override fun initParam() {
@@ -38,6 +41,9 @@ class MainActivity : BasePresenterActivity<MainPresenter>(),MainContract.View {
             }
             R.id.full_screen -> {
                 intent.setClass(this,FullScreenActivity::class.java)
+            }
+            R.id.recycle -> {
+                intent.setClass(this,RecycleActivity::class.java)
             }
             else -> {
             }

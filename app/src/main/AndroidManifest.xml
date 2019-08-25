@@ -3,8 +3,6 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="com.catchpig.kotlin_mvp">
 
-    <dist:module dist:instant="true" />
-
     <application
         android:name=".app.KotlinMvpApp"
         android:allowBackup="true"
@@ -14,16 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mvp.fullscreen.FullScreenActivity"/>
-        <activity android:name=".mvp.transparent.TransparentActivity" />
-        <!-- 适配华为（huawei）刘海屏 -->
-        <meta-data
-            android:name="android.notch_support"
-            android:value="true" /> <!-- 适配小米（xiaomi）刘海屏 -->
-        <meta-data
-            android:name="notch.config"
-            android:value="portrait|landscape" />
-
+        <activity android:name=".mvp.recycle.RecycleActivity"></activity>
+        <activity android:name=".mvp.fullscreen.FullScreenActivity" />
+        <activity android:name=".mvp.transparent.TransparentActivity" /> <!-- 适配华为（huawei）刘海屏 -->
         <activity
             android:name=".mvp.main.view.MainActivity"
             android:theme="@style/MainTheme">
@@ -32,8 +23,17 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity> <!-- 适配小米（xiaomi）刘海屏 -->
         <activity android:name=".mvp.child.ChildActivity" />
+
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true" />
+        <meta-data
+            android:name="notch.config"
+            android:value="portrait|landscape" />
     </application>
+
+    <dist:module dist:instant="true" />
 
 </manifest>

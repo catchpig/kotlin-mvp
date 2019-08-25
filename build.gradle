@@ -20,6 +20,7 @@ buildscript {
         autosize_version = '1.1.2'
         immersionbar_version = '3.0.0-beta05'
         loading_version = '1.0.2'
+        SmartRefreshLayout_version = '2.0.0-alpha-1'
     }
     repositories {
         google()

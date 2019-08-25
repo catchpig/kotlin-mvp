@@ -78,4 +78,6 @@ dependencies {
 //    api "com.gyf.immersionbar:immersionbar-components:$immersionbar_version"
     // kotlin扩展（可选）
     api "com.gyf.immersionbar:immersionbar-ktx:$immersionbar_version"
+    //刷新
+    api "com.scwang.smart:refresh-layout-kernel:$SmartRefreshLayout_version"
 }

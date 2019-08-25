@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.catchpig.mvp.R
+import com.catchpig.mvp.widget.refresh.IPageControl
+import com.catchpig.mvp.widget.refresh.RefreshLayoutWrapper
 import java.util.*
 
 
@@ -21,7 +23,7 @@ import java.util.*
  * 描述: RecyclerViewAdapter基类
  */
 
-abstract class RecyclerAdapter<M> : RecyclerView.Adapter<CommonViewHolder>() {
+abstract class RecyclerAdapter<M>: RecyclerView.Adapter<CommonViewHolder>,IAdapterListControl<M> {
     companion object {
         /**
          * 头部类型
@@ -42,7 +44,6 @@ abstract class RecyclerAdapter<M> : RecyclerView.Adapter<CommonViewHolder>() {
     }
 
     var mData: MutableList<M> = ArrayList()
-    private set
     /**
      * 头部
      */
@@ -66,12 +67,20 @@ abstract class RecyclerAdapter<M> : RecyclerView.Adapter<CommonViewHolder>() {
     private var firstLoad = true
     var mListener: OnItemClickListener<M>? = null
 
-    fun setData(data:MutableList<M>?){
+    private var pageControl: IPageControl? = null
+    constructor():this(null)
+    constructor(pageControl: IPageControl?) {
+        this.pageControl = pageControl
+    }
+
+    override fun set(list: MutableList<M>?) {
         firstLoad = false
-        if (data != null) {
-            mData = data
+        if (list != null) {
+            mData = list
+            notifyDataSetChanged()
+        }else{
+            clear()
         }
-        notifyDataSetChanged()
     }
     override fun getItemCount(): Int {
         var size = if (mData == null) 0 else mData.size
@@ -107,7 +116,7 @@ abstract class RecyclerAdapter<M> : RecyclerView.Adapter<CommonViewHolder>() {
         return list == null
     }
 
-    operator fun get(position: Int): M? {
+    override fun get(position: Int): M? {
         if (isNull(mData)) {
             return null
         }
@@ -128,14 +137,27 @@ abstract class RecyclerAdapter<M> : RecyclerView.Adapter<CommonViewHolder>() {
     /**
      * list中添加更多的数据
      */
-    fun add(data: List<M>) {
-        if (mData == null) {
-            return
+    override fun add(list: MutableList<M>?) {
+        mData?.let {
+            list?.let {
+                it.addAll(it)
+            }
+            notifyDataSetChanged()
         }
-        mData!!.addAll(data)
-        notifyDataSetChanged()
     }
 
+    override fun autoUpdateList(list: MutableList<M>?) {
+        pageControl?.let {
+            it.updateSuccess(list)
+            val states = it.refreshStates
+            if (states == RefreshLayoutWrapper.REFRESH_LOADING) {
+                add(list)
+            } else if (states == RefreshLayoutWrapper.REFRESH_REFRESHING) {
+                set(list)
+            }
+        }
+
+    }
 
     override fun getItemViewType(position: Int): Int {
         if (position == 0 && showEmpty) {
