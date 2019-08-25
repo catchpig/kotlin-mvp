@@ -10,7 +10,7 @@ import com.scwang.smart.refresh.layout.constant.RefreshState
  * 描述: 页码关联
  */
 interface IPageControl {
-
+    var pageSize:Int
     var nextPageIndex:Int
 
     fun getRefreshStatus():RefreshState

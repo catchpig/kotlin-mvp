@@ -47,18 +47,9 @@ class RefreshLayoutWrapper(
     /**
      * 一页的条目，默认16
      */
-    private var pageSize = 16
+    override var pageSize = 16
     override fun getRefreshStatus(): RefreshState {
         return state
-    }
-
-    /**
-     * 设置单页加载数据数
-     *
-     * @param pageSize 单页数据项
-     */
-    fun setPageSize(pageSize: Int) {
-        this.pageSize = pageSize
     }
 
     /**
