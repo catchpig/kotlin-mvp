@@ -1,5 +1,7 @@
 package com.catchpig.mvp.base.activity
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -42,8 +44,16 @@ import kotlinx.android.synthetic.main.view_root.*
  */
 abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
     private var loadingViewController:LoadingViewController? = null
-    override fun getBaseActivity(): BaseActivity? {
+    override fun baseActivity(): BaseActivity? {
         return this
+    }
+
+    override fun activity(): Activity {
+        return this
+    }
+
+    override fun applicationContext(): Context {
+        return applicationContext
     }
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {

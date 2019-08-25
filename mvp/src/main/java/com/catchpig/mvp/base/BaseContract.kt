@@ -1,5 +1,7 @@
 package com.catchpig.mvp.base
 
+import android.app.Activity
+import android.content.Context
 import com.catchpig.mvp.base.activity.BaseActivity
 import io.reactivex.Flowable
 import io.reactivex.subscribers.ResourceSubscriber
@@ -13,7 +15,9 @@ import io.reactivex.subscribers.ResourceSubscriber
  */
 interface BaseContract {
     interface View {
-        fun getBaseActivity(): BaseActivity?
+        fun applicationContext():Context
+        fun activity():Activity
+        fun baseActivity(): BaseActivity?
         /**
          * 出现loading动画
          * @param isDialog 是否是dialog形式的

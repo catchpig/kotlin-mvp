@@ -1,5 +1,7 @@
 package com.catchpig.mvp.base.fragment
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,11 +21,19 @@ import com.catchpig.mvp.base.activity.BaseActivity
  * 描述:
  */
 abstract class BaseFragment : Fragment(), BaseContract.View {
-    override fun getBaseActivity(): BaseActivity? {
+    override fun baseActivity(): BaseActivity? {
         if (activity is BaseActivity) {
             return activity as BaseActivity
         }
         return null
+    }
+
+    override fun activity(): Activity {
+        return activity!!
+    }
+
+    override fun applicationContext(): Context {
+        return activity().applicationContext
     }
 
     @CallSuper
