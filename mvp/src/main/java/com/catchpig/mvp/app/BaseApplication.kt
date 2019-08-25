@@ -3,8 +3,8 @@ package com.catchpig.mvp.app
 import android.app.Application
 import android.content.Context
 import androidx.annotation.CallSuper
-import com.catchpig.mvp.di.module.AppModule
 import com.catchpig.mvp.lifecycle.BarLifecycleCallbacksImpl
+import luyao.util.ktx.core.lifecycle.KtxLifeCycleCallBack
 
 /**
  * 创建时间:2019/8/22 0022<br/>
@@ -25,5 +25,6 @@ open class BaseApplication:Application() {
         super.onCreate()
         application = this
         registerActivityLifecycleCallbacks(BarLifecycleCallbacksImpl())
+        registerActivityLifecycleCallbacks(KtxLifeCycleCallBack())
     }
 }

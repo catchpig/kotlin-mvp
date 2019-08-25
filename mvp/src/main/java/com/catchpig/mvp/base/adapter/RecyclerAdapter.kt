@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.catchpig.mvp.R
 import com.catchpig.mvp.widget.refresh.IPageControl
-import com.catchpig.mvp.widget.refresh.RefreshLayoutWrapper
+import com.scwang.smart.refresh.layout.constant.RefreshState
 import java.util.*
 
 
@@ -149,11 +149,13 @@ abstract class RecyclerAdapter<M>: RecyclerView.Adapter<CommonViewHolder>,IAdapt
     override fun autoUpdateList(list: MutableList<M>?) {
         pageControl?.let {
             it.updateSuccess(list)
-            val states = it.refreshStates
-            if (states == RefreshLayoutWrapper.REFRESH_LOADING) {
-                add(list)
-            } else if (states == RefreshLayoutWrapper.REFRESH_REFRESHING) {
-                set(list)
+            when (it.refreshStatus) {
+                RefreshState.Refreshing -> {
+                    set(list)
+                }
+                RefreshState.Loading -> {
+                    add(list)
+                }
             }
         }
 

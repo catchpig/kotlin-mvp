@@ -1,5 +1,7 @@
 package com.catchpig.mvp.widget.refresh
 
+import com.scwang.smart.refresh.layout.constant.RefreshState
+
 /**
  * 创建时间:2017/12/21  19:49<br></br>
  * 创建人: 廖斌<br></br>
@@ -11,7 +13,7 @@ interface IPageControl {
 
     var nextPageIndex:Int
 
-    var refreshStates:Int
+    var refreshStatus:RefreshState
 
     fun resetPageIndex()
 

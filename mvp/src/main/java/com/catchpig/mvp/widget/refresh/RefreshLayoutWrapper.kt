@@ -3,6 +3,7 @@ package com.catchpig.mvp.widget.refresh
 import android.content.Context
 import android.util.AttributeSet
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import com.scwang.smart.refresh.layout.constant.RefreshState
 
 
 /**
@@ -47,15 +48,8 @@ class RefreshLayoutWrapper(
      * 一页的条目，默认16
      */
     private var pageSize = 16
-    override var refreshStates: Int = NONE_PRE_PAGE_INDEX
-        get() {
-            if (isRefreshing) {
-                return REFRESH_REFRESHING
-            } else if (isLoading) {
-                return REFRESH_LOADING
-            }
-            return REFRESH_NORMAL
-        }
+    override var refreshStatus: RefreshState = RefreshState.None
+        get() = state
 
     /**
      * 设置单页加载数据数
