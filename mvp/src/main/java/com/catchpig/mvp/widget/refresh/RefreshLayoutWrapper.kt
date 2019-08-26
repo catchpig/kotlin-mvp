@@ -65,7 +65,7 @@ class RefreshLayoutWrapper(
             setEnableRefresh(true)
 
             if (list == null || list.size < pageSize) {
-                finishLoadMore(true)
+                setEnableLoadMore(false)
             }
         }
         updateCurrentPageIndex()

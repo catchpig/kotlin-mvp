@@ -11,7 +11,7 @@ buildscript {
         rxandroid_version = '2.1.1'
         gson_version = '2.8.5'
         glide_version = '4.9.0'
-        AndroidUtilKTX_version = '0.0.6'
+        AndroidUtilKTX_version = '0.0.5'
         photoview_version = '2.0.0'
         chart_version = 'v3.1.0'
         avi_version = "2.1.3"

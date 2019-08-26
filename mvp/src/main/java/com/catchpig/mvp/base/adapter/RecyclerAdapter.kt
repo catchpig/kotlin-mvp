@@ -140,7 +140,7 @@ abstract class RecyclerAdapter<M>: RecyclerView.Adapter<CommonViewHolder>,IAdapt
     override fun add(list: MutableList<M>?) {
         mData?.let {
             list?.let {
-                it.addAll(it)
+                mData.addAll(it)
             }
             notifyDataSetChanged()
         }
