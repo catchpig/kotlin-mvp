@@ -1,7 +1,10 @@
 package com.catchpig.mvp.widget.refresh
 
 import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Color
 import android.util.AttributeSet
+import com.scwang.smart.refresh.header.MaterialHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.scwang.smart.refresh.layout.constant.RefreshState
 
@@ -109,5 +112,13 @@ class RefreshLayoutWrapper(
         this.nextPageIndex = NONE_PRE_PAGE_INDEX
     }
 
-
+    override fun onDraw(canvas: Canvas?) {
+        super.onDraw(canvas)
+        //如果google原生的刷新样式，将头部背景设置为透明
+        refreshHeader?.let {
+            if (it.view is MaterialHeader) {
+                it.view.setBackgroundColor(Color.TRANSPARENT)
+            }
+        }
+    }
 }

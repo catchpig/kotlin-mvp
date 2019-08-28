@@ -80,4 +80,7 @@ dependencies {
     api "com.gyf.immersionbar:immersionbar-ktx:$immersionbar_version"
     //刷新
     api "com.scwang.smart:refresh-layout-kernel:$SmartRefreshLayout_version"
+    //刷新-头部
+    api "com.scwang.smart:refresh-header-material:$SmartRefreshLayout_version"
+
 }
