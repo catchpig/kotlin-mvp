@@ -16,7 +16,7 @@ object ActivityManager {
     /**
      * 删除activity
      */
-    fun removeActivity(activity: Activity){
+    fun removeActivity(activity: Activity?){
         activities.remove(activity)
     }
 
@@ -43,10 +43,25 @@ object ActivityManager {
         var iterator = activities.iterator()
         while (iterator.hasNext()){
             val activity = iterator.next()
-            if (activity != topActivity) {
-                activity.finish()
+            if (activity!=null) {
+                if(activity != topActivity){
+                    activity.finish()
+                }
+            }else{
                 iterator.remove()
             }
+        }
+    }
+
+    /**
+     * 删除所有的activity
+     */
+    fun finishAllActivities(){
+        var iterator = activities.iterator()
+        while (iterator.hasNext()){
+            val activity = iterator.next()
+            activity?.finish()
+            iterator.remove()
         }
     }
 }
