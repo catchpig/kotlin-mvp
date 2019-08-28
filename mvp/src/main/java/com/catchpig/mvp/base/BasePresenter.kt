@@ -5,7 +5,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import io.reactivex.Flowable
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.observers.ResourceObserver
 import io.reactivex.subscribers.ResourceSubscriber
 import luyao.util.ktx.ext.logd
 
@@ -66,5 +68,9 @@ open class BasePresenter<V : BaseContract.View>(protected var mView: V) : BaseCo
             callback: ResourceSubscriber<T>
     ) {
         mCompositeDisposable.add(flowable.subscribeWith(callback))
+    }
+
+    override fun <T> execute(observable: Observable<T>, callback: ResourceObserver<T>) {
+        mCompositeDisposable.add(observable.subscribeWith(callback))
     }
 }
