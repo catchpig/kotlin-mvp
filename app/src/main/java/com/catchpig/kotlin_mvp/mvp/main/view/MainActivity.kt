@@ -13,6 +13,7 @@ import com.catchpig.kotlin_mvp.mvp.recycle.RecycleActivity
 import com.catchpig.kotlin_mvp.mvp.transparent.TransparentActivity
 import com.catchpig.mvp.annotation.StatusBar
 import com.catchpig.mvp.base.activity.BasePresenterActivity
+import com.catchpig.mvp.manager.ActivityManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 @StatusBar(enabled = true)
@@ -44,6 +45,7 @@ class MainActivity : BasePresenterActivity<MainPresenter>(),MainContract.View {
             }
             R.id.recycle -> {
                 intent.setClass(this,RecycleActivity::class.java)
+                ActivityManager.startActivity(RecycleActivity::class.java)
             }
             else -> {
             }

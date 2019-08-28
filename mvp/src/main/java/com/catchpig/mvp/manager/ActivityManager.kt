@@ -30,7 +30,7 @@ object ActivityManager {
     /**
      * 打开activity
      */
-    fun startActivity(cls:Class<Activity>){
+    fun startActivity(cls:Class<out Activity>){
         var activity = getTopActivity()
         var intent = Intent(activity,cls)
         activity.startActivity(intent)
