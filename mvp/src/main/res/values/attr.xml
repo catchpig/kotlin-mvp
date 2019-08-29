@@ -8,4 +8,8 @@
     <attr name="title_bar_text_color" format="color" />
     <!--标题栏下方的线是否显示(主要是为了防止标题栏的颜色和内容栏的颜色一样,不能分辨状态栏和内容栏)-->
     <attr name="title_bar_show_line" format="boolean" />
+    <!--标题栏下方线的颜色-->
+    <attr name="title_bar_line_color" format="color"/>
+    <!--loading动画的背景色-->
+    <attr name="loading_view_background" format="color"/>
 </resources>

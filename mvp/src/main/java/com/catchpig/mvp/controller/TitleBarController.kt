@@ -53,6 +53,10 @@ class TitleBarController(private val baseActivity: BaseActivity,private val titl
     private fun drawLine(line:View){
         if (baseActivity.showTitleLine()) {
             line.visibility = View.VISIBLE
+            val lineColor = baseActivity.getTitleLineColor()
+            if (lineColor!=0) {
+                line.setBackgroundResource(lineColor)
+            }
         }else{
             line.visibility = View.GONE
         }

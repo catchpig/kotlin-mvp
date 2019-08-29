@@ -5,9 +5,11 @@ import android.view.*
 import android.widget.FrameLayout
 import com.catchpig.mvp.R
 import com.catchpig.mvp.base.activity.BaseActivity
+import com.catchpig.mvp.ext.getLoadingViewBackground
+import com.catchpig.mvp.ext.getLoadingColor
 import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.layout_loading.*
-import kotlinx.android.synthetic.main.layout_loading.view.loading_frame
+import kotlinx.android.synthetic.main.layout_loading.view.*
 
 /**
  *
@@ -17,6 +19,8 @@ class LoadingViewController(private val baseActivity: BaseActivity,private val l
     private var dialog:Dialog? = null
     fun loadingView(){
         layoutBody.loading_frame.visibility = View.VISIBLE
+        layoutBody.loading_frame.setBackgroundResource(baseActivity.getLoadingViewBackground())
+        layoutBody.loading_view.setLoadColor(baseActivity.getLoadingColor())
     }
 
     fun loadingDialog(){
@@ -25,6 +29,7 @@ class LoadingViewController(private val baseActivity: BaseActivity,private val l
             setCancelable(false)
             setContentView(R.layout.layout_loading)
             loading_frame.visibility = View.VISIBLE
+            loading_view.setLoadColor(baseActivity.getLoadingColor())
             ImmersionBar.with(baseActivity,this).transparentBar().init()
             show()
             window?.run {

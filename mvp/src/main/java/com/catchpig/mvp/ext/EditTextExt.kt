@@ -14,6 +14,6 @@ import android.widget.EditText
 /**
  * 给输入框赋值
  */
-fun EditText.putString(text:String?){
+fun EditText.setTextValue(text:String?){
     this.text = Editable.Factory.getInstance().newEditable(text)
 }
