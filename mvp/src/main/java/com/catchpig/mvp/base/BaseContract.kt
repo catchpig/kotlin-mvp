@@ -4,8 +4,7 @@ import android.app.Activity
 import android.content.Context
 import com.catchpig.mvp.base.activity.BaseActivity
 import io.reactivex.Flowable
-import io.reactivex.Observable
-import io.reactivex.observers.ResourceObserver
+import io.reactivex.disposables.Disposable
 import io.reactivex.subscribers.ResourceSubscriber
 
 /**
@@ -49,7 +48,12 @@ interface BaseContract {
          * 处理请求接口(线程安全,防止内存泄露)
          * @param
          */
-        fun <T> execute(flowable: Flowable<T>, callback: ResourceSubscriber<T>)
+        fun <T> execute(flowable: Flowable<T>, callback: ResourceSubscriber<T>):Disposable
+
+        /**
+         * 删除指定的Disposable
+         */
+        fun remove(disposable: Disposable)
 
     }
 }
