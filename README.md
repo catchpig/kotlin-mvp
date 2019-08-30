@@ -32,7 +32,7 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
 2. 在需要使用状态栏、标题栏、加载动画的主题中配置全局参数:
     
     |属性|类型|必须|默认|说明|
-    |---|:---:|:---|:---|
+    |---|:---:|:---|:---|:---|
     |title_bar_back_icon|DrawableRes|是|无|标题栏的返回图标|
     |title_bar_background|ColorRes|是|无|标题栏的背景色|
     |title_bar_text_color|ColorRes|是|无|标题栏的文字颜色|
