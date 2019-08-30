@@ -158,8 +158,8 @@ abstract class RecyclerAdapter<M>: RecyclerView.Adapter<CommonViewHolder>,IAdapt
             }
             it.updateSuccess(list)
         }
-
     }
+
 
     override fun getItemViewType(position: Int): Int {
         if (position == 0 && showEmpty) {

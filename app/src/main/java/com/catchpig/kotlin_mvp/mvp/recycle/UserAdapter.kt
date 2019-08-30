@@ -17,5 +17,6 @@ class UserAdapter(iPageControl: IPageControl):RecyclerAdapter<User>(iPageControl
 
     override fun bindViewHolder(holder: CommonViewHolder, m: User, position: Int) {
         holder.itemView.name.text = m.name
+
     }
 }

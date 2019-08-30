@@ -27,18 +27,10 @@ class RefreshLayoutWrapper(
          * 预显示界面索引
          */
          const val NONE_PRE_PAGE_INDEX = -1
-        /**
-         * 未刷新状态
-         */
-         const val REFRESH_NORMAL = 0
-        /**
-         * 正在加载状态
-         */
-         const val REFRESH_LOADING = 1
-        /**
-         * 正在刷新状态
-         */
-         const val REFRESH_REFRESHING = 2
+    }
+    init {
+        //初始化加载更多不可用
+        setEnableLoadMore(false)
     }
     /**
      * 当前页面index
@@ -63,12 +55,12 @@ class RefreshLayoutWrapper(
     override fun updateSuccess(list: List<*>?) {
         if (isRefreshing) {
             setEnableLoadMore(true)
-            finishLoadMore(false)
         } else if (isLoading) {
-            setEnableRefresh(true)
-
-            if (list == null || list.size < pageSize) {
-                setEnableLoadMore(false)
+            list?.let {
+                if(it.size<pageSize){
+                    //设置加载更多不可用
+                    setEnableLoadMore(false)
+                }
             }
         }
         updateCurrentPageIndex()
