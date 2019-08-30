@@ -4,7 +4,7 @@ import com.catchpig.kotlin_mvp.R
 import com.catchpig.mvp.base.adapter.CommonViewHolder
 import com.catchpig.mvp.base.adapter.RecyclerAdapter
 import com.catchpig.mvp.widget.refresh.IPageControl
-import kotlinx.android.synthetic.main.item_user.view.*
+import kotlinx.android.synthetic.main.item_user.*
 
 /**
  *
@@ -16,7 +16,6 @@ class UserAdapter(iPageControl: IPageControl):RecyclerAdapter<User>(iPageControl
     }
 
     override fun bindViewHolder(holder: CommonViewHolder, m: User, position: Int) {
-        holder.itemView.name.text = m.name
-
+        holder.name.text = m.name
     }
 }

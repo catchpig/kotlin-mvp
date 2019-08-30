@@ -69,8 +69,4 @@ open class BasePresenter<V : BaseContract.View>(protected var mView: V) : BaseCo
     ) {
         mCompositeDisposable.add(flowable.subscribeWith(callback))
     }
-
-    override fun <T> execute(observable: Observable<T>, callback: ResourceObserver<T>) {
-        mCompositeDisposable.add(observable.subscribeWith(callback))
-    }
 }

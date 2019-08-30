@@ -50,10 +50,6 @@ interface BaseContract {
          * @param
          */
         fun <T> execute(flowable: Flowable<T>, callback: ResourceSubscriber<T>)
-        /**
-         * 处理请求接口(线程安全,防止内存泄露)
-         */
-        fun <T> execute(observable: Observable<T>, callback: ResourceObserver<T>)
 
     }
 }

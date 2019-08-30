@@ -37,6 +37,8 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
     |title_bar_background|ColorRes|无|标题栏的背景色|
     |title_bar_text_color|ColorRes|无|标题栏的文字颜色|
     |title_bar_show_line|boolean|false|标题栏的下方的线条是否显示|
+    |loading_view_color|ColorRes|无|loading动画颜色|
+    |loading_view_background|ColorRes|无|loading动画背景色|
 
     使用示例:
     ```
@@ -56,3 +58,10 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
     * 使用MVP的继承BasePresenterFragment
     * 不使用MVP的继承BaseFragment
 5. 如果使用RecycleView的时候,Adapter可以继承RecycleAdapter来使用
+    在app的build.gradle的android下添加如下代码:
+    ```
+    //启用实验性功能
+    androidExtensions {
+        experimental = true
+    }
+    ```
