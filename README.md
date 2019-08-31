@@ -69,13 +69,15 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
     ```
     * 只需要实现以下两个方法
     ```
-    override fun layoutId(): Int {
-        return R.layout.item_user
-    }
-
-    override fun bindViewHolder(holder: CommonViewHolder, m: User, position: Int) {
-        //使用的experimental之后,可以直接holder.控件ID,不需要holder.itemView.控件ID
-        holder.name.text = m.name
+    class UserAdapter(iPageControl: IPageControl):RecyclerAdapter<User>(iPageControl) {
+        override fun layoutId(): Int {
+            return R.layout.item_user
+        }
+    
+        override fun bindViewHolder(holder: CommonViewHolder, m: User, position: Int) {
+            //使用的experimental之后,可以直接holder.控件ID,不需要holder.itemView.控件ID
+            holder.name.text = m.name
+        }
     }
     ```
 6. 注解使用
