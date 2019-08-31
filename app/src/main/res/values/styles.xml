@@ -17,6 +17,7 @@
         <item name="title_bar_show_line">true</item>
         <item name="loading_view_color">@color/colorAccent</item>
         <item name="loading_view_background">@color/white</item>
+        <item name="recycle_view_empty_layout">@layout/layout_empty</item>
         <!--全局标题栏和状态栏配置-->
     </style>
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">

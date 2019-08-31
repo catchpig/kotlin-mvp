@@ -12,4 +12,6 @@
     <attr name="title_bar_line_color" format="color"/>
     <!--loading动画的背景色-->
     <attr name="loading_view_background" format="color"/>
+    <!--列表的空页面-->
+    <attr name="recycle_view_empty_layout" format="reference"/>
 </resources>

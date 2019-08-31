@@ -39,6 +39,7 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
     |title_bar_show_line|boolean|否|false|标题栏的下方的线条是否显示|
     |loading_view_color|ColorRes|是|无|loading动画颜色|
     |loading_view_background|ColorRes|是|无|loading动画背景色|
+    |recycle_view_empty_layout|LayoutRes|否|[emptyLayout](./mvp/src/main/res/layout/view_load_empty.xml)|列表空页面|
 
     使用示例:
     ```

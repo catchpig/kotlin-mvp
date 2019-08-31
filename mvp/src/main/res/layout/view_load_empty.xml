@@ -14,6 +14,6 @@
       android:gravity="center"
       android:text="@string/no_data"
       android:textColor="#999999"
-      android:textSize="30sp"
+      android:textSize="20sp"
       />
 </LinearLayout>

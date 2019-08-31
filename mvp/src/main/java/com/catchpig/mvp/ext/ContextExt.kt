@@ -1,10 +1,12 @@
 package com.catchpig.mvp.ext
 
 import android.content.Context
+import android.content.res.Resources
 import android.util.TypedValue
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
 import com.catchpig.mvp.R
 import luyao.util.ktx.ext.logd
@@ -33,7 +35,7 @@ fun Context.getColorPrimary():Int{
 fun Context.getTitleBackground():Int{
     var typedValue = TypedValue()
     theme.resolveAttribute(R.attr.title_bar_background, typedValue,true)
-    if (typedValue.resourceId==0) {
+    if (typedValue.resourceId==Resources.ID_NULL) {
         throw IllegalAccessException("请主题中设置标题背景(属性名称:title_bar_background->@ColorRes)")
     }
     return typedValue.resourceId
@@ -45,7 +47,7 @@ fun Context.getTitleBackground():Int{
 fun Context.getTitleBackIcon(): Int{
     var typedValue = TypedValue()
     theme.resolveAttribute(R.attr.title_bar_back_icon, typedValue,true)
-    if (typedValue.resourceId==0) {
+    if (typedValue.resourceId==Resources.ID_NULL) {
         throw IllegalAccessException("请主题中设置返回按钮图标(属性名称:title_bar_back_icon -> @DrawableRes)")
     }
     return typedValue.resourceId
@@ -58,7 +60,7 @@ fun Context.getTitleBackIcon(): Int{
 fun Context.getTitleTextColor(): Int{
     var typedValue = TypedValue()
     theme.resolveAttribute(R.attr.title_bar_text_color, typedValue,true)
-    if (typedValue.resourceId==0) {
+    if (typedValue.resourceId==Resources.ID_NULL) {
         throw IllegalAccessException("请主题中设置标题文字颜色(属性名称:title_bar_text_color -> @ColorRes)")
     }
     return typedValue.data
@@ -71,7 +73,7 @@ fun Context.getTitleTextColor(): Int{
 fun Context.getLoadingColor():Int{
     var typedValue = TypedValue()
     theme.resolveAttribute(R.attr.loading_view_color, typedValue,true)
-    if (typedValue.resourceId==0) {
+    if (typedValue.resourceId==Resources.ID_NULL) {
         throw IllegalAccessException("请主题中设置Loading动画颜色(属性名称:loading_view_color -> @ColorRes)")
     }
     return typedValue.resourceId
@@ -84,7 +86,7 @@ fun Context.getLoadingColor():Int{
 fun Context.getLoadingViewBackground():Int{
     var typedValue = TypedValue()
     theme.resolveAttribute(R.attr.loading_view_background, typedValue,true)
-    if (typedValue.resourceId==0) {
+    if (typedValue.resourceId==Resources.ID_NULL) {
         throw IllegalAccessException("请主题中设置Loading背景颜色(属性名称:loading_view_background -> @ColorRes)")
     }
     return typedValue.resourceId
@@ -106,8 +108,21 @@ fun Context.showTitleLine():Boolean{
 fun Context.getTitleLineColor():Int{
     var typedValue = TypedValue()
     theme.resolveAttribute(R.attr.title_bar_line_color, typedValue,true)
-    if (typedValue.resourceId==0) {
+    if (typedValue.resourceId==Resources.ID_NULL) {
         "主题中未设置标题栏下方的颜色,属性名称为:loading_view_background".logd("ContextExt")
+    }
+    return typedValue.resourceId
+}
+
+/**
+ * 获取列表的空页面
+ */
+@LayoutRes
+fun Context.getEmptyLayout():Int{
+    var typedValue = TypedValue()
+    theme.resolveAttribute(R.attr.recycle_view_empty_layout, typedValue,true)
+    if (typedValue.resourceId==Resources.ID_NULL) {
+        "主题中未设置列表空页面,属性名称为:recycle_view_empty_layout".logd("ContextExt")
     }
     return typedValue.resourceId
 }

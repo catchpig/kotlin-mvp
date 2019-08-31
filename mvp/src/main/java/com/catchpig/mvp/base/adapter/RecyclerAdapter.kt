@@ -1,5 +1,6 @@
 package com.catchpig.mvp.base.adapter
 
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.catchpig.mvp.R
+import com.catchpig.mvp.ext.getEmptyLayout
 import com.catchpig.mvp.widget.refresh.IPageControl
 import com.scwang.smart.refresh.layout.constant.RefreshState
 import java.util.*
@@ -204,6 +206,11 @@ abstract class RecyclerAdapter<M>: RecyclerView.Adapter<CommonViewHolder>,IAdapt
         }
         //加载空页面
         if (TYPE_EMPTY == viewType) {
+            parent.context.getEmptyLayout().let {
+                if (it!=Resources.ID_NULL) {
+                    emptyLayout = it
+                }
+            }
             val v = inflate(emptyLayout, parent)
             return CommonViewHolder(v)
         }
