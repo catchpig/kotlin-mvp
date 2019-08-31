@@ -52,7 +52,7 @@ class RefreshLayoutWrapper(
      *
      * @param list 更新数据集合
      */
-    override fun updateSuccess(list: List<*>?) {
+    override fun updateSuccess(list: MutableList<*>?) {
         if (isRefreshing) {
             setEnableLoadMore(true)
         } else if (isLoading) {

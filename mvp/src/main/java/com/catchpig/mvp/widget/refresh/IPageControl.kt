@@ -10,16 +10,37 @@ import com.scwang.smart.refresh.layout.constant.RefreshState
  * 描述: 页码关联
  */
 interface IPageControl {
+    /**
+     * 每页的数据量
+     */
     var pageSize:Int
+    /**
+     * 下一页的页码
+     */
     var nextPageIndex:Int
 
+    /**
+     * 当前的刷新状态
+     */
     fun getRefreshStatus():RefreshState
 
+    /**
+     * 重置当前的页码
+     */
     fun resetPageIndex()
 
+    /**
+     * 加载下一页的页码
+     */
     fun loadNextPageIndex()
 
-    fun updateSuccess(list: List<*>?)
+    /**
+     * 更新数据成功
+     */
+    fun updateSuccess(list: MutableList<*>?)
 
+    /**
+     * a更新数据失败
+     */
     fun updateError()
 }

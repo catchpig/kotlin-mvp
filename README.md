@@ -107,3 +107,34 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
     |enabled|boolean|否|false|状态栏是否可用|
     |transparent|boolean|否|false|状态栏透明|
     
+7. 刷新分页
+    
+    * 使用RefreshLayoutWrapper控件实现刷新功能
+        
+        * RefreshLayoutWrapper继承于[SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout),具体使用请看SmartRefreshLayout官方文档
+        * 默认每页数据量为16,如果想修改每页数据量,可使用如下方法更改:
+        ```
+        RefreshLayoutWrapper.pageSize = 16
+        ```
+        * RefreshLayoutWrapper实现了[IPageControl](./mvp/src/main/java/com/catchpig/mvp/widget/refresh/IPageControl.kt),可以通过调用接口内的方法类获取刷新控件的状态和更改状态
+        
+        ```
+        //每页的数据量
+        iPageControl.pageSize = 16
+        //下一页的页码
+        iPageControl.nextPageIndex = 1
+        //获取刷新的状态
+        iPageControl.getRefreshStatus()
+        //重置当前页码为1
+        iPageControl.resetPageIndex()
+        //加载下一页码
+        iPageControl.loadNextPageIndex()
+        //更新数据成功
+        iPageControl.updateSuccess(list)
+        //更新数据失败
+        iPageControl.updateError()
+        ```
+        * RecyclerAdapter在实例化的时候传入IPageControl,
+        获取数据成功之后,只需要调用autoUpdateList(list)方法,
+        可以自动RefreshLayoutWrapper页码和刷新状态变化
+        
