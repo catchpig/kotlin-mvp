@@ -45,7 +45,6 @@ class MainActivity : BasePresenterActivity<MainPresenter>(),MainContract.View {
             }
             R.id.recycle -> {
                 intent.setClass(this,RecycleActivity::class.java)
-                ActivityManager.startActivity(RecycleActivity::class.java)
             }
             else -> {
             }

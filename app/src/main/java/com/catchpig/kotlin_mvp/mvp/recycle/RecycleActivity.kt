@@ -38,14 +38,14 @@ class RecycleActivity : BaseActivity() {
                             override fun onNext(t: Long?) {
                                 "onNext".logd()
                                 var data:MutableList<User> = ArrayList()
-//                                var count = if (refresh.nextPageIndex==3) {
-//                                    15
-//                                }else{
-//                                    16
-//                                }
-//                                for (i in 1..count){
-//                                    data.add(User("姓名$i"))
-//                                }
+                                var count = if (refresh.nextPageIndex==3) {
+                                    15
+                                }else{
+                                    16
+                                }
+                                for (i in 1..count){
+                                    data.add(User("姓名$i"))
+                                }
                                 adapter.autoUpdateList(data)
                             }
 

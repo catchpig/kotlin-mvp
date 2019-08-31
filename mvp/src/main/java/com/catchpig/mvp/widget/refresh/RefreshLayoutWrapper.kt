@@ -53,16 +53,21 @@ class RefreshLayoutWrapper(
      * @param list 更新数据集合
      */
     override fun updateSuccess(list: MutableList<*>?) {
-        if (isRefreshing) {
-            setEnableLoadMore(true)
-        } else if (isLoading) {
-            list?.let {
-                if(it.size<pageSize){
+        if (list==null) {
+            //设置加载更多不可用
+            setEnableLoadMore(false)
+        }else{
+            list?.apply {
+                if(size<pageSize){
                     //设置加载更多不可用
                     setEnableLoadMore(false)
+                }else{
+                    //设置加载更多可用
+                    setEnableLoadMore(true)
                 }
             }
         }
+        setEnableRefresh(true)
         updateCurrentPageIndex()
         finishUpdate(true)
     }
