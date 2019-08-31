@@ -48,6 +48,8 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
         <item name="title_bar_back_icon">@drawable/back</item>
         <item name="title_bar_text_color">@color/white</item>
         <item name="title_bar_show_line">false</item>
+        <item name="loading_view_color">@color/colorAccent</item>
+        <item name="loading_view_background">@color/white</item>
         <!--全局标题栏和状态栏配置-->
     </style>
     ```
@@ -65,3 +67,41 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
         experimental = true
     }
     ```
+    * 只需要实现以下两个方法
+    ```
+    override fun layoutId(): Int {
+        return R.layout.item_user
+    }
+
+    override fun bindViewHolder(holder: CommonViewHolder, m: User, position: Int) {
+        //使用的experimental之后,可以直接holder.控件ID,不需要holder.itemView.控件ID
+        holder.name.text = m.name
+    }
+    ```
+6. 注解使用
+    * Title(修饰在Activity的类上)-标题
+    
+    |属性|类型|必须|默认|说明|
+    |---|:---:|:---|:---|:---|
+    |value|StringRes|是|无|标题内容|
+    |backgroundColor|ColorRes|否|全局标题背景色|标题背景色|
+    |textColor|ColorRes|否|全局标题文字颜色|标题文字颜色|
+    |backIcon|DrawableRes|否|全局标题返回按钮图标|标题返回按钮图标|
+
+    * TitleMenu(当有Title注解的时候才能使用此注解,也是修饰在Activity上)-标题右边按钮设置
+    
+    |属性|类型|必须|默认|说明|
+    |---|:---:|:---|:---|:---|
+    |rightFirstDrawable|DrawableRes|否|无|右边第一个图标按钮|
+    |rightFirstText|StringRes|否|无|右边第一个文字按钮|
+    |rightSecondDrawable|DrawableRes|否|无|右边第二个图标按钮|
+    |rightSecondText|StringRes|否|无|右边第二个文字按钮|
+    
+    * StatusBar(修饰在Activity上)-状态栏
+    
+    |属性|类型|必须|默认|说明|
+    |---|:---:|:---|:---|:---|
+    |hide|boolean|否|false|隐藏状态栏|
+    |enabled|boolean|否|false|状态栏是否可用|
+    |transparent|boolean|否|false|状态栏透明|
+    
