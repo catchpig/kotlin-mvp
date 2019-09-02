@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.util.AttributeSet
-import com.scwang.smart.refresh.header.MaterialHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.scwang.smart.refresh.layout.constant.RefreshState
 
@@ -27,6 +26,10 @@ class RefreshLayoutWrapper(
          * 预显示界面索引
          */
          const val NONE_PRE_PAGE_INDEX = -1
+        /**
+         * matreral风格的下拉控件
+         */
+        const val SIMPLE_NAME_MATERIAL_HEADER = "MaterialHeader"
     }
     init {
         //初始化加载更多不可用
@@ -109,11 +112,11 @@ class RefreshLayoutWrapper(
         this.nextPageIndex = NONE_PRE_PAGE_INDEX
     }
 
-    override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
+    override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
+        super.onLayout(changed, l, t, r, b)
         //如果google原生的刷新样式，将头部背景设置为透明
         refreshHeader?.let {
-            if (it.view is MaterialHeader) {
+            if (SIMPLE_NAME_MATERIAL_HEADER == it.view.javaClass.simpleName) {
                 it.view.setBackgroundColor(Color.TRANSPARENT)
             }
         }

@@ -45,5 +45,8 @@ dependencies {
 //    implementation 'com.github.catch-pig:kotlin-mvp:1.0.0'
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    //刷新-头部
+    api "com.scwang.smart:refresh-header-material:$SmartRefreshLayout_version"
+    //刷新-底部
     implementation "com.scwang.smart:refresh-footer-classics:$SmartRefreshLayout_version"
 }
