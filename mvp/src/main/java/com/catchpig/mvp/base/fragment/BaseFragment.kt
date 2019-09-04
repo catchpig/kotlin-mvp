@@ -39,9 +39,21 @@ abstract class BaseFragment : Fragment(), BaseContract.View {
     @CallSuper
     @Nullable
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(contentView(), container, false)
+        return inflater.inflate(layoutId(), container, false)
     }
 
     @LayoutRes
-    protected abstract fun contentView(): Int
+    protected abstract fun layoutId():Int
+
+    override fun loadingView(isDialog: Boolean) {
+        baseActivity()?.let {
+            it.loadingView(isDialog)
+        }
+    }
+
+    override fun hideLoadingView() {
+        baseActivity()?.let {
+            it.hideLoadingView()
+        }
+    }
 }

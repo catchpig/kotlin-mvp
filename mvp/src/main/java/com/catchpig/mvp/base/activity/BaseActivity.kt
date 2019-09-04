@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import com.catchpig.mvp.R
 import com.catchpig.mvp.base.BaseContract
@@ -74,7 +75,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
         setContentView(View.inflate(this,layoutResID,null))
     }
 
-
+    @LayoutRes
     protected abstract fun layoutId(): Int
 
     override fun loadingView(isDialog: Boolean) {
