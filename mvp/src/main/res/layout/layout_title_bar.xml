@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:background="@android:color/transparent"
         android:maxLines="1"
         android:textColor="@android:color/black"
         android:textSize="18sp"
@@ -21,6 +22,7 @@
         android:id="@+id/back_icon"
         android:layout_width="50dp"
         android:layout_height="match_parent"
+        android:background="@android:color/transparent"
         android:layout_centerVertical="true"
         android:layout_gravity="center_vertical"
         android:scaleType="center" />
@@ -29,6 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="right"
+        android:background="@android:color/transparent"
         android:orientation="horizontal"
         android:paddingRight="10dp">
 
@@ -38,6 +41,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:clickable="true"
+            android:background="@android:color/transparent"
             android:onClick="clickFirstDrawable"
             android:scaleType="center"
             android:visibility="gone" />
@@ -48,6 +52,7 @@
             android:layout_height="match_parent"
             android:clickable="true"
             android:onClick="clickFirstText"
+            android:background="@android:color/transparent"
             android:gravity="center"
             android:textColor="@android:color/black"
             android:textSize="15sp"
@@ -59,6 +64,7 @@
             android:layout_width="40dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
             android:clickable="true"
             android:onClick="clickSecondDrawable"
             android:scaleType="center"
@@ -68,6 +74,7 @@
             android:id="@+id/rightSecondText"
             android:layout_width="40dp"
             android:layout_height="match_parent"
+            android:background="@android:color/transparent"
             android:gravity="center"
             android:clickable="true"
             android:onClick="clickSecondText"
