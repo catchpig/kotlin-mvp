@@ -45,7 +45,7 @@ abstract class RecyclerAdapter<M> : RecyclerView.Adapter<CommonViewHolder>, IAda
         const val TYPE_NORMAL = 0
     }
 
-    var mData: MutableList<M> = ArrayList()
+    var data: MutableList<M> = ArrayList()
     /**
      * 头部
      */
@@ -69,17 +69,17 @@ abstract class RecyclerAdapter<M> : RecyclerView.Adapter<CommonViewHolder>, IAda
     private var firstLoad = true
 
     var onItemClickListener: OnItemClickListener<M>? = null
-    private var pageControl: IPageControl? = null
+    private var iPageControl: IPageControl? = null
 
     constructor() : this(null)
-    constructor(pageControl: IPageControl?) {
-        this.pageControl = pageControl
+    constructor(iPageControl: IPageControl?) {
+        this.iPageControl = iPageControl
     }
 
     override fun set(list: MutableList<M>?) {
         firstLoad = false
         if (list != null) {
-            mData = list
+            data = list
             notifyDataSetChanged()
         } else {
             clear()
@@ -87,7 +87,7 @@ abstract class RecyclerAdapter<M> : RecyclerView.Adapter<CommonViewHolder>, IAda
     }
 
     override fun getItemCount(): Int {
-        var size = mData.size
+        var size = data.size
         //有头部,item的个数+1
         if (headerView != null) {
             size++
@@ -115,20 +115,16 @@ abstract class RecyclerAdapter<M> : RecyclerView.Adapter<CommonViewHolder>, IAda
         this.emptyLayout = emptyLayout
     }
 
-    private fun isNull(list: List<M>?): Boolean {
-        return list == null
-    }
-
     override fun get(position: Int): M? {
-        check(!(position < 0 || position > mData.size - 1)) { "position必须大于0,且不能大于mData的个数" }
-        return mData[position]
+        check(!(position < 0 || position > data.size - 1)) { "position必须大于0,且不能大于mData的个数" }
+        return data[position]
     }
 
     /**
      * 清空数据
      */
     fun clear() {
-        mData.clear()
+        data.clear()
         notifyDataSetChanged()
     }
 
@@ -137,13 +133,13 @@ abstract class RecyclerAdapter<M> : RecyclerView.Adapter<CommonViewHolder>, IAda
      */
     override fun add(list: MutableList<M>?) {
         list?.let {
-            mData.addAll(it)
+            data.addAll(it)
         }
         notifyDataSetChanged()
     }
 
     override fun autoUpdateList(list: MutableList<M>?) {
-        pageControl?.let {
+        iPageControl?.let {
             when (it.getRefreshStatus()) {
                 RefreshState.Refreshing -> {
                     set(list)
@@ -254,7 +250,7 @@ abstract class RecyclerAdapter<M> : RecyclerView.Adapter<CommonViewHolder>, IAda
             return
         }
         val finalIndex = index
-        val m = mData!![index]
+        val m = data!![index]
         //设置item的点击回调事件
         holder.itemView.setOnClickListener(View.OnClickListener {
             onItemClickListener?.let {
