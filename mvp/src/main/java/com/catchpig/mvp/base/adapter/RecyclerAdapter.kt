@@ -67,7 +67,12 @@ abstract class RecyclerAdapter<M>: RecyclerView.Adapter<CommonViewHolder>,IAdapt
      * 是否是第一次加载数据
      */
     private var firstLoad = true
-    var mListener: OnItemClickListener<M>? = null
+
+    var onItemClickListener: OnItemClickListener<M>? = null
+    set(value) {
+        field = value
+    }
+    get() = field
 
     private var pageControl: IPageControl? = null
     constructor():this(null)
@@ -263,7 +268,7 @@ abstract class RecyclerAdapter<M>: RecyclerView.Adapter<CommonViewHolder>,IAdapt
         val m = mData!![index]
         //设置item的点击回调事件
         holder.itemView.setOnClickListener(View.OnClickListener {
-            mListener?.let {
+            onItemClickListener?.let {
                 it.itemClick(mRecyclerView.id, m, finalIndex)
             }
         })

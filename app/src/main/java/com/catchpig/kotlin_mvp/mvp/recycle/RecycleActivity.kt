@@ -22,6 +22,7 @@ class RecycleActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         var adapter = UserAdapter(refresh)
+
         var linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
         recycle_view.layoutManager = linearLayoutManager
