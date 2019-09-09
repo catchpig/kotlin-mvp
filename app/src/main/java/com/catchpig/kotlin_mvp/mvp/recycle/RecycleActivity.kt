@@ -21,12 +21,11 @@ class RecycleActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        var adapter = UserAdapter(refresh)
-
+        var userAdapter = UserAdapter(refresh)
         var linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
         recycle_view.layoutManager = linearLayoutManager
-        recycle_view.adapter = adapter
+        recycle_view.adapter = userAdapter
         refresh.setOnRefreshLoadMoreListener(object :OnRefreshListener(){
             override fun update(refreshLayout: RefreshLayout) {
                 Flowable.timer(3,TimeUnit.SECONDS)
@@ -47,7 +46,7 @@ class RecycleActivity : BaseActivity() {
                                 for (i in 1..count){
                                     data.add(User("姓名$i"))
                                 }
-                                adapter.autoUpdateList(data)
+                                userAdapter.autoUpdateList(data)
                             }
 
                             override fun onError(t: Throwable?) {

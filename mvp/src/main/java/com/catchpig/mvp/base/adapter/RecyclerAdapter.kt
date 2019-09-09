@@ -25,7 +25,7 @@ import java.util.*
  * 描述: RecyclerViewAdapter基类
  */
 
-abstract class RecyclerAdapter<M>: RecyclerView.Adapter<CommonViewHolder>,IAdapterListControl<M> {
+abstract class RecyclerAdapter<M> : RecyclerView.Adapter<CommonViewHolder>, IAdapterListControl<M> {
     companion object {
         /**
          * 头部类型
@@ -69,13 +69,9 @@ abstract class RecyclerAdapter<M>: RecyclerView.Adapter<CommonViewHolder>,IAdapt
     private var firstLoad = true
 
     var onItemClickListener: OnItemClickListener<M>? = null
-    set(value) {
-        field = value
-    }
-    get() = field
-
     private var pageControl: IPageControl? = null
-    constructor():this(null)
+
+    constructor() : this(null)
     constructor(pageControl: IPageControl?) {
         this.pageControl = pageControl
     }
@@ -85,12 +81,13 @@ abstract class RecyclerAdapter<M>: RecyclerView.Adapter<CommonViewHolder>,IAdapt
         if (list != null) {
             mData = list
             notifyDataSetChanged()
-        }else{
+        } else {
             clear()
         }
     }
+
     override fun getItemCount(): Int {
-        var size = if (mData == null) 0 else mData.size
+        var size = mData.size
         //有头部,item的个数+1
         if (headerView != null) {
             size++
@@ -109,8 +106,7 @@ abstract class RecyclerAdapter<M>: RecyclerView.Adapter<CommonViewHolder>,IAdapt
     }
 
 
-
-    protected lateinit var mRecyclerView: RecyclerView
+    private lateinit var mRecyclerView: RecyclerView
 
     /**
      * 设置空页面
@@ -124,12 +120,7 @@ abstract class RecyclerAdapter<M>: RecyclerView.Adapter<CommonViewHolder>,IAdapt
     }
 
     override fun get(position: Int): M? {
-        if (isNull(mData)) {
-            return null
-        }
-        if (position < 0 || position > mData.size - 1) {
-            throw IllegalStateException("position必须大于0,且不能大于mData的个数")
-        }
+        check(!(position < 0 || position > mData.size - 1)) { "position必须大于0,且不能大于mData的个数" }
         return mData[position]
     }
 
@@ -145,12 +136,10 @@ abstract class RecyclerAdapter<M>: RecyclerView.Adapter<CommonViewHolder>,IAdapt
      * list中添加更多的数据
      */
     override fun add(list: MutableList<M>?) {
-        mData?.let {
-            list?.let {
-                mData.addAll(it)
-            }
-            notifyDataSetChanged()
+        list?.let {
+            mData.addAll(it)
         }
+        notifyDataSetChanged()
     }
 
     override fun autoUpdateList(list: MutableList<M>?) {
@@ -212,7 +201,7 @@ abstract class RecyclerAdapter<M>: RecyclerView.Adapter<CommonViewHolder>,IAdapt
         //加载空页面
         if (TYPE_EMPTY == viewType) {
             parent.context.getEmptyLayout().let {
-                if (it!=Resources.ID_NULL) {
+                if (it != Resources.ID_NULL) {
                     emptyLayout = it
                 }
             }
@@ -301,8 +290,8 @@ abstract class RecyclerAdapter<M>: RecyclerView.Adapter<CommonViewHolder>,IAdapt
         super.onViewAttachedToWindow(holder)
         val lp = holder.itemView.layoutParams
         if (lp != null
-            && lp is StaggeredGridLayoutManager.LayoutParams
-            && holder.layoutPosition === 0
+                && lp is StaggeredGridLayoutManager.LayoutParams
+                && holder.layoutPosition === 0
         ) {
             lp.isFullSpan = true
         }
