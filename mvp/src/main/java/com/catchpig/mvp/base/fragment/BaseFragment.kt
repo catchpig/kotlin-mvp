@@ -56,4 +56,10 @@ abstract class BaseFragment : Fragment(), BaseContract.View {
             it.hideLoadingView()
         }
     }
+
+    override fun closeActivity() {
+        activity?.let {
+            it.finish()
+        }
+    }
 }

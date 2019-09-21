@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import java.util.*
 
-object ActivityManager {
+object KTActivityManager {
     private var activities = LinkedList<Activity>()
     /**
      * 添加activity

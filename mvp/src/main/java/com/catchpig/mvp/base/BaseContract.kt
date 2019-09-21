@@ -29,6 +29,11 @@ interface BaseContract {
          * 隐藏loading动画
          */
         fun hideLoadingView()
+
+        /**
+         * 关闭activity
+         */
+        fun closeActivity()
     }
 
     interface Presenter {

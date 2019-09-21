@@ -3,7 +3,7 @@ package com.catchpig.mvp.lifecycle
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
-import com.catchpig.mvp.manager.ActivityManager
+import com.catchpig.mvp.manager.KTActivityManager
 
 class ActivityManagerLifeCycleCallbacksImpl: Application.ActivityLifecycleCallbacks {
     override fun onActivityPaused(p0: Activity) {
@@ -13,7 +13,7 @@ class ActivityManagerLifeCycleCallbacksImpl: Application.ActivityLifecycleCallba
     }
 
     override fun onActivityDestroyed(activity: Activity) {
-        ActivityManager.removeActivity(activity)
+        KTActivityManager.removeActivity(activity)
     }
 
     override fun onActivitySaveInstanceState(p0: Activity, p1: Bundle) {
@@ -23,7 +23,7 @@ class ActivityManagerLifeCycleCallbacksImpl: Application.ActivityLifecycleCallba
     }
 
     override fun onActivityCreated(activity: Activity, p1: Bundle?) {
-        ActivityManager.addActivity(activity)
+        KTActivityManager.addActivity(activity)
     }
 
     override fun onActivityResumed(p0: Activity) {

@@ -93,4 +93,8 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
             it.hideLoading()
         }
     }
+
+    override fun closeActivity() {
+        finish()
+    }
 }
