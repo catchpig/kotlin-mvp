@@ -23,7 +23,7 @@ interface BaseContract {
          * 出现loading动画
          * @param isDialog 是否是dialog形式的
          */
-        fun loadingView(isDialog:Boolean)
+        fun loadingView(isDialog:Boolean=true)
 
         /**
          * 隐藏loading动画
@@ -34,6 +34,8 @@ interface BaseContract {
          * 关闭activity
          */
         fun closeActivity()
+
+        fun toast(text:String,isLong:Boolean= true)
     }
 
     interface Presenter {
@@ -51,9 +53,13 @@ interface BaseContract {
 
         /**
          * 处理请求接口(线程安全,防止内存泄露)
-         * @param
+         * @param callback
+         * @param callback 回调函数
+         * @param io2main 是否flowable在io线程中执行,callback在主线程中执行(默认为true)
          */
-        fun <T> execute(flowable: Flowable<T>, callback: ResourceSubscriber<T>):Disposable
+        fun <T> execute(flowable: Flowable<T>, callback: ResourceSubscriber<T>,io2main:Boolean = true):Disposable
+
+
 
         /**
          * 删除指定的Disposable

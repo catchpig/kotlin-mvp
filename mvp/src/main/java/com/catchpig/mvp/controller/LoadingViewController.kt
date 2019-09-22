@@ -10,6 +10,7 @@ import com.catchpig.mvp.ext.getLoadingColor
 import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.layout_loading.*
 import kotlinx.android.synthetic.main.layout_loading.view.*
+import kotlinx.android.synthetic.main.view_root.view.*
 
 /**
  *
@@ -17,10 +18,24 @@ import kotlinx.android.synthetic.main.layout_loading.view.*
  **/
 class LoadingViewController(private val baseActivity: BaseActivity,private val layoutBody:FrameLayout) {
     private var dialog:Dialog? = null
+    private var isLoadingInflate = false
     fun loadingView(){
-        layoutBody.loading_frame.visibility = View.VISIBLE
-        layoutBody.loading_frame.setBackgroundResource(baseActivity.getLoadingViewBackground())
-        layoutBody.loading_view.setLoadColor(baseActivity.getLoadingColor())
+        layoutBody.run {
+            if (isLoadingInflate) {
+                loading_frame.visibility = View.VISIBLE
+                loading_frame.setBackgroundResource(baseActivity.getLoadingViewBackground())
+                loading_view.setLoadColor(baseActivity.getLoadingColor())
+            }else{
+                //setOnInflateListener监听器一定要在inflate()之前,不然会报空指针
+                loading_view_stub.setOnInflateListener { _, _ ->
+                    isLoadingInflate = true
+                    loading_frame.visibility = View.VISIBLE
+                    loading_frame.setBackgroundResource(baseActivity.getLoadingViewBackground())
+                    loading_view.setLoadColor(baseActivity.getLoadingColor())
+                }
+                loading_view_stub.inflate()
+            }
+        }
     }
 
     fun loadingDialog(){
@@ -46,6 +61,8 @@ class LoadingViewController(private val baseActivity: BaseActivity,private val l
         dialog?.let {
             it.dismiss()
         }
-        layoutBody.loading_frame.visibility = View.GONE
+        if (isLoadingInflate) {
+            layoutBody.loading_frame.visibility = View.GONE
+        }
     }
 }

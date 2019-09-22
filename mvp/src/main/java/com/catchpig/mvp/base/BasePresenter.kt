@@ -4,6 +4,7 @@ package com.catchpig.mvp.base
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
+import com.catchpig.mvp.ext.io2main
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
@@ -66,8 +67,12 @@ open class BasePresenter<V : BaseContract.View>(protected var mView: V) : BaseCo
 
     override fun <T> execute(
             flowable: Flowable<T>,
-            callback: ResourceSubscriber<T>):Disposable {
-        var disposable = flowable.subscribeWith(callback)
+            callback: ResourceSubscriber<T>,io2main:Boolean):Disposable {
+        val disposable = if (io2main) {
+            flowable.io2main().subscribeWith(callback)
+        }else{
+            flowable.subscribeWith(callback)
+        }
         mCompositeDisposable.add(disposable)
         return disposable
     }

@@ -12,6 +12,8 @@ import com.catchpig.mvp.R
 import com.catchpig.mvp.base.BaseContract
 import com.catchpig.mvp.controller.LoadingViewController
 import kotlinx.android.synthetic.main.view_root.*
+import luyao.util.ktx.ext.longToast
+import luyao.util.ktx.ext.toast
 
 /**
  * 创建时间:2019/4/4 00:09<br></br>
@@ -96,5 +98,13 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
 
     override fun closeActivity() {
         finish()
+    }
+
+    override fun toast(text: String,isLong:Boolean) {
+        if (isLong) {
+            longToast(text)
+        }else{
+            toast(text)
+        }
     }
 }

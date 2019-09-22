@@ -10,6 +10,7 @@ import com.catchpig.mvp.base.activity.BaseActivity
 import com.catchpig.mvp.controller.StatusBarController
 import com.catchpig.mvp.controller.TitleBarController
 import com.catchpig.mvp.utils.AnnotationUtils
+import kotlinx.android.synthetic.main.view_root.*
 
 /**
  * 创建时间:2019/8/19 0019<br/>
@@ -41,9 +42,14 @@ class BarLifecycleCallbacksImpl:Application.ActivityLifecycleCallbacks {
             val statusBar = AnnotationUtils.annotation(activity::class.java,StatusBar::class.java)
 
             //初始化控制器
-            val titleBarController = TitleBarController(activity,title,titleMenu)
             val statusBarController = StatusBarController(activity,title,statusBar)
-            titleBarController.initTitleBar()
+            if (title != null) {
+                val titleBarController = TitleBarController(activity,title,titleMenu)
+                activity.title_bar_view_stub.setOnInflateListener { _, _ ->
+                    titleBarController.initTitleBar()
+                }
+                activity.title_bar_view_stub.inflate()
+            }
             statusBarController.checkStatusBar()
         }
     }
