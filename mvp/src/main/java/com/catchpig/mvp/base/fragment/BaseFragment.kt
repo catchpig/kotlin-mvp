@@ -12,6 +12,7 @@ import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import com.catchpig.mvp.base.BaseContract
 import com.catchpig.mvp.base.activity.BaseActivity
+import luyao.util.ktx.ext.longToast
 
 /**
  * 创建时间:2019/4/4 23:14<br></br>
@@ -60,6 +61,12 @@ abstract class BaseFragment : Fragment(), BaseContract.View {
     override fun closeActivity() {
         activity?.let {
             it.finish()
+        }
+    }
+
+    override fun toast(text: String, isLong: Boolean) {
+        baseActivity()?.let {
+            it.toast(text,isLong)
         }
     }
 }
