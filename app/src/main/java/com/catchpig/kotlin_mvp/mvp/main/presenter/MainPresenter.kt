@@ -12,5 +12,9 @@ import io.reactivex.subscribers.ResourceSubscriber
  * 修改时间: 2019/8/18 0018<br/>
  * 描述:
  */
-class MainPresenter(val view: MainContract.View): BasePresenter<MainContract.View>(view) {
+class MainPresenter(private val view:MainContract.View): BasePresenter() {
+    override fun onCreate() {
+        super.onCreate()
+        view.toast("123")
+    }
 }

@@ -1,6 +1,7 @@
 package com.catchpig.mvp.base.activity
 
 import android.os.Bundle
+import com.catchpig.mvp.base.BaseContract
 import com.catchpig.mvp.base.BasePresenter
 import javax.inject.Inject
 
@@ -11,7 +12,7 @@ import javax.inject.Inject
  * 修改时间: 2019/4/6 11:07<br></br>
  * 描述:
  */
-abstract class BasePresenterActivity<P : BasePresenter<*>> : BaseActivity() {
+abstract class BasePresenterActivity<P : BaseContract.Presenter> : BaseActivity() {
     @Inject
     lateinit var mPresenter: P
 

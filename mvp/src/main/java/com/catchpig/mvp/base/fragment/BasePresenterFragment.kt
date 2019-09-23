@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.CallSuper
 import androidx.lifecycle.LifecycleObserver
+import com.catchpig.mvp.base.BaseContract
 import com.catchpig.mvp.base.BasePresenter
 import javax.inject.Inject
 
@@ -14,7 +15,7 @@ import javax.inject.Inject
  * 修改时间: 2019/4/6 11:25<br></br>
  * 描述:
  */
-abstract class BasePresenterFragment<P : BasePresenter<*>> : BaseFragment(), LifecycleObserver {
+abstract class BasePresenterFragment<P : BaseContract.Presenter> : BaseFragment(), LifecycleObserver {
     @Inject
     lateinit var mPresenter: P
     @CallSuper

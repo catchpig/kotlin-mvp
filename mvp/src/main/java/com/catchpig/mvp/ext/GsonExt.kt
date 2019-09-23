@@ -6,8 +6,8 @@ import com.catchpig.mvp.config.Config
 /**
  * json转实体类
  */
-fun <T> String.jsonToClass(cls:Class<T>):T{
-    return Config.gson.fromJson(this,cls)
+inline fun <reified T> String.jsonToClass():T{
+    return Config.gson.fromJson(this,T::class.java)
 }
 
 /**

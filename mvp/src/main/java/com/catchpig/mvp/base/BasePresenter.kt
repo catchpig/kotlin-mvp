@@ -12,6 +12,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.observers.ResourceObserver
 import io.reactivex.subscribers.ResourceSubscriber
 import luyao.util.ktx.ext.logd
+import javax.inject.Inject
 
 
 /**
@@ -21,7 +22,7 @@ import luyao.util.ktx.ext.logd
  * 修改时间: 2019/4/6 10:35<br></br>
  * 描述:
  */
-open class BasePresenter<V : BaseContract.View>(protected var mView: V) : BaseContract.Presenter, LifecycleObserver {
+open class BasePresenter: BaseContract.Presenter {
     companion object {
         const val TAG = "BasePresenter"
         const val ON_CREATE = "onCreate"
@@ -31,35 +32,28 @@ open class BasePresenter<V : BaseContract.View>(protected var mView: V) : BaseCo
         const val ON_STOP = "onStop"
         const val ON_DESTROY = "onDestroy"
     }
-
     private var mCompositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     override fun onCreate() {
         ON_CREATE.logd(TAG)
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_START)
     override fun onStart() {
         ON_START.logd(TAG)
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     override fun onResume() {
         ON_RESUME.logd(TAG)
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     override fun onPause() {
         ON_PAUSE.logd(TAG)
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     override fun onStop() {
         ON_STOP.logd(TAG)
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     override fun onDestroy() {
         ON_DESTROY.logd(TAG)
         mCompositeDisposable.clear()

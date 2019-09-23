@@ -1,6 +1,7 @@
 package com.catchpig.kotlin_mvp.di.component
 
 import com.catchpig.kotlin_mvp.di.module.MainModule
+import com.catchpig.kotlin_mvp.mvp.main.presenter.MainPresenter
 import com.catchpig.kotlin_mvp.mvp.main.view.MainActivity
 import com.catchpig.mvp.di.scope.ActivityScope
 import dagger.Subcomponent
@@ -16,4 +17,6 @@ import dagger.Subcomponent
 @Subcomponent(modules = [MainModule::class])
 interface MainComponent {
     fun inject(mainActivity: MainActivity)
+
+    fun inject(mainPresenter: MainPresenter)
 }

@@ -30,9 +30,9 @@ object KTActivityManager {
     /**
      * 打开activity
      */
-    fun startActivity(cls:Class<out Activity>){
+    inline fun <reified A : Activity> startActivity(){
         var activity = getTopActivity()
-        var intent = Intent(activity,cls)
+        var intent = Intent(activity,A::class.java)
         activity.startActivity(intent)
     }
     /**

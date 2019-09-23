@@ -9,7 +9,7 @@ import com.catchpig.mvp.annotation.TitleMenu
 import com.catchpig.mvp.base.activity.BaseActivity
 import com.catchpig.mvp.controller.StatusBarController
 import com.catchpig.mvp.controller.TitleBarController
-import com.catchpig.mvp.utils.AnnotationUtils
+import com.catchpig.mvp.ext.annotation
 import kotlinx.android.synthetic.main.view_root.*
 
 /**
@@ -35,11 +35,11 @@ class BarLifecycleCallbacksImpl:Application.ActivityLifecycleCallbacks {
     override fun onActivityCreated(activity: Activity, p1: Bundle?) {
         if(activity is BaseActivity){
             //获取Title注解
-            val title = AnnotationUtils.annotation(activity::class.java, Title::class.java)
+            val title = activity.annotation<Title>()
             //获取TitleMenu注解
-            val titleMenu = AnnotationUtils.annotation(activity::class.java, TitleMenu::class.java)
+            val titleMenu = activity.annotation<TitleMenu>()
             //获取StatusBar注解
-            val statusBar = AnnotationUtils.annotation(activity::class.java,StatusBar::class.java)
+            val statusBar = activity.annotation<StatusBar>()
 
             //初始化控制器
             val statusBarController = StatusBarController(activity,title,statusBar)

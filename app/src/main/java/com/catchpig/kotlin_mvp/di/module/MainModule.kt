@@ -2,7 +2,6 @@ package com.catchpig.kotlin_mvp.di.module
 
 import com.catchpig.kotlin_mvp.mvp.main.MainContract
 import com.catchpig.kotlin_mvp.mvp.main.presenter.MainPresenter
-import com.catchpig.mvp.base.module.BaseActivityModule
 import com.catchpig.mvp.di.scope.ActivityScope
 import dagger.Module
 import dagger.Provides
@@ -15,7 +14,7 @@ import dagger.Provides
  * 描述:
  */
 @Module
-class MainModule(val view: MainContract.View): BaseActivityModule<MainContract.View>(view) {
+class MainModule(private val view: MainContract.View) {
     @ActivityScope
     @Provides
     fun providesMainPresenter():MainPresenter{

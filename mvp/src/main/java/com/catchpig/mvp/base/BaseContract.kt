@@ -2,6 +2,9 @@ package com.catchpig.mvp.base
 
 import android.app.Activity
 import android.content.Context
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import com.catchpig.mvp.base.activity.BaseActivity
 import io.reactivex.Flowable
 import io.reactivex.disposables.Disposable
@@ -38,17 +41,18 @@ interface BaseContract {
         fun toast(text:String,isLong:Boolean= true)
     }
 
-    interface Presenter {
+    interface Presenter:LifecycleObserver {
+        @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
         fun onCreate()
-
+        @OnLifecycleEvent(Lifecycle.Event.ON_START)
         fun onStart()
-
+        @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
         fun onResume()
-
+        @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
         fun onPause()
-
+        @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
         fun onStop()
-
+        @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
         fun onDestroy()
 
         /**

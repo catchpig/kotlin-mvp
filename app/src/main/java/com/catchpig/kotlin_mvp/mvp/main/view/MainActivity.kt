@@ -21,6 +21,7 @@ class MainActivity : BasePresenterActivity<MainPresenter>(),MainContract.View {
 
     override fun injectComponent() {
         KotlinMvpApp.getAppComponent().mianComponent(MainModule(this)).inject(this)
+        KotlinMvpApp.getAppComponent().mianComponent(MainModule(this)).inject(mPresenter)
     }
 
     override fun initView() {
