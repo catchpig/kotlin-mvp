@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt' // 使用 kapt 注解处理工具
 
+apply plugin: 'android-aspectjx'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
@@ -31,7 +33,6 @@ android {
         experimental = true
     }
 }
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

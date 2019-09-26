@@ -11,6 +11,7 @@ import com.catchpig.kotlin_mvp.mvp.main.MainContract
 import com.catchpig.kotlin_mvp.mvp.main.presenter.MainPresenter
 import com.catchpig.kotlin_mvp.mvp.recycle.RecycleActivity
 import com.catchpig.kotlin_mvp.mvp.transparent.TransparentActivity
+import com.catchpig.mvp.annotation.ClickGap
 import com.catchpig.mvp.annotation.StatusBar
 import com.catchpig.mvp.base.activity.BasePresenterActivity
 
@@ -21,7 +22,6 @@ class MainActivity : BasePresenterActivity<MainPresenter>(),MainContract.View {
 
     override fun injectComponent() {
         KotlinMvpApp.getAppComponent().mianComponent(MainModule(this)).inject(this)
-        KotlinMvpApp.getAppComponent().mianComponent(MainModule(this)).inject(mPresenter)
     }
 
     override fun initView() {
@@ -30,6 +30,7 @@ class MainActivity : BasePresenterActivity<MainPresenter>(),MainContract.View {
     override fun layoutId(): Int {
         return R.layout.activity_main
     }
+    @ClickGap
     fun openChild(v:View){
         var intent = Intent()
         when (v.id) {

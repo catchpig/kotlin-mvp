@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.catchpig.mvp.R
+import com.catchpig.mvp.base.adapter.RecyclerAdapter.ItemViewType.*
 import com.catchpig.mvp.ext.getEmptyLayout
 import com.catchpig.mvp.widget.refresh.IPageControl
 import com.scwang.smart.refresh.layout.constant.RefreshState
@@ -19,42 +20,71 @@ import java.util.*
 
 /**
  * 创建时间:2017/12/21  19:45<br></br>
- * 创建人: 廖斌<br></br>
+ * 创建人: 李涛<br></br>
  * 修改人: 李涛<br></br>
  * 修改时间: 2017年12月22日13:43:56<br></br>
  * 描述: RecyclerViewAdapter基类
  */
 
-abstract class RecyclerAdapter<M> : RecyclerView.Adapter<CommonViewHolder>, IAdapterListControl<M> {
-    companion object {
+abstract class RecyclerAdapter<M>(private val iPageControl: IPageControl? = null) : RecyclerView.Adapter<CommonViewHolder>(), IAdapterListControl<M> {
+    /**
+     * item的类型
+     */
+    enum class ItemViewType(val value: Int) {
         /**
          * 头部类型
          */
-        const val TYPE_HEADER = -1
+        TYPE_HEADER(-0x01),
         /**
          * 底部类型
          */
-        const val TYPE_FOOTER = -2
+        TYPE_FOOTER(-0x02),
         /**
          * 无数据类型
          */
-        const val TYPE_EMPTY = -3
+        TYPE_EMPTY(-0x03),
         /**
          * 正常的item
          */
-        const val TYPE_NORMAL = 0
+        TYPE_NORMAL(0x00);
+
+        companion object {
+            fun enumOfValue(value: Int): ItemViewType {
+                return when (value) {
+                    TYPE_HEADER.value -> {
+                        TYPE_HEADER
+                    }
+                    TYPE_FOOTER.value -> {
+                        TYPE_FOOTER
+                    }
+                    TYPE_EMPTY.value -> {
+                        TYPE_EMPTY
+                    }
+                    else -> {
+                        TYPE_NORMAL
+                    }
+                }
+            }
+        }
+
+
     }
 
     var data: MutableList<M> = ArrayList()
+
     /**
      * 头部
      */
+    var headerLayoutId = View.NO_ID
     var headerView: View? = null
+        private set
 
     /**
      * 底部
      */
+    var footerLayoutId = View.NO_ID
     var footerView: View? = null
+        private set
     /**
      * 是否展示空页面
      */
@@ -69,12 +99,6 @@ abstract class RecyclerAdapter<M> : RecyclerView.Adapter<CommonViewHolder>, IAda
     private var firstLoad = true
 
     var onItemClickListener: OnItemClickListener<M>? = null
-    private var iPageControl: IPageControl? = null
-
-    constructor() : this(null)
-    constructor(iPageControl: IPageControl?) {
-        this.iPageControl = iPageControl
-    }
 
     override fun set(list: MutableList<M>?) {
         firstLoad = false
@@ -89,11 +113,11 @@ abstract class RecyclerAdapter<M> : RecyclerView.Adapter<CommonViewHolder>, IAda
     override fun getItemCount(): Int {
         var size = data.size
         //有头部,item的个数+1
-        if (headerView != null) {
+        if (headerLayoutId != View.NO_ID) {
             size++
         }
         //有底部,item的个数+1
-        if (footerView != null) {
+        if (footerLayoutId != View.NO_ID) {
             size++
         }
         if (size == 0) {
@@ -154,19 +178,16 @@ abstract class RecyclerAdapter<M> : RecyclerView.Adapter<CommonViewHolder>, IAda
 
 
     override fun getItemViewType(position: Int): Int {
-        if (position == 0 && showEmpty) {
+        return if (position == 0 && showEmpty) {
             //当前数据空位,展示空页面
-            return TYPE_EMPTY
-        }
-        if (position == 0 && headerView != null) {
+            TYPE_EMPTY.value
+        } else if (position == 0 && headerLayoutId != View.NO_ID) {
             //当前view是头部信息
-            return TYPE_HEADER
-        }
-        return if (position == itemCount && footerView != null) {
+            TYPE_HEADER.value
+        } else if (position == itemCount && footerLayoutId != View.NO_ID) {
             //当前view是底部信息
-            TYPE_FOOTER
+            TYPE_FOOTER.value
         } else getCenterViewType(position)
-
     }
 
     /**
@@ -176,35 +197,32 @@ abstract class RecyclerAdapter<M> : RecyclerView.Adapter<CommonViewHolder>, IAda
      */
     @IntRange(from = 0)
     fun getCenterViewType(position: Int): Int {
-        return TYPE_NORMAL
+        return TYPE_NORMAL.value
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonViewHolder {
-        //加载头部信息
-        if (TYPE_HEADER == viewType) {
-            headerView?.let {
-                return CommonViewHolder(it)
+        val view = when (ItemViewType.enumOfValue(viewType)) {
+            TYPE_HEADER -> {
+                headerView = inflate(headerLayoutId, parent)
+                headerView!!
             }
-
-        }
-        //加载底部信息
-        if (TYPE_FOOTER == viewType) {
-            footerView?.let {
-                return CommonViewHolder(it)
+            TYPE_FOOTER -> {
+                footerView = inflate(footerLayoutId, parent)
+                footerView!!
             }
-
-        }
-        //加载空页面
-        if (TYPE_EMPTY == viewType) {
-            parent.context.getEmptyLayout().let {
-                if (it != Resources.ID_NULL) {
-                    emptyLayout = it
+            TYPE_EMPTY -> {
+                parent.context.getEmptyLayout().let {
+                    if (it != Resources.ID_NULL) {
+                        emptyLayout = it
+                    }
                 }
+                inflate(emptyLayout, parent)
             }
-            val v = inflate(emptyLayout, parent)
-            return CommonViewHolder(v)
+            else -> {
+                inflate(layoutId(), parent)
+            }
         }
-        return CommonViewHolder(inflate(layoutId(), parent))
+        return CommonViewHolder(view)
     }
 
     protected abstract fun layoutId(): Int
@@ -214,50 +232,47 @@ abstract class RecyclerAdapter<M> : RecyclerView.Adapter<CommonViewHolder>, IAda
      *
      * @param layoutId 布局文件
      */
-    fun inflate(layoutId: Int, group: ViewGroup): View {
+    private fun inflate(layoutId: Int, group: ViewGroup): View {
         val inflater = LayoutInflater.from(group.context)
         return inflater.inflate(layoutId, group, false)
     }
 
     override fun onBindViewHolder(holder: CommonViewHolder, position: Int) {
         var index = position
-        if (headerView != null) {
-            //当前holder是头部就直接返回,不需要去设置viewholder的内容
-            if (getItemViewType(position) == TYPE_HEADER) {
-                return
-            } else {
+        when (ItemViewType.enumOfValue(getItemViewType(position))) {
+            TYPE_HEADER, TYPE_FOOTER -> {
                 /*
-                 * 有头部的情况,需要要减1,否则取item的数据会取到当前数据的下一条,
-                 * 取出最后一条数据的时候,会报下标溢出
+                 * 当前holder是头部或者底部就直接返回,不需要去设置viewholder的内容
                  */
-                index--
-            }
-        }
-        if (footerView != null) {
-            //当前holder是底部就直接返回,不需要去设置viewholder的内容
-            if (getItemViewType(position) == TYPE_FOOTER) {
                 return
             }
-        }
-        //空页面状态,不需要设置holder的内容
-        if (getItemViewType(position) == TYPE_EMPTY) {
-            //第一次加载数据,不展示空页面
-            if (firstLoad) {
-                holder.itemView.visibility = View.INVISIBLE
-            } else {
-                holder.itemView.visibility = View.VISIBLE
+            TYPE_EMPTY -> {
+                //第一次加载数据,不展示空页面
+                if (firstLoad) {
+                    holder.itemView.visibility = View.INVISIBLE
+                } else {
+                    holder.itemView.visibility = View.VISIBLE
+                }
+                return
             }
-            return
-        }
-        val finalIndex = index
-        val m = data!![index]
-        //设置item的点击回调事件
-        holder.itemView.setOnClickListener(View.OnClickListener {
-            onItemClickListener?.let {
-                it.itemClick(mRecyclerView.id, m, finalIndex)
+            else -> {
+                if (headerLayoutId != View.NO_ID) {
+                    /*
+                     * 有头部的情况,需要要减1,否则取item的数据会取到当前数据的下一条,
+                     * 取出最后一条数据的时候,会报下标溢出
+                     */
+                    index--
+                }
+                val m = data[index]
+                //设置item的点击回调事件
+                holder.itemView.setOnClickListener {
+                    onItemClickListener?.let {
+                        it.itemClick(mRecyclerView.id, m, index)
+                    }
+                }
+                bindViewHolder(holder, m, position)
             }
-        })
-        bindViewHolder(holder, m, position)
+        }
     }
 
     /**
@@ -270,13 +285,16 @@ abstract class RecyclerAdapter<M> : RecyclerView.Adapter<CommonViewHolder>, IAda
         mRecyclerView = recyclerView
         val manager = recyclerView.layoutManager
         if (manager is GridLayoutManager) {
-            val gridManager = manager
-            gridManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {
-                    return if (getItemViewType(position) == TYPE_HEADER || getItemViewType(position) == TYPE_FOOTER)
-                        gridManager.spanCount
-                    else
-                        1
+                    return when (ItemViewType.enumOfValue(getItemViewType(position))) {
+                        TYPE_HEADER, TYPE_EMPTY, TYPE_FOOTER -> {
+                            manager.spanCount
+                        }
+                        else -> {
+                            1
+                        }
+                    }
                 }
             }
         }
@@ -285,8 +303,7 @@ abstract class RecyclerAdapter<M> : RecyclerView.Adapter<CommonViewHolder>, IAda
     override fun onViewAttachedToWindow(holder: CommonViewHolder) {
         super.onViewAttachedToWindow(holder)
         val lp = holder.itemView.layoutParams
-        if (lp != null
-                && lp is StaggeredGridLayoutManager.LayoutParams
+        if (lp is StaggeredGridLayoutManager.LayoutParams
                 && holder.layoutPosition === 0
         ) {
             lp.isFullSpan = true

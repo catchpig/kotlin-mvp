@@ -1,18 +1,13 @@
 package com.catchpig.mvp.base
 
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.annotation.CallSuper
 import com.catchpig.mvp.ext.io2main
 import io.reactivex.Flowable
-import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import io.reactivex.observers.ResourceObserver
 import io.reactivex.subscribers.ResourceSubscriber
 import luyao.util.ktx.ext.logd
-import javax.inject.Inject
 
 
 /**
@@ -33,27 +28,32 @@ open class BasePresenter: BaseContract.Presenter {
         const val ON_DESTROY = "onDestroy"
     }
     private var mCompositeDisposable: CompositeDisposable = CompositeDisposable()
-
+    @CallSuper
     override fun onCreate() {
-        ON_CREATE.logd(TAG)
+//        ON_CREATE.logd(TAG)
     }
 
+    @CallSuper
     override fun onStart() {
         ON_START.logd(TAG)
     }
 
+    @CallSuper
     override fun onResume() {
         ON_RESUME.logd(TAG)
     }
 
+    @CallSuper
     override fun onPause() {
         ON_PAUSE.logd(TAG)
     }
 
+    @CallSuper
     override fun onStop() {
         ON_STOP.logd(TAG)
     }
 
+    @CallSuper
     override fun onDestroy() {
         ON_DESTROY.logd(TAG)
         mCompositeDisposable.clear()

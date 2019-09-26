@@ -1,8 +1,5 @@
 package com.catchpig.mvp.annotation
 
-import java.lang.annotation.ElementType
-import java.lang.annotation.RetentionPolicy
-
 
 /**
  * 创建时间:2019/8/19 0019<br/>

@@ -2,8 +2,6 @@ package com.catchpig.kotlin_mvp.mvp.main.presenter
 
 import com.catchpig.kotlin_mvp.mvp.main.MainContract
 import com.catchpig.mvp.base.BasePresenter
-import io.reactivex.Flowable
-import io.reactivex.subscribers.ResourceSubscriber
 
 /**
  * 创建时间:2019/8/18 0018<br/>
