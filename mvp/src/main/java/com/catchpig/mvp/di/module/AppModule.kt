@@ -2,12 +2,14 @@ package com.catchpig.mvp.di.module
 
 import android.app.Application
 import com.catchpig.mvp.config.Config
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
+import com.catchpig.mvp.gson.DateJsonDeserializer
+import com.google.gson.*
 import dagger.Module
 import dagger.Provides
 import luyao.util.ktx.ext.logd
 import okhttp3.logging.HttpLoggingInterceptor
+import java.lang.reflect.Type
+import java.util.*
 import javax.inject.Singleton
 
 /**
@@ -29,8 +31,13 @@ class AppModule(private val mApplication: Application) {
     }
     @Singleton
     @Provides
-    fun providesGson(): Gson {
-        return GsonBuilder().setDateFormat(Config.DATE_FORMAT).create()
+    fun providesGson(dateJsonDeserializer: DateJsonDeserializer): Gson {
+        return GsonBuilder().setDateFormat(Config.DATE_FORMAT).registerTypeAdapter(Date::class.java,dateJsonDeserializer).create()
+    }
+    @Singleton
+    @Provides
+    fun providesDateJsonDeserializer():DateJsonDeserializer{
+        return DateJsonDeserializer()
     }
 
     @Singleton
