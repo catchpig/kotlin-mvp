@@ -13,7 +13,6 @@ import com.catchpig.mvp.base.BaseContract
 import com.catchpig.mvp.controller.LoadingViewController
 import kotlinx.android.synthetic.main.view_root.*
 import luyao.util.ktx.ext.longToast
-import luyao.util.ktx.ext.toast
 
 /**
  * 创建时间:2019/4/4 00:09<br></br>
@@ -46,7 +45,7 @@ import luyao.util.ktx.ext.toast
  *
  */
 abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
-    private var loadingViewController:LoadingViewController? = null
+    private var loadingViewController: LoadingViewController? = null
     override fun baseActivity(): BaseActivity? {
         return this
     }
@@ -58,6 +57,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
     override fun applicationContext(): Context {
         return applicationContext
     }
+
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.setContentView(R.layout.view_root)
@@ -65,16 +65,40 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
         setContentView(layoutId())
     }
 
+    @CallSuper
+    override fun onStart() {
+        super.onStart()
+    }
+
+    @CallSuper
+    override fun onRestart() {
+        super.onRestart()
+    }
+
+    @CallSuper
+    override fun onPause() {
+        super.onPause()
+    }
+
+    @CallSuper
+    override fun onStop() {
+        super.onStop()
+    }
+
+    @CallSuper
+    override fun onDestroy() {
+        super.onDestroy()
+    }
 
     override fun setContentView(view: View?) {
         layout_body?.let {
-            it.addView(view,0, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT))
-            loadingViewController = LoadingViewController(this,it)
+            it.addView(view, 0, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
+            loadingViewController = LoadingViewController(this, it)
         }
     }
 
     override fun setContentView(layoutResID: Int) {
-        setContentView(View.inflate(this,layoutResID,null))
+        setContentView(View.inflate(this, layoutResID, null))
     }
 
     @LayoutRes
@@ -84,7 +108,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
         loadingViewController?.let {
             if (isDialog) {
                 it.loadingDialog()
-            }else{
+            } else {
                 it.loadingView()
             }
         }
@@ -100,10 +124,10 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
         finish()
     }
 
-    override fun toast(text: String,isLong:Boolean) {
+    override fun toast(text: String, isLong: Boolean) {
         if (isLong) {
             longToast(text)
-        }else{
+        } else {
             toast(text)
         }
     }

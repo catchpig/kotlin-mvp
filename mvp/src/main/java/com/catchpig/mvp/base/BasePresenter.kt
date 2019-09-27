@@ -30,32 +30,26 @@ open class BasePresenter: BaseContract.Presenter {
     private var mCompositeDisposable: CompositeDisposable = CompositeDisposable()
     @CallSuper
     override fun onCreate() {
-//        ON_CREATE.logd(TAG)
     }
 
     @CallSuper
     override fun onStart() {
-        ON_START.logd(TAG)
     }
 
     @CallSuper
     override fun onResume() {
-        ON_RESUME.logd(TAG)
     }
 
     @CallSuper
     override fun onPause() {
-        ON_PAUSE.logd(TAG)
     }
 
     @CallSuper
     override fun onStop() {
-        ON_STOP.logd(TAG)
     }
 
     @CallSuper
     override fun onDestroy() {
-        ON_DESTROY.logd(TAG)
         mCompositeDisposable.clear()
     }
 

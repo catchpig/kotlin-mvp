@@ -38,13 +38,48 @@ abstract class BaseFragment : Fragment(), BaseContract.View {
     }
 
     @CallSuper
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+    }
+
+    @CallSuper
     @Nullable
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(layoutId(), container, false)
     }
 
+    @CallSuper
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    @CallSuper
+    override fun onStart() {
+        super.onStart()
+    }
+
+    @CallSuper
+    override fun onPause() {
+        super.onPause()
+    }
+
+    @CallSuper
+    override fun onStop() {
+        super.onStop()
+    }
+
+    @CallSuper
+    override fun onDestroyView() {
+        super.onDestroyView()
+    }
+
+    @CallSuper
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
     @LayoutRes
-    protected abstract fun layoutId():Int
+    protected abstract fun layoutId(): Int
 
     override fun loadingView(isDialog: Boolean) {
         baseActivity()?.let {
@@ -66,7 +101,7 @@ abstract class BaseFragment : Fragment(), BaseContract.View {
 
     override fun toast(text: String, isLong: Boolean) {
         baseActivity()?.let {
-            it.toast(text,isLong)
+            it.toast(text, isLong)
         }
     }
 }

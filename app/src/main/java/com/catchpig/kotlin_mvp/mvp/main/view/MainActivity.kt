@@ -30,7 +30,7 @@ class MainActivity : BasePresenterActivity<MainPresenter>(),MainContract.View {
     override fun layoutId(): Int {
         return R.layout.activity_main
     }
-    @ClickGap
+    @ClickGap(2000)
     fun openChild(v:View){
         var intent = Intent()
         when (v.id) {
