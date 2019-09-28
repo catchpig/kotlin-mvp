@@ -140,7 +140,9 @@ abstract class RecyclerAdapter<M>(private val iPageControl: IPageControl? = null
     }
 
     override fun get(position: Int): M? {
-        check(!(position < 0 || position > data.size - 1)) { "position必须大于0,且不能大于mData的个数" }
+        check(position > 0 && position < data.size) {
+            "position必须大于0,且不能大于data.size"
+        }
         return data[position]
     }
 
@@ -161,6 +163,28 @@ abstract class RecyclerAdapter<M>(private val iPageControl: IPageControl? = null
         }
         notifyDataSetChanged()
     }
+
+    override var pageSize: Int
+        get() {
+            check(iPageControl != null) {
+                "获取pageSize,IPageControl不能为空"
+            }
+            return iPageControl!!.pageSize
+        }
+        set(_) {
+            throw IllegalStateException("pageSize不能外部赋值")
+        }
+
+    override var nextPageIndex: Int
+        get() {
+            check(iPageControl != null) {
+                "获取nextPageIndex,IPageControl不能为空"
+            }
+            return iPageControl!!.nextPageIndex
+        }
+        set(_) {
+            throw IllegalStateException("nextPageIndex不能外部赋值")
+        }
 
     override fun autoUpdateList(list: MutableList<M>?) {
         iPageControl?.let {

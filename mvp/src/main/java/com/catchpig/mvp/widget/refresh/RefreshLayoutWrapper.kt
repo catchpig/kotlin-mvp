@@ -25,7 +25,9 @@ class RefreshLayoutWrapper(
         /**
          * 预显示界面索引
          */
-         const val NONE_PRE_PAGE_INDEX = -1
+        const val NONE_PRE_PAGE_INDEX = -1
+
+        const val PAGE_SIZE = 16
         /**
          * matreral风格的下拉控件
          */
@@ -45,7 +47,7 @@ class RefreshLayoutWrapper(
     /**
      * 一页的条目，默认16
      */
-    override var pageSize = 16
+    override var pageSize = PAGE_SIZE
     override fun getRefreshStatus(): RefreshState {
         return state
     }

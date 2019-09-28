@@ -22,4 +22,12 @@ interface IAdapterListControl<T> {
      * 更新失败
      */
     fun updateFailed()
+    /**
+     * 每页的数据量
+     */
+    var pageSize:Int
+    /**
+     * 下一页的页码
+     */
+    var nextPageIndex:Int
 }
