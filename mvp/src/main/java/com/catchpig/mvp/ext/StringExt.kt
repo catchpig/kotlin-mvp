@@ -18,10 +18,3 @@ fun CharSequence?.isNotNull():Boolean{
     return this!=null
 }
 
-/**
- * 字符串转化为时间
- */
-fun String.toDate(format:String=Config.DATE_FORMAT):Date{
-    val dateFormat = SimpleDateFormat(format)
-    return dateFormat.parse(this)
-}
