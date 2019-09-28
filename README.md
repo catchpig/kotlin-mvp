@@ -4,18 +4,21 @@
 ###### 最低兼容:19
 ## Gradle
 在Project的build.gradle中添加:
-   ```
-   allprojects {
-        repositories {
-    	    maven { url 'https://jitpack.io' }
-        }
-    }
+```
+allprojects {
+     repositories {
+ 	    maven { url 'https://jitpack.io' }
+     }
+ }
+```
     
+[AspectJX](https://github.com/HujiangTechnology/gradle_plugin_android_aspectjx)的使用请参考官方文档
     
-    dependencies {
-        classpath 'com.github.franticn:gradle_plugin_android_aspectjx:2.0.6'
-    }
-   ```
+```
+dependencies {
+    classpath 'com.github.franticn:gradle_plugin_android_aspectjx:2.0.6'
+}
+```
 在app的build.gradle的添加"
 ```
 apply plugin: 'kotlin-kapt' // 使用 kapt 注解处理工具
