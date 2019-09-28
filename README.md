@@ -6,14 +6,21 @@
 在Project的build.gradle中添加:
    ```
    allprojects {
-    	repositories {
-    		maven { url 'https://jitpack.io' }
-    	}
+        repositories {
+    	    maven { url 'https://jitpack.io' }
+        }
+    }
+    
+    
+    dependencies {
+        classpath 'com.github.franticn:gradle_plugin_android_aspectjx:2.0.6'
     }
    ```
-在module的build.gradle的添加"
+在app的build.gradle的添加"
 ```
 apply plugin: 'kotlin-kapt' // 使用 kapt 注解处理工具
+
+apply plugin: 'android-aspectjx'
 ```
 添加依赖:
 ```
@@ -28,6 +35,8 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
      * 如果不继承BaseApplication,请在onCreate中添加如下代码:
         ```
         registerActivityLifecycleCallbacks(BarLifecycleCallbacksImpl())
+        
+        registerActivityLifecycleCallbacks(ActivityManagerLifeCycleCallbacksImpl())
         ```
 2. 在需要使用状态栏、标题栏、加载动画的主题中配置全局参数:
     
@@ -110,7 +119,7 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
     
 7. 刷新分页
     
-    * 使用RefreshLayoutWrapper控件实现刷新功能
+    * 使用RefreshLayoutWrapper+RecyclerAdapter控件实现刷新功能
         
         * RefreshLayoutWrapper继承于[SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout),具体使用请看SmartRefreshLayout官方文档
         * 默认每页数据量为16,如果想修改每页数据量,可使用如下方法更改:
@@ -138,4 +147,6 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
         * RecyclerAdapter在实例化的时候传入IPageControl,
         获取数据成功之后,只需要调用autoUpdateList(list)方法,
         可以自动RefreshLayoutWrapper页码和刷新状态变化
+        
+        * 数据更新失败可以调用RecyclerAdapter.updateFailed()
         

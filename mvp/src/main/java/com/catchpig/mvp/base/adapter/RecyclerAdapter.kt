@@ -130,7 +130,7 @@ abstract class RecyclerAdapter<M>(private val iPageControl: IPageControl? = null
     }
 
 
-    private lateinit var mRecyclerView: RecyclerView
+    private lateinit var recyclerView: RecyclerView
 
     /**
      * 设置空页面
@@ -176,6 +176,11 @@ abstract class RecyclerAdapter<M>(private val iPageControl: IPageControl? = null
         }
     }
 
+    override fun updateFailed() {
+        iPageControl?.let {
+            it.updateError()
+        }
+    }
 
     override fun getItemViewType(position: Int): Int {
         return if (position == 0 && showEmpty) {
@@ -267,7 +272,7 @@ abstract class RecyclerAdapter<M>(private val iPageControl: IPageControl? = null
                 //设置item的点击回调事件
                 holder.itemView.setOnClickListener {
                     onItemClickListener?.let {
-                        it.itemClick(mRecyclerView.id, m, index)
+                        it.itemClick(recyclerView.id, m, index)
                     }
                 }
                 bindViewHolder(holder, m, position)
@@ -282,7 +287,7 @@ abstract class RecyclerAdapter<M>(private val iPageControl: IPageControl? = null
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
-        mRecyclerView = recyclerView
+        this.recyclerView = recyclerView
         val manager = recyclerView.layoutManager
         if (manager is GridLayoutManager) {
             manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {

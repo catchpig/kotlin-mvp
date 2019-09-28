@@ -12,8 +12,14 @@ interface IAdapterListControl<T> {
     fun set(list: MutableList<T>?)
 
     fun add(list: MutableList<T>?)
-
+    /**
+     * 自动更新数据
+     */
     fun autoUpdateList(list: MutableList<T>?)
 
     operator fun get(index: Int): T?
+    /**
+     * 更新失败
+     */
+    fun updateFailed()
 }
