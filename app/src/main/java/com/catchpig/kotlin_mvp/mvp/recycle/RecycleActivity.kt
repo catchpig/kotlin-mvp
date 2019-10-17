@@ -10,6 +10,7 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subscribers.ResourceSubscriber
 import kotlinx.android.synthetic.main.activity_recycle.*
+import kotlinx.android.synthetic.main.layout_header.view.*
 import luyao.util.ktx.ext.logd
 import java.util.concurrent.TimeUnit
 
@@ -22,7 +23,12 @@ class RecycleActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         var userAdapter = UserAdapter(refresh)
-        userAdapter.headerLayoutId = R.layout.layout_header
+        userAdapter.onItemClickListener { id, m, position ->
+            "dada".logd("adsd")
+        }
+        userAdapter.headerLayoutId {
+            R.layout.layout_header
+        }
         var linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
         recycle_view.layoutManager = linearLayoutManager

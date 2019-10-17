@@ -100,6 +100,24 @@ abstract class RecyclerAdapter<M>(private val iPageControl: IPageControl? = null
 
     var onItemClickListener: OnItemClickListener<M>? = null
 
+    fun onItemClickListener(listener:(id: Int, m: M, position: Int)->Unit){
+        onItemClickListener = object : OnItemClickListener<M> {
+            override fun itemClick(id: Int, m: M, position: Int) {
+                listener(id,m,position)
+            }
+
+        }
+    }
+
+    fun headerLayoutId(layoutId:()->Int):RecyclerAdapter<M>{
+        headerLayoutId = layoutId()
+        return this
+    }
+    fun footerLayoutId(layoutId:()->Int):RecyclerAdapter<M>{
+        footerLayoutId = layoutId()
+        return this
+    }
+
     override fun set(list: MutableList<M>?) {
         firstLoad = false
         if (list != null) {
