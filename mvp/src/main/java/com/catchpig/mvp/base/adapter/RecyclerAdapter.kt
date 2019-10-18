@@ -75,16 +75,13 @@ abstract class RecyclerAdapter<M>(private val iPageControl: IPageControl? = null
     /**
      * 头部
      */
-    var headerLayoutId = View.NO_ID
-    var headerView: View? = null
-        private set
+    private var headerView: View? = null
 
     /**
      * 底部
      */
-    var footerLayoutId = View.NO_ID
-    var footerView: View? = null
-        private set
+    private var footerView: View? = null
+
     /**
      * 是否展示空页面
      */
@@ -109,14 +106,34 @@ abstract class RecyclerAdapter<M>(private val iPageControl: IPageControl? = null
         }
     }
 
-    fun headerLayoutId(layoutId:()->Int):RecyclerAdapter<M>{
-        headerLayoutId = layoutId()
-        return this
+    fun addHeaderView(@LayoutRes layoutId: Int){
+        check(recyclerView!=null){
+            "请在adapter被RecyclerView初始化之后调用"
+        }
+        headerView = LayoutInflater.from(recyclerView?.context).inflate(layoutId,recyclerView,false)
+        notifyDataSetChanged()
     }
-    fun footerLayoutId(layoutId:()->Int):RecyclerAdapter<M>{
-        footerLayoutId = layoutId()
-        return this
+
+    fun headerView(header:View.()->Unit){
+        headerView?.let {
+            header(it)
+        }
     }
+
+    fun addFooterView(@LayoutRes layoutId: Int){
+        check(recyclerView!=null){
+            "请在adapter被RecyclerView初始化之后调用"
+        }
+        footerView = LayoutInflater.from(recyclerView?.context).inflate(layoutId,recyclerView,false)
+        notifyDataSetChanged()
+    }
+
+    fun footerView(footer:View.()->Unit){
+        footerView?.let {
+            footer(it)
+        }
+    }
+
 
     override fun set(list: MutableList<M>?) {
         firstLoad = false
@@ -131,11 +148,11 @@ abstract class RecyclerAdapter<M>(private val iPageControl: IPageControl? = null
     override fun getItemCount(): Int {
         var size = data.size
         //有头部,item的个数+1
-        if (headerLayoutId != View.NO_ID) {
+        if (headerView != null) {
             size++
         }
         //有底部,item的个数+1
-        if (footerLayoutId != View.NO_ID) {
+        if (footerView != null) {
             size++
         }
         if (size == 0) {
@@ -148,7 +165,7 @@ abstract class RecyclerAdapter<M>(private val iPageControl: IPageControl? = null
     }
 
 
-    private lateinit var recyclerView: RecyclerView
+    private var recyclerView: RecyclerView? = null
 
     /**
      * 设置空页面
@@ -228,10 +245,10 @@ abstract class RecyclerAdapter<M>(private val iPageControl: IPageControl? = null
         return if (position == 0 && showEmpty) {
             //当前数据空位,展示空页面
             TYPE_EMPTY.value
-        } else if (position == 0 && headerLayoutId != View.NO_ID) {
+        } else if (position == 0 && headerView != null) {
             //当前view是头部信息
             TYPE_HEADER.value
-        } else if (position == itemCount && footerLayoutId != View.NO_ID) {
+        } else if (position == itemCount && footerView != null) {
             //当前view是底部信息
             TYPE_FOOTER.value
         } else getCenterViewType(position)
@@ -250,11 +267,9 @@ abstract class RecyclerAdapter<M>(private val iPageControl: IPageControl? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonViewHolder {
         val view = when (ItemViewType.enumOfValue(viewType)) {
             TYPE_HEADER -> {
-                headerView = inflate(headerLayoutId, parent)
                 headerView!!
             }
             TYPE_FOOTER -> {
-                footerView = inflate(footerLayoutId, parent)
                 footerView!!
             }
             TYPE_EMPTY -> {
@@ -303,7 +318,7 @@ abstract class RecyclerAdapter<M>(private val iPageControl: IPageControl? = null
                 return
             }
             else -> {
-                if (headerLayoutId != View.NO_ID) {
+                if (headerView != null) {
                     /*
                      * 有头部的情况,需要要减1,否则取item的数据会取到当前数据的下一条,
                      * 取出最后一条数据的时候,会报下标溢出
@@ -314,7 +329,7 @@ abstract class RecyclerAdapter<M>(private val iPageControl: IPageControl? = null
                 //设置item的点击回调事件
                 holder.itemView.setOnClickListener {
                     onItemClickListener?.let {
-                        it.itemClick(recyclerView.id, m, index)
+                        it.itemClick(recyclerView!!.id, m, index)
                     }
                 }
                 bindViewHolder(holder, m, position)

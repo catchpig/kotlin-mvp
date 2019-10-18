@@ -26,13 +26,15 @@ class RecycleActivity : BaseActivity() {
         userAdapter.onItemClickListener { id, m, position ->
             "dada".logd("adsd")
         }
-        userAdapter.headerLayoutId {
-            R.layout.layout_header
-        }
+
         var linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
         recycle_view.layoutManager = linearLayoutManager
         recycle_view.adapter = userAdapter
+        userAdapter.addHeaderView(R.layout.layout_header)
+        userAdapter.headerView {
+            header_name.text = "我是头部"
+        }
         refresh.setOnRefreshLoadMoreListener(object :OnRefreshListener(){
             override fun update(refreshLayout: RefreshLayout) {
                 Flowable.timer(3,TimeUnit.SECONDS)
