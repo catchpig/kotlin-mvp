@@ -95,7 +95,7 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
     }
     ```
 6. 注解使用
-    * [Title](./anntation/com/catchpig/annotation/Title.kt)(修饰在Activity的类上)-标题
+    * [Title](./annotation/src/main/java/com/catchpig/annotation/Title.kt)(修饰在Activity的类上)-标题
     
     |属性|类型|必须|默认|说明|
     |---|:---:|:---|:---|:---|
@@ -104,23 +104,23 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
     |textColor|ColorRes|否|全局标题文字颜色|标题文字颜色|
     |backIcon|DrawableRes|否|全局标题返回按钮图标|标题返回按钮图标|
 
-    * [OnClickFirstDrawable](./anntation/com/catchpig/annotation/OnClickFirstDrawable.kt)(修饰在方法上)-标题上第一个图标按钮的点击事件
+    * [OnClickFirstDrawable](./annotation/src/main/java/com/catchpig/annotation/OnClickFirstDrawable.kt)(修饰在方法上)-标题上第一个图标按钮的点击事件
     
         value:按钮的文字资源
     
-    * [OnClickFirstText](./anntation/com/catchpig/annotation/OnClickFirstText.kt)(修饰在方法上)-标题上第一个文字按钮的点击事件
+    * [OnClickFirstText](./annotation/src/main/java/com/catchpig/annotation/OnClickFirstText.kt)(修饰在方法上)-标题上第一个文字按钮的点击事件
     
         value:按钮的图标资源
     
-    * [OnClickSecondDrawable](./anntation/com/catchpig/annotation/OnClickSecondDrawable.kt)(修饰在方法上)-标题上第二个图标按钮的点击事件
+    * [OnClickSecondDrawable](./annotation/src/main/java/java/com/catchpig/annotation/OnClickSecondDrawable.kt)(修饰在方法上)-标题上第二个图标按钮的点击事件
     
         value:按钮的文字资源
     
-    * [OnClickSecondText](./anntation/com/catchpig/annotation/OnClickSecondText.kt)(修饰在方法上)-标题上第二个文字按钮的点击事件
+    * [OnClickSecondText](./annotation/src/main/java/com/catchpig/annotation/OnClickSecondText.kt)(修饰在方法上)-标题上第二个文字按钮的点击事件
     
         value:按钮的图标资源
     
-    * [StatusBar](./anntation/com/catchpig/annotation/StatusBar.kt)(修饰在Activity上)-状态栏
+    * [StatusBar](./annotation/src/main/java/com/catchpig/annotation/StatusBar.kt)(修饰在Activity上)-状态栏
     
     |属性|类型|必须|默认|说明|
     |---|:---:|:---|:---|:---|
