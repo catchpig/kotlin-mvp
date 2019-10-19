@@ -27,7 +27,8 @@ apply plugin: 'android-aspectjx'
 ```
 添加依赖:
 ```
-implementation 'com.github.catch-pig:kotlin-mvp:last_version'
+implementation "com.github.catch-pig.kotlin-mvp:mvp:last_version"
+kapt "com.github.catch-pig.kotlin-mvp:compiler:last_version"
 kapt "com.google.dagger:dagger-compiler:2.23.2"
 kapt "com.google.dagger:dagger-android-processor:2.23.2"
 ```
@@ -94,7 +95,7 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
     }
     ```
 6. 注解使用
-    * Title(修饰在Activity的类上)-标题
+    * [Title](./anntation/com/catchpig/annotation/Title.kt)(修饰在Activity的类上)-标题
     
     |属性|类型|必须|默认|说明|
     |---|:---:|:---|:---|:---|
@@ -103,16 +104,23 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
     |textColor|ColorRes|否|全局标题文字颜色|标题文字颜色|
     |backIcon|DrawableRes|否|全局标题返回按钮图标|标题返回按钮图标|
 
-    * TitleMenu(当有Title注解的时候才能使用此注解,也是修饰在Activity上)-标题右边按钮设置
+    * [OnClickFirstDrawable](./anntation/com/catchpig/annotation/OnClickFirstDrawable.kt)(修饰在方法上)-标题上第一个图标按钮的点击事件
     
-    |属性|类型|必须|默认|说明|
-    |---|:---:|:---|:---|:---|
-    |rightFirstDrawable|DrawableRes|否|无|右边第一个图标按钮|
-    |rightFirstText|StringRes|否|无|右边第一个文字按钮|
-    |rightSecondDrawable|DrawableRes|否|无|右边第二个图标按钮|
-    |rightSecondText|StringRes|否|无|右边第二个文字按钮|
+        value:按钮的文字资源
     
-    * StatusBar(修饰在Activity上)-状态栏
+    * [OnClickFirstText](./anntation/com/catchpig/annotation/OnClickFirstText.kt)(修饰在方法上)-标题上第一个文字按钮的点击事件
+    
+        value:按钮的图标资源
+    
+    * [OnClickSecondDrawable](./anntation/com/catchpig/annotation/OnClickSecondDrawable.kt)(修饰在方法上)-标题上第二个图标按钮的点击事件
+    
+        value:按钮的文字资源
+    
+    * [OnClickSecondText](./anntation/com/catchpig/annotation/OnClickSecondText.kt)(修饰在方法上)-标题上第二个文字按钮的点击事件
+    
+        value:按钮的图标资源
+    
+    * [StatusBar](./anntation/com/catchpig/annotation/StatusBar.kt)(修饰在Activity上)-状态栏
     
     |属性|类型|必须|默认|说明|
     |---|:---:|:---|:---|:---|

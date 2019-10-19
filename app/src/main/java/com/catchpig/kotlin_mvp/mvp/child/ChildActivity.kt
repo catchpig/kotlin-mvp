@@ -1,10 +1,7 @@
 package com.catchpig.kotlin_mvp.mvp.child
 
 import android.view.View
-import com.catchpig.annotation.OnClickSecondDrawable
-import com.catchpig.annotation.OnClickSecondText
-import com.catchpig.annotation.StatusBar
-import com.catchpig.annotation.Title
+import com.catchpig.annotation.*
 import com.catchpig.kotlin_mvp.R
 import com.catchpig.mvp.base.activity.BaseActivity
 import io.reactivex.Flowable
@@ -14,7 +11,7 @@ import java.util.concurrent.TimeUnit
 @Title(R.string.child_title)
 @StatusBar
 class ChildActivity : BaseActivity(){
-    @OnClickSecondDrawable(R.drawable.more)
+    @OnClickFirstDrawable(R.drawable.more)
     fun clickFirstDrawable(v: View) {
         toast(" 第一个图标按钮点击生效")
 
