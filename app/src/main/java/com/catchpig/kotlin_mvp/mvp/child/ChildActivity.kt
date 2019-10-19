@@ -1,41 +1,26 @@
 package com.catchpig.kotlin_mvp.mvp.child
 
-import android.annotation.SuppressLint
 import android.view.View
+import com.catchpig.annotation.OnClickSecondDrawable
+import com.catchpig.annotation.OnClickSecondText
+import com.catchpig.annotation.StatusBar
+import com.catchpig.annotation.Title
 import com.catchpig.kotlin_mvp.R
-import com.catchpig.mvp.annotation.Title
-import com.catchpig.mvp.annotation.TitleMenu
 import com.catchpig.mvp.base.activity.BaseActivity
-import com.catchpig.mvp.listener.OnMenuFirstDrawableClickListener
-import com.catchpig.mvp.listener.OnMenuFirstTextClickListener
-import com.catchpig.mvp.listener.OnMenuSecondDrawableClickListener
-import com.catchpig.mvp.listener.OnMenuSecondTextClickListener
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import luyao.util.ktx.ext.toast
 import java.util.concurrent.TimeUnit
 
 @Title(R.string.child_title)
-@TitleMenu(rightFirstText = R.string.more,rightFirstDrawable = R.drawable.more)
-class ChildActivity : BaseActivity(),
-        OnMenuFirstTextClickListener,
-        OnMenuFirstDrawableClickListener,
-        OnMenuSecondTextClickListener,
-        OnMenuSecondDrawableClickListener {
-    override fun clickSecondText(v: View) {
-        toast("第二个文字按钮点击生效")
-    }
-
-    override fun clickSecondDrawable(v: View) {
-        toast("第二个图标按钮点击生效")
-    }
-
-    override fun clickFirstDrawable(v: View) {
+@StatusBar
+class ChildActivity : BaseActivity(){
+    @OnClickSecondDrawable(R.drawable.more)
+    fun clickFirstDrawable(v: View) {
         toast(" 第一个图标按钮点击生效")
 
     }
-
-    override fun clickFirstText(v: View) {
+    @OnClickSecondText(R.string.more)
+    fun clickFirstText(v: View) {
         toast("第一个文字按钮点击生效")
 
     }

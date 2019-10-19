@@ -39,10 +39,11 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "androidx.core:core-ktx:$core_ktx_version"
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api project(path: ':annotation')
     //aspectj
     api "org.aspectj:aspectjrt:$aspectj_version"
     //dagger2
@@ -81,6 +82,7 @@ dependencies {
     api "com.gyf.immersionbar:immersionbar-ktx:$immersionbar_version"
     //刷新
     api "com.scwang.smart:refresh-layout-kernel:$SmartRefreshLayout_version"
+
 
 
 }

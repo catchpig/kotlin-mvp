@@ -12,7 +12,7 @@ import com.catchpig.kotlin_mvp.mvp.main.presenter.MainPresenter
 import com.catchpig.kotlin_mvp.mvp.recycle.RecycleActivity
 import com.catchpig.kotlin_mvp.mvp.transparent.TransparentActivity
 import com.catchpig.mvp.annotation.ClickGap
-import com.catchpig.mvp.annotation.StatusBar
+import com.catchpig.annotation.StatusBar
 import com.catchpig.mvp.base.activity.BasePresenterActivity
 
 @StatusBar(enabled = true)

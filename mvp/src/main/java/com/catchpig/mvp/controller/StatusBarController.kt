@@ -1,11 +1,10 @@
 package com.catchpig.mvp.controller
 
 import com.catchpig.mvp.R
-import com.catchpig.mvp.annotation.StatusBar
-import com.catchpig.mvp.annotation.Title
 import com.catchpig.mvp.base.activity.BaseActivity
 import com.catchpig.mvp.config.Config
-import com.catchpig.mvp.ext.getColorPrimary
+import com.catchpig.mvp.entity.StatusBarParam
+import com.catchpig.mvp.entity.TitleParam
 import com.catchpig.mvp.ext.getTitleBackground
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ImmersionBar
@@ -18,24 +17,24 @@ import com.gyf.immersionbar.ktx.immersionBar
  * 修改时间: 2019/8/18 0018<br/>
  * 描述:状态栏处理器
  */
-class StatusBarController(private val baseActivity: BaseActivity,private val title: Title?,private val statusBar: StatusBar?) {
+class StatusBarController(private val baseActivity: BaseActivity, private val title: TitleParam?, private val statusBar: StatusBarParam?) {
 
     fun checkStatusBar() {
         //状态栏注解设置为不可用
-        if (statusBar!=null&&statusBar.enabled) {
+        if (statusBar != null && statusBar.enabled) {
             return
         }
         baseActivity.immersionBar {
             if (statusBar == null) {
                 statusBarView(R.id.top_view)
-                autoStatusBarDarkModeEnable(true,0.2f)
+                autoStatusBarDarkModeEnable(true, 0.2f)
                 //设置状态栏颜色
-                if (title==null || title.backgroundColor==Config.NO_ASSIGNMENT) {
+                if (title == null || title.backgroundColor == Config.NO_ASSIGNMENT) {
                     statusBarColor(baseActivity.getTitleBackground())
-                }else{
+                } else {
                     statusBarColor(title.backgroundColor)
                 }
-            }else{
+            } else {
                 checkStatusBarHide(this)
             }
         }
@@ -44,11 +43,11 @@ class StatusBarController(private val baseActivity: BaseActivity,private val tit
     /**
      * 检查状态栏是否隐藏
      */
-    private fun checkStatusBarHide(immersionBar: ImmersionBar){
+    private fun checkStatusBarHide(immersionBar: ImmersionBar) {
         if (statusBar!!.hide) {
             //状态栏隐藏
             immersionBar.hideBar(BarHide.FLAG_HIDE_STATUS_BAR)
-        }else{
+        } else {
             checkStatusBarTransparent(immersionBar)
         }
     }
@@ -56,12 +55,12 @@ class StatusBarController(private val baseActivity: BaseActivity,private val tit
     /**
      * 检查状态栏是否透明
      */
-    private fun checkStatusBarTransparent(immersionBar: ImmersionBar){
+    private fun checkStatusBarTransparent(immersionBar: ImmersionBar) {
         if (statusBar!!.transparent) {
             immersionBar.transparentStatusBar()
-        }else{
+        } else {
             immersionBar.statusBarView(R.id.top_view)
-            immersionBar.autoStatusBarDarkModeEnable(true,0.2f)
+            immersionBar.autoStatusBarDarkModeEnable(true, 0.2f)
             immersionBar.statusBarColor(baseActivity.getTitleBackground())
         }
     }

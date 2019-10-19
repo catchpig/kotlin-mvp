@@ -6,10 +6,10 @@ import android.widget.ImageView
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import com.catchpig.mvp.R
-import com.catchpig.mvp.annotation.Title
-import com.catchpig.mvp.annotation.TitleMenu
 import com.catchpig.mvp.base.activity.BaseActivity
 import com.catchpig.mvp.config.Config
+import com.catchpig.mvp.entity.TitleMenuParam
+import com.catchpig.mvp.entity.TitleParam
 import com.catchpig.mvp.ext.*
 import kotlinx.android.synthetic.main.layout_title_bar.*
 import kotlinx.android.synthetic.main.layout_title_bar.view.*
@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.layout_title_bar.view.*
  * 修改时间: 2019/8/18 0018<br/>
  * 描述:标题栏处理器
  */
-class TitleBarController(private val baseActivity: BaseActivity, private val title: Title, private val titleMenu: TitleMenu?) : View.OnClickListener {
+class TitleBarController(private val baseActivity: BaseActivity, private val title: TitleParam) : View.OnClickListener {
 
     fun initTitleBar() {
         baseActivity.title_bar.visibility = View.VISIBLE
@@ -34,9 +34,7 @@ class TitleBarController(private val baseActivity: BaseActivity, private val tit
             //设置返回按钮图标
             drawBackIcon(back_icon)
             title_text.setText(title.value)
-            titleMenu?.let {
-                drawTitleMenu(this, it)
-            }
+
         }
         drawLine(baseActivity.line)
     }
@@ -56,7 +54,7 @@ class TitleBarController(private val baseActivity: BaseActivity, private val tit
     /**
      * 绘制右边按钮
      */
-    private fun drawTitleMenu(titleBar: FrameLayout, titleMenu: TitleMenu) {
+    private fun drawTitleMenu(titleBar: FrameLayout, titleMenu: TitleMenuParam) {
         //右边第一个文字按钮
         titleBar.rightFirstText.run {
             if (titleMenu.rightFirstText != Config.NO_ASSIGNMENT) {

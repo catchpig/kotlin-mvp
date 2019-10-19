@@ -1,9 +1,8 @@
-package com.catchpig.mvp.annotation
+package com.catchpig.annotation
 
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import com.catchpig.mvp.config.Config.NO_ASSIGNMENT
 
 /**
  * 创建时间:2019/8/19 0019<br/>
@@ -22,13 +21,13 @@ annotation class Title(
         /**
      * 标题背景色
      */
-    @ColorRes val backgroundColor:Int = NO_ASSIGNMENT,
+    @ColorRes val backgroundColor:Int = -1,
         /**
      * 标题文字颜色
      */
-    @ColorRes val textColor:Int = NO_ASSIGNMENT,
+    @ColorRes val textColor:Int = -1,
     /**
      * 返回按钮图标
      */
-    @DrawableRes val backIcon:Int = NO_ASSIGNMENT
+    @DrawableRes val backIcon:Int = -1
     )

@@ -1,4 +1,4 @@
-package com.catchpig.mvp.annotation
+package com.catchpig.annotation
 
 
 /**
