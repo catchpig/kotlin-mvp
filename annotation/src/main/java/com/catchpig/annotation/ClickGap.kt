@@ -1,4 +1,4 @@
-package com.catchpig.mvp.annotation
+package com.catchpig.annotation
 
 /**
  * 创建时间:2019/9/26 0026<br/>
@@ -7,7 +7,7 @@ package com.catchpig.mvp.annotation
  * 修改时间: 2019/9/26 0026<br/>
  * 描述:防止重复点击注解
  */
-@Retention
+@Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.FUNCTION)
 annotation class ClickGap(
         /**

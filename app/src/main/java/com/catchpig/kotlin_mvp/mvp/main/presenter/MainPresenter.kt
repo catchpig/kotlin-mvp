@@ -1,5 +1,6 @@
 package com.catchpig.kotlin_mvp.mvp.main.presenter
 
+import com.catchpig.annotation.TimeLog
 import com.catchpig.kotlin_mvp.mvp.main.MainContract
 import com.catchpig.mvp.base.BasePresenter
 
@@ -10,7 +11,7 @@ import com.catchpig.mvp.base.BasePresenter
  * 修改时间: 2019/8/18 0018<br/>
  * 描述:
  */
-class MainPresenter(private val view:MainContract.View): BasePresenter() {
+class MainPresenter @TimeLog constructor(private val view:MainContract.View): BasePresenter() {
     override fun onCreate() {
         super.onCreate()
         view.toast("123")

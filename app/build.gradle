@@ -10,7 +10,7 @@ apply plugin: 'android-aspectjx'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.0"
+    buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.catchpig.kotlin_mvp"
         minSdkVersion 19
@@ -33,9 +33,9 @@ android {
         experimental = true
     }
 }
-aspectjx {
-    include 'com.catchpig.mvp','com.catchpig.kotlin_mvp'
-}
+//aspectjx {
+//    include 'com.catchpig.kotlin_mvp'
+//}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

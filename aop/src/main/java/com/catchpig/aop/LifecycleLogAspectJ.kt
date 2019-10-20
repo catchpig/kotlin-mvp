@@ -1,4 +1,4 @@
-package com.catchpig.mvp.aop
+package com.catchpig.aop
 
 import luyao.util.ktx.ext.logd
 import org.aspectj.lang.JoinPoint
@@ -14,13 +14,13 @@ import org.aspectj.lang.annotation.*
 @Aspect
 class LifecycleLogAspectJ {
     companion object {
-        const val TAG = "LIFE_CYCLE_LOG"
+        const val TAG = "[LIFE_CYCLE_LOG]"
     }
 
     /**
      * Presenter的生命周期
      */
-    @Pointcut("execution(@androidx.annotation.CallSuper public * com.catchpig.mvp.base.BasePresenter.on*(..))")
+    @Pointcut("execution(@androidx.annotation.CallSuper * com.catchpig.mvp.base.BasePresenter.on*(..))")
     fun presenterLifecycle(){
 
     }

@@ -1,11 +1,10 @@
-package com.catchpig.mvp.aop
+package com.catchpig.aop
 
-import com.catchpig.mvp.annotation.ClickGap
+import com.catchpig.annotation.ClickGap
 import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.annotation.Around
 import org.aspectj.lang.annotation.Aspect
 import org.aspectj.lang.annotation.Pointcut
-import org.aspectj.lang.reflect.MethodSignature
 
 /**
  * 创建时间:2019/8/19 0019<br/>
@@ -17,7 +16,7 @@ import org.aspectj.lang.reflect.MethodSignature
 @Aspect
 class ClickGapAspectJ {
     private var lastTimeMillis:Long = 0
-    @Pointcut("execution(@com.catchpig.mvp.annotation.ClickGap * *(..))")
+    @Pointcut("execution(@com.catchpig.annotation.ClickGap * *(..))")
     fun pointcut(){
 
     }

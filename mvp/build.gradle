@@ -8,11 +8,11 @@ apply plugin: 'kotlin-kapt' // 使用 kapt 注解处理工具
 
 apply plugin: 'com.github.dcendents.android-maven'
 
-group='com.github.catch-pig'
+group = 'com.github.catch-pig'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.0"
+    buildToolsVersion "29.0.2"
 
 
     defaultConfig {
@@ -48,8 +48,7 @@ dependencies {
     implementation "androidx.core:core-ktx:$core_ktx_version"
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api project(path: ':annotation')
-    //aspectj
-    api "org.aspectj:aspectjrt:$aspectj_version"
+    api project(path: ':aop')
     //dagger2
     api "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
@@ -86,7 +85,4 @@ dependencies {
     api "com.gyf.immersionbar:immersionbar-ktx:$immersionbar_version"
     //刷新
     api "com.scwang.smart:refresh-layout-kernel:$SmartRefreshLayout_version"
-
-
-
 }

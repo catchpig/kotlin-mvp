@@ -2,6 +2,7 @@ package com.catchpig.kotlin_mvp.mvp.recycle
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.catchpig.annotation.TimeLog
 import com.catchpig.kotlin_mvp.R
 import com.catchpig.mvp.base.activity.BaseActivity
 import com.catchpig.mvp.widget.refresh.OnRefreshListener
@@ -19,6 +20,7 @@ class RecycleActivity : BaseActivity() {
         return R.layout.activity_recycle
     }
 
+    @TimeLog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
