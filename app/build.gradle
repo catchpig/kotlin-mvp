@@ -9,12 +9,12 @@ apply plugin: 'kotlin-kapt' // 使用 kapt 注解处理工具
 apply plugin: 'android-aspectjx'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
     defaultConfig {
         applicationId "com.catchpig.kotlin_mvp"
-        minSdkVersion 19
-        targetSdkVersion 29
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -45,10 +45,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation project(path: ':mvp')
-    kapt project(path: ':compiler')
-//    implementation "com.github.catch-pig.kotlin-mvp:mvp:$kotlin_mvp"
-//    kapt "com.github.catch-pig.kotlin-mvp:compiler:$kotlin_mvp"
+//    implementation project(path: ':mvp')
+//    kapt project(path: ':compiler')
+    implementation "com.github.catch-pig.kotlin-mvp:mvp:$kotlin_mvp"
+    kapt "com.github.catch-pig.kotlin-mvp:compiler:$kotlin_mvp"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
     //刷新-头部
