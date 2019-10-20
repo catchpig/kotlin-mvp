@@ -61,38 +61,36 @@ class KotlinMvpProcessor : AbstractProcessor() {
         val elements = allElements.filter {
             if (it is TypeElement) {
                 if (it.getAnnotation(Title::class.java) != null
-                        || it.getAnnotation(StatusBar::class.java) != null) {
+                        || it.getAnnotation(StatusBar::class.java) != null
+                        || superClassIsBaseActivity(it)) {
                     return@filter true
                 }
             }
             return@filter false
+        }.map {
+            it as TypeElement
         }
         elements.forEach {
-            if (it is TypeElement) {
-                val title = it.getAnnotation(Title::class.java)
-                val statusBar = it.getAnnotation(StatusBar::class.java)
+            val title = it.getAnnotation(Title::class.java)
+            val statusBar = it.getAnnotation(StatusBar::class.java)
 
-                val className = it.simpleName.toString()
-                val fullPackageName = elementUtils.getPackageOf(it).qualifiedName.toString()
-                val typeSpec = TypeSpec
-                        .classBuilder(className + "_MvpCompiler")
-                        .addModifiers(KModifier.FINAL, KModifier.PUBLIC)
-                        .addSuperinterface(CLASS_NAME_MVP_COMPILER)
-                        .addProperty(initTitleProperty(title))
-                        .addProperty(initStatusBarProperty(statusBar))
-                        .addFunction(injectFun(className))
-                        .addFunction(initTitleMenuOnClick(it, title))
-                        .build()
-                FileSpec
-                        .builder(fullPackageName, typeSpec.name!!)
-                        .addType(typeSpec)
-                        .addImport("com.catchpig.kotlin_mvp", "R")
-                        .build()
-                        .writeTo(filer)
-            } else {
-                error("Title注解必须在类上面")
-                return false
-            }
+            val className = it.simpleName.toString()
+            val fullPackageName = elementUtils.getPackageOf(it).qualifiedName.toString()
+            val typeSpec = TypeSpec
+                    .classBuilder(className + "_MvpCompiler")
+                    .addModifiers(KModifier.FINAL, KModifier.PUBLIC)
+                    .addSuperinterface(CLASS_NAME_MVP_COMPILER)
+                    .addProperty(initTitleProperty(title,className))
+                    .addProperty(initStatusBarProperty(statusBar,className))
+                    .addFunction(injectFun(className))
+                    .addFunction(initTitleMenuOnClick(it, title))
+                    .build()
+            FileSpec
+                    .builder(fullPackageName, typeSpec.name!!)
+                    .addType(typeSpec)
+                    .addImport("com.catchpig.kotlin_mvp", "R")
+                    .build()
+                    .writeTo(filer)
         }
         return true
     }
@@ -130,7 +128,7 @@ class KotlinMvpProcessor : AbstractProcessor() {
                             val paramType = parameters[0].asType().toString()
                             if (paramType == TYPE_VIEW.typeName) {
                                 builder = builder.addStatement("  activity.${simpleName}(it)")
-                            }else{
+                            } else {
                                 error("OnClickFirstText注解修饰的参数类型只能为View")
                             }
                         }
@@ -163,7 +161,7 @@ class KotlinMvpProcessor : AbstractProcessor() {
                             val paramType = parameters[0].asType().toString()
                             if (paramType == TYPE_VIEW.typeName) {
                                 builder = builder.addStatement("  activity.${simpleName}(it)")
-                            }else{
+                            } else {
                                 error("OnClickFirstDrawable注解修饰的参数类型只能为View")
                             }
                         }
@@ -196,7 +194,7 @@ class KotlinMvpProcessor : AbstractProcessor() {
                             val paramType = parameters[0].asType().toString()
                             if (paramType == TYPE_VIEW.typeName) {
                                 builder = builder.addStatement("  activity.${simpleName}(it)")
-                            }else{
+                            } else {
                                 error("OnClickSecondText注解修饰的参数类型只能为View")
                             }
                         }
@@ -229,7 +227,7 @@ class KotlinMvpProcessor : AbstractProcessor() {
                             val paramType = parameters[0].asType().toString()
                             if (paramType == TYPE_VIEW.typeName) {
                                 builder = builder.addStatement("  activity.${simpleName}(it)")
-                            }else{
+                            } else {
                                 error("OnClickSecondDrawable注解修饰的参数类型只能为View")
                             }
                         }
@@ -269,12 +267,12 @@ class KotlinMvpProcessor : AbstractProcessor() {
     /**
      * 添加StatusBar属性
      */
-    private fun initStatusBarProperty(statusBar: StatusBar?): PropertySpec {
+    private fun initStatusBarProperty(statusBar: StatusBar?,className: String): PropertySpec {
         var builder = PropertySpec
                 .builder("statusBar", CLASS_NAME_STATUS_BAR_PARAM.copy(nullable = true))
                 .addModifiers(KModifier.PRIVATE)
         return if (null == statusBar) {
-            warning("StatusBar注解没有使用")
+            warning("$className:StatusBar注解没有使用")
             builder
                     .initializer("null")
                     .build()
@@ -288,12 +286,12 @@ class KotlinMvpProcessor : AbstractProcessor() {
     /**
      * 添加title属性
      */
-    private fun initTitleProperty(title: Title?): PropertySpec {
+    private fun initTitleProperty(title: Title?,className: String): PropertySpec {
         var builder = PropertySpec
                 .builder("title", CLASS_NAME_TITLE_PARAM.copy(nullable = true))
                 .addModifiers(KModifier.PRIVATE)
         return if (null == title) {
-            warning("Title注解没有使用")
+            warning("$className:Title注解没有使用")
             builder
                     .initializer("null")
                     .build()
@@ -304,6 +302,16 @@ class KotlinMvpProcessor : AbstractProcessor() {
         }
     }
 
+    /**
+     * 判断父类是否是BaseActivity
+     */
+    private fun superClassIsBaseActivity(typeElement: TypeElement):Boolean{
+        val className = typeElement.superclass.toString()
+        if (className.contains("com.catchpig.mvp.base.activity")) {
+            return true
+        }
+        return false
+    }
 
     private fun warning(msg: String) {
         messager.printMessage(Diagnostic.Kind.WARNING, msg)

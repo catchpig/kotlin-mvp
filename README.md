@@ -37,7 +37,7 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
 ### 1. Application
    * 继承BaseApplication
    * 如果不继承BaseApplication,请在onCreate中添加如下代码:
-   > registerActivityLifecycleCallbacks(ActivityManagerLifeCycleCallbacksImpl())
+   > ***registerActivityLifecycleCallbacks(ActivityManagerLifeCycleCallbacksImpl())***
 ### 2. 在需要使用状态栏、标题栏、加载动画的主题中配置全局参数:
     
    |属性|类型|必须|默认|说明|
