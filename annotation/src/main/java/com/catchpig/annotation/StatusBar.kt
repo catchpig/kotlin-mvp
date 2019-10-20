@@ -11,16 +11,16 @@ package com.catchpig.annotation
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class StatusBar(
-    /**
-     * 隐藏状态栏
-     */
-    val hide:Boolean = false,
-    /**
-     * 状态栏注解是否可用
-     */
-    val enabled:Boolean = false,
-    /**
-     * 状态栏透明
-     */
-    val transparent:Boolean = false
+        /**
+         * 隐藏状态栏
+         */
+        val hide: Boolean = false,
+        /**
+         * 状态栏注解是否可用
+         */
+        val enabled: Boolean = false,
+        /**
+         * 状态栏透明
+         */
+        val transparent: Boolean = false
 )

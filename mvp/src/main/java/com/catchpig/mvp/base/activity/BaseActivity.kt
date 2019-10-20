@@ -9,6 +9,7 @@ import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import com.catchpig.mvp.R
+import com.catchpig.mvp.apt.KotlinMvpCompiler
 import com.catchpig.mvp.base.BaseContract
 import com.catchpig.mvp.controller.LoadingViewController
 import kotlinx.android.synthetic.main.view_root.*
@@ -21,26 +22,26 @@ import luyao.util.ktx.ext.longToast
  * 修改时间: 2019/4/4 00:09<br></br>
  * 描述:
  * --------------状态栏----------------
- * 请使用注解[com.catchpig.mvp.annotation.StatusBar]
- * 想让注解不可用,请设置[com.catchpig.mvp.annotation.StatusBar.enabled]为true
+ * 请使用注解[com.catchpig.annotation.StatusBar]
+ * 想让注解不可用,请设置[com.catchpig.annotation.StatusBar.enabled]为true
  * --------------状态栏----------------
  *
  * --------------标题栏----------------
- * 请使用注解[com.catchpig.mvp.annotation.Title]
+ * 请使用注解[com.catchpig.annotation.Title]
  * --------------标题栏----------------
  *
  * --------------标题栏右边按钮点击事件---------------
- * 第一个文字按钮点击事件,请实现以下接口
- * [com.catchpig.mvp.listener.OnMenuFirstTextClickListener]
+ * 第一个文字按钮点击事件,请方法上实现以下注解
+ * @[com.catchpig.annotation.OnClickFirstText]
  *
- * 第一个图标按钮的点击事件,请实现以下接口
- * [com.catchpig.mvp.listener.OnMenuFirstDrawableClickListener]
+ * 第一个图标按钮的点击事件,请方法上实现以下注解
+ * @[com.catchpig.annotation.OnClickFirstDrawable]
  *
- * 第二个文字按钮的点击事件,请实现以下接口
- * [com.catchpig.mvp.listener.OnMenuSecondTextClickListener]
+ * 第二个文字按钮的点击事件,请方法上实现以下注解
+ * @[com.catchpig.annotation.OnClickSecondText]
  *
- * 第二个图标按钮的点击事件,请实现以下接口
- * [com.catchpig.mvp.listener.OnMenuSecondDrawableClickListener]
+ * 第二个图标按钮的点击事件,请方法上实现以下注解
+ * @[com.catchpig.annotation.OnClickSecondDrawable]
  * --------------标题栏右边按钮点击事件---------------
  *
  */
@@ -63,6 +64,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
         super.setContentView(R.layout.view_root)
         super.onCreate(savedInstanceState)
         setContentView(layoutId())
+        KotlinMvpCompiler.inject(this)
     }
 
     @CallSuper

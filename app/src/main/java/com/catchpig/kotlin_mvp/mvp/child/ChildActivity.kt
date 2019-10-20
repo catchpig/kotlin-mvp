@@ -16,8 +16,8 @@ class ChildActivity : BaseActivity(){
         toast(" 第一个图标按钮点击生效")
 
     }
-    @OnClickSecondText(R.string.more)
-    fun clickFirstText(v: View) {
+    @OnClickFirstText(R.string.more)
+    fun clickFirstText() {
         toast("第一个文字按钮点击生效")
 
     }

@@ -117,7 +117,7 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
         value:按钮的文字资源
     
     * [OnClickSecondText](./annotation/src/main/java/com/catchpig/annotation/OnClickSecondText.kt)(修饰在方法上)-标题上第二个文字按钮的点击事件
-    
+
         value:按钮的图标资源
     
     * [StatusBar](./annotation/src/main/java/com/catchpig/annotation/StatusBar.kt)(修饰在Activity上)-状态栏

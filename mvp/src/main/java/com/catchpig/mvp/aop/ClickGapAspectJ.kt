@@ -22,14 +22,8 @@ class ClickGapAspectJ {
 
     }
 
-    @Around("pointcut()")
-    fun clickGap(proceedingJoinPoint:ProceedingJoinPoint){
-        var classTarget = proceedingJoinPoint.target::class.java
-        val signature = proceedingJoinPoint.signature
-        val methodName = signature.name
-        val parameterTypes = (signature as MethodSignature).parameterTypes
-        val method  = classTarget.getMethod(methodName, *parameterTypes)
-        val clickGap = method.getAnnotation(ClickGap::class.java)
+    @Around("pointcut() && @annotation(clickGap)")
+    fun clickGap(proceedingJoinPoint:ProceedingJoinPoint,clickGap: ClickGap){
         val currentTimeMillis = System.currentTimeMillis()
         if((currentTimeMillis-lastTimeMillis) > clickGap!!.value){
             proceedingJoinPoint.proceed()

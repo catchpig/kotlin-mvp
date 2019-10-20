@@ -1,7 +1,6 @@
 package com.catchpig.mvp.apt
 
 import com.catchpig.mvp.base.activity.BaseActivity
-import kotlinx.android.synthetic.main.view_root.*
 import luyao.util.ktx.ext.logd
 
 /**
@@ -11,8 +10,8 @@ import luyao.util.ktx.ext.logd
  * 修改时间: 2019/10/17 0017<br/>
  * 描述:
  */
-object BarUtils {
-    private const val TAG = "BarUtils"
+object KotlinMvpCompiler {
+    private const val TAG = "KotlinMvpCompiler"
     fun inject(baseActivity: BaseActivity){
         val className = baseActivity.javaClass.name
         try {
@@ -22,7 +21,7 @@ object BarUtils {
                 mvpCompiler.inject(baseActivity)
             }
         }catch (exception:ClassNotFoundException){
-            "$className:没有被编译时Title和TitleMenu注解修饰".let {
+            "$className:没有被(com.catchpig.annotation)下编译时注解修饰".let {
                 it.logd(TAG)
             }
         }
