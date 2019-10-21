@@ -155,24 +155,20 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
   + ***RefreshLayoutWrapper实现了[IPageControl](./mvp/src/main/java/com/catchpig/mvp/widget/refresh/IPageControl.kt),可以通过调用接口内的方法类获取刷新控件的状态和更改状态***
     
     ```
-    //每页的数据量
-    iPageControl.pageSize = 16
-    //下一页的页码
-    iPageControl.nextPageIndex = 1
     //获取刷新的状态
     iPageControl.getRefreshStatus()
-    //重置当前页码为1
-    iPageControl.resetPageIndex()
-    //加载下一页码
-    iPageControl.loadNextPageIndex()
-    //更新数据成功
-    iPageControl.updateSuccess(list)
-    //更新数据失败
-    iPageControl.updateError()
     ```
   + ***RecyclerAdapter在实例化的时候传入IPageControl,
         获取数据成功之后,只需要调用autoUpdateList(list)方法,
         可以自动RefreshLayoutWrapper页码和刷新状态变化***
         
    + ***数据更新失败可以调用RecyclerAdapter.updateFailed()***
-        
+   
+   + ***获取每页的数据量和下一页的页码,可以调用一下方法***
+    
+     ```
+     //每页的数据量
+     RecyclerAdapter.pageSize = 16
+     //下一页的页码
+     RecyclerAdapter.nextPageIndex = 1
+     ```
