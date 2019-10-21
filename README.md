@@ -34,11 +34,7 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
 ```
 ## 使用
 
-### 1. Application
-   * 继承BaseApplication
-   * 如果不继承BaseApplication,请在onCreate中添加如下代码:
-   > ***registerActivityLifecycleCallbacks(ActivityManagerLifeCycleCallbacksImpl())***
-### 2. 在需要使用状态栏、标题栏、加载动画的主题中配置全局参数:
+### 1. 在需要使用状态栏、标题栏、加载动画的主题中配置全局参数:
     
    |属性|类型|必须|默认|说明|
    |---|:---:|:---|:---|:---|
@@ -64,13 +60,13 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
         <!--全局标题栏和状态栏配置-->
     </style>
     ```
-### 3. Activity
+### 2. Activity
   * 使用MVP的继承BasePresenterActivity
   * 不使用MVP的继承BaseActivity
-### 4. Fragment
+### 3. Fragment
   * 使用MVP的继承BasePresenterFragment
   * 不使用MVP的继承BaseFragment
-### 5. 如果使用RecycleView的时候,Adapter可以继承RecycleAdapter来使用
+### 4. 如果使用RecycleView的时候,Adapter可以继承RecycleAdapter来使用
   > 在app的build.gradle的android下添加如下代码:
    ```
    //启用实验性功能
@@ -93,8 +89,8 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
       }
   }
   ```
-### 6. 注解使用
-#### 6.1 [Title](./annotation/src/main/java/com/catchpig/annotation/Title.kt)-标题
+### 5. 注解使用
+#### 5.1 [Title](./annotation/src/main/java/com/catchpig/annotation/Title.kt)-标题
     
  |属性|类型|必须|默认|说明|
  |---|:---:|:---|:---|:---|
@@ -103,31 +99,31 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
  |textColor|ColorRes|否|全局标题文字颜色|标题文字颜色|
  |backIcon|DrawableRes|否|全局标题返回按钮图标|标题返回按钮图标|
 
-#### 6.2 [OnClickFirstDrawable](./annotation/src/main/java/com/catchpig/annotation/OnClickFirstDrawable.kt)-标题上第一个图标按钮的点击事件
+#### 5.2 [OnClickFirstDrawable](./annotation/src/main/java/com/catchpig/annotation/OnClickFirstDrawable.kt)-标题上第一个图标按钮的点击事件
     
  |属性|类型|必须|默认|说明|
  |---|:---:|:---|:---|:---|
  |value|StringRes|是|无|按钮图片内容|
     
-#### 6.3 [OnClickFirstText](./annotation/src/main/java/com/catchpig/annotation/OnClickFirstText.kt)-标题上第一个文字按钮的点击事件
+#### 5.3 [OnClickFirstText](./annotation/src/main/java/com/catchpig/annotation/OnClickFirstText.kt)-标题上第一个文字按钮的点击事件
     
  |属性|类型|必须|默认|说明|
  |---|:---:|:---|:---|:---|
  |value|StringRes|是|无|按钮文字内容|
     
-#### 6.4 [OnClickSecondDrawable](./annotation/src/main/java/java/com/catchpig/annotation/OnClickSecondDrawable.kt)-标题上第二个图标按钮的点击事件
+#### 5.4 [OnClickSecondDrawable](./annotation/src/main/java/java/com/catchpig/annotation/OnClickSecondDrawable.kt)-标题上第二个图标按钮的点击事件
     
  |属性|类型|必须|默认|说明|
  |---|:---:|:---|:---|:---|
  |value|StringRes|是|无|按钮图片内容|
     
-#### 6.5 [OnClickSecondText](./annotation/src/main/java/com/catchpig/annotation/OnClickSecondText.kt)-标题上第二个文字按钮的点击事件
+#### 5.5 [OnClickSecondText](./annotation/src/main/java/com/catchpig/annotation/OnClickSecondText.kt)-标题上第二个文字按钮的点击事件
 
  |属性|类型|必须|默认|说明|
  |---|:---:|:---|:---|:---|
  |value|StringRes|是|无|按钮文字内容|
     
-#### 6.6 [StatusBar](./annotation/src/main/java/com/catchpig/annotation/StatusBar.kt)(修饰在Activity上)-状态栏
+#### 5.6 [StatusBar](./annotation/src/main/java/com/catchpig/annotation/StatusBar.kt)-状态栏
     
 |属性|类型|必须|默认|说明|
 |---|:---:|:---|:---|:---|
@@ -135,19 +131,19 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
 |enabled|boolean|否|false|状态栏是否可用|
 |transparent|boolean|否|false|状态栏透明|
 
-#### 6.7 [TimeLog](./annotation/src/main/java/com/catchpig/annotation/TimeLog.kt)-打印方法和构造方法执行的时间
+#### 5.7 [TimeLog](./annotation/src/main/java/com/catchpig/annotation/TimeLog.kt)-打印方法和构造方法执行的时间
     
 |属性|类型|必须|默认|说明|
 |---|:---:|:---|:---|:---|
 |value|[LEVEL](./annotation/src/main/java/com/catchpig/annotation/TimeLog.kt)|否|[LEVEL.D](./annotation/src/main/java/com/catchpig/annotation/TimeLog.kt)|日志等级|
     
-#### 6.8 [ClickGap](./annotation/src/main/java/com/catchpig/annotation/ClickGap.kt)-重复点击延时
+#### 5.8 [ClickGap](./annotation/src/main/java/com/catchpig/annotation/ClickGap.kt)-重复点击延时
 
 |属性|类型|必须|默认|说明|
 |---|:---:|:---|:---|:---|
 |value|Long|否|800毫秒|重复点击间隔|
 
-### 刷新分页
+### 6. 刷新分页
     
 #### 使用RefreshLayoutWrapper+RecyclerAdapter控件实现刷新功能
         

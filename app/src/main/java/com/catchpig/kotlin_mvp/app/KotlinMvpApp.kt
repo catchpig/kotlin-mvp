@@ -1,10 +1,10 @@
 package com.catchpig.kotlin_mvp.app
 
+import android.app.Application
 import android.content.Context
 import com.catchpig.kotlin_mvp.R
 import com.catchpig.kotlin_mvp.di.component.AppComponent
 import com.catchpig.kotlin_mvp.di.component.DaggerAppComponent
-import com.catchpig.mvp.app.BaseApplication
 import com.catchpig.mvp.di.module.AppModule
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.MaterialHeader
@@ -22,8 +22,9 @@ import com.scwang.smart.refresh.layout.listener.DefaultRefreshHeaderCreator
  * 修改时间: 2019/8/18 0018<br/>
  * 描述:
  */
-class KotlinMvpApp:BaseApplication() {
+class KotlinMvpApp:Application() {
     companion object {
+        lateinit var application: Application
         private var mAppComponent: AppComponent? = null
         fun getAppComponent(): AppComponent {
             if (mAppComponent == null) {
@@ -32,6 +33,11 @@ class KotlinMvpApp:BaseApplication() {
             }
             return mAppComponent!!
         }
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        application = this
     }
     init {
         //设置全局的Header构建器

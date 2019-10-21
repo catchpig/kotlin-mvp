@@ -1,2 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.catchpig.mvp"/>
+          package="com.catchpig.mvp">
+    <application>
+        <provider
+            android:authorities="${applicationId}.KotlinMvpContentProvider"
+            android:name=".provider.KotlinMvpContentProvider"
+            android:exported="false"/>
+    </application>
+</manifest>
