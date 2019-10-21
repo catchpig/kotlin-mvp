@@ -1,6 +1,9 @@
 package com.catchpig.aop
 
-import luyao.util.ktx.ext.logd
+import android.util.Log
+import com.catchpig.annotation.LEVEL
+import com.catchpig.annotation.TimeLog
+import luyao.util.ktx.ext.*
 import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.annotation.Around
 import org.aspectj.lang.annotation.Aspect
@@ -29,8 +32,8 @@ class TimeLogAspectJ {
 
     }
 
-    @Around("methodTime() || constructorTime()")
-    fun clickGap(proceedingJoinPoint: ProceedingJoinPoint){
+    @Around("(methodTime() || constructorTime()) && @annotation(timeLog)")
+    fun clickGap(proceedingJoinPoint: ProceedingJoinPoint,timeLog: TimeLog){
         val beforeTimeOfMethod = System.currentTimeMillis()
         proceedingJoinPoint.proceed()
         val afterTimeOfMethod = System.currentTimeMillis()
@@ -46,6 +49,26 @@ class TimeLogAspectJ {
         }
         params.delete(0,1)
         val time = afterTimeOfMethod-beforeTimeOfMethod
-        "${className}.${method}(${params})耗时:${time}毫秒".logd(TAG)
+        log(timeLog.value,TAG,"${className}.${method}(${params})耗时:${time}毫秒")
+    }
+
+    private fun log(level: LEVEL, tag:String, msg:String){
+        when (level) {
+            LEVEL.I -> {
+                Log.i(tag,msg)
+            }
+            LEVEL.W -> {
+                Log.w(tag,msg)
+            }
+            LEVEL.E -> {
+                Log.e(tag,msg)
+            }
+            LEVEL.V -> {
+                Log.v(tag,msg)
+            }
+            LEVEL.D -> {
+                Log.d(tag,msg)
+            }
+        }
     }
 }

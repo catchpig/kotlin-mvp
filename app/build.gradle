@@ -45,10 +45,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-//    implementation project(path: ':mvp')
-//    kapt project(path: ':compiler')
-    implementation "com.github.catch-pig.kotlin-mvp:mvp:$kotlin_mvp"
-    kapt "com.github.catch-pig.kotlin-mvp:compiler:$kotlin_mvp"
+    implementation project(path: ':mvp')
+    kapt project(path: ':compiler')
+//    implementation "com.github.catch-pig.kotlin-mvp:mvp:$kotlin_mvp"
+//    kapt "com.github.catch-pig.kotlin-mvp:compiler:$kotlin_mvp"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
     //刷新-头部

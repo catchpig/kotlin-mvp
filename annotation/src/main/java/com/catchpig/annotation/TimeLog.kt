@@ -9,4 +9,15 @@ package com.catchpig.annotation
  */
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.FUNCTION,AnnotationTarget.CONSTRUCTOR)
-annotation class TimeLog
+annotation class TimeLog(
+        /**
+         * 日志等级
+         */
+        val value:LEVEL = LEVEL.D
+)
+/**
+ * 日志等级
+ */
+enum class LEVEL{
+        V, D, I, W, E
+}

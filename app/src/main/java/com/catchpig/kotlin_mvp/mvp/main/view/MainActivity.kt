@@ -12,6 +12,7 @@ import com.catchpig.kotlin_mvp.mvp.main.presenter.MainPresenter
 import com.catchpig.kotlin_mvp.mvp.recycle.RecycleActivity
 import com.catchpig.kotlin_mvp.mvp.transparent.TransparentActivity
 import com.catchpig.annotation.ClickGap
+import com.catchpig.annotation.LEVEL
 import com.catchpig.annotation.StatusBar
 import com.catchpig.annotation.TimeLog
 import com.catchpig.aop.TimeLogAspectJ
@@ -22,7 +23,7 @@ class MainActivity : BasePresenterActivity<MainPresenter>(),MainContract.View {
     override fun initParam() {
     }
     
-    @TimeLog
+    @TimeLog(LEVEL.V)
     override fun injectComponent() {
         KotlinMvpApp.getAppComponent().mianComponent(MainModule(this)).inject(this)
     }
