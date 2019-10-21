@@ -105,7 +105,9 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
 
 #### 6.2 [OnClickFirstDrawable](./annotation/src/main/java/com/catchpig/annotation/OnClickFirstDrawable.kt)(修饰在方法上)-标题上第一个图标按钮的点击事件
     
-     value:按钮的文字资源
+  |属性|类型|必须|默认|说明|
+ |---|:---:|:---|:---|:---|
+ |value|StringRes|是|无|文字内容|
     
 #### 6.3 [OnClickFirstText](./annotation/src/main/java/com/catchpig/annotation/OnClickFirstText.kt)(修饰在方法上)-标题上第一个文字按钮的点击事件
     
