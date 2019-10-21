@@ -13,5 +13,5 @@ annotation class ClickGap(
         /**
          * 重复点击间隔时间
          */
-        val value: Int = 800
+        val value: Long = 800
 )

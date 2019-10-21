@@ -94,7 +94,7 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
   }
   ```
 ### 6. 注解使用
-#### 6.1 [Title](./annotation/src/main/java/com/catchpig/annotation/Title.kt)(修饰在Activity的类上)-标题
+#### 6.1 [Title](./annotation/src/main/java/com/catchpig/annotation/Title.kt)-标题
     
  |属性|类型|必须|默认|说明|
  |---|:---:|:---|:---|:---|
@@ -103,25 +103,25 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
  |textColor|ColorRes|否|全局标题文字颜色|标题文字颜色|
  |backIcon|DrawableRes|否|全局标题返回按钮图标|标题返回按钮图标|
 
-#### 6.2 [OnClickFirstDrawable](./annotation/src/main/java/com/catchpig/annotation/OnClickFirstDrawable.kt)(修饰在方法上)-标题上第一个图标按钮的点击事件
+#### 6.2 [OnClickFirstDrawable](./annotation/src/main/java/com/catchpig/annotation/OnClickFirstDrawable.kt)-标题上第一个图标按钮的点击事件
     
  |属性|类型|必须|默认|说明|
  |---|:---:|:---|:---|:---|
  |value|StringRes|是|无|按钮图片内容|
     
-#### 6.3 [OnClickFirstText](./annotation/src/main/java/com/catchpig/annotation/OnClickFirstText.kt)(修饰在方法上)-标题上第一个文字按钮的点击事件
+#### 6.3 [OnClickFirstText](./annotation/src/main/java/com/catchpig/annotation/OnClickFirstText.kt)-标题上第一个文字按钮的点击事件
     
  |属性|类型|必须|默认|说明|
  |---|:---:|:---|:---|:---|
  |value|StringRes|是|无|按钮文字内容|
     
-#### 6.4 [OnClickSecondDrawable](./annotation/src/main/java/java/com/catchpig/annotation/OnClickSecondDrawable.kt)(修饰在方法上)-标题上第二个图标按钮的点击事件
+#### 6.4 [OnClickSecondDrawable](./annotation/src/main/java/java/com/catchpig/annotation/OnClickSecondDrawable.kt)-标题上第二个图标按钮的点击事件
     
  |属性|类型|必须|默认|说明|
  |---|:---:|:---|:---|:---|
  |value|StringRes|是|无|按钮图片内容|
     
-#### 6.5 [OnClickSecondText](./annotation/src/main/java/com/catchpig/annotation/OnClickSecondText.kt)(修饰在方法上)-标题上第二个文字按钮的点击事件
+#### 6.5 [OnClickSecondText](./annotation/src/main/java/com/catchpig/annotation/OnClickSecondText.kt)-标题上第二个文字按钮的点击事件
 
  |属性|类型|必须|默认|说明|
  |---|:---:|:---|:---|:---|
@@ -134,7 +134,19 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
 |hide|boolean|否|false|隐藏状态栏|
 |enabled|boolean|否|false|状态栏是否可用|
 |transparent|boolean|否|false|状态栏透明|
+
+#### 6.7 [TimeLog](./annotation/src/main/java/com/catchpig/annotation/TimeLog.kt)-打印方法和构造方法执行的时间
     
+|属性|类型|必须|默认|说明|
+|---|:---:|:---|:---|:---|
+|value|[LEVEL](./annotation/src/main/java/com/catchpig/annotation/TimeLog.kt)|否|[LEVEL.D](./annotation/src/main/java/com/catchpig/annotation/TimeLog.kt)|日志等级|
+    
+#### 6.8 [ClickGap](./annotation/src/main/java/com/catchpig/annotation/ClickGap.kt)-重复点击延时
+
+|属性|类型|必须|默认|说明|
+|---|:---:|:---|:---|:---|
+|value|Long|否|800毫秒|重复点击间隔|
+
 ### 刷新分页
     
 #### 使用RefreshLayoutWrapper+RecyclerAdapter控件实现刷新功能

@@ -24,7 +24,7 @@ class ClickGapAspectJ {
     @Around("pointcut() && @annotation(clickGap)")
     fun clickGap(proceedingJoinPoint:ProceedingJoinPoint,clickGap: ClickGap){
         val currentTimeMillis = System.currentTimeMillis()
-        if((currentTimeMillis-lastTimeMillis) > clickGap!!.value){
+        if((currentTimeMillis-lastTimeMillis) > clickGap.value){
             proceedingJoinPoint.proceed()
         }
         lastTimeMillis = currentTimeMillis
