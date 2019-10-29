@@ -3,17 +3,13 @@ package com.catchpig.compiler
 import com.catchpig.annotation.*
 import com.google.auto.service.AutoService
 import com.squareup.kotlinpoet.*
-import java.lang.reflect.Type
-import javax.annotation.processing.*
-import javax.lang.model.SourceVersion
+import javax.annotation.processing.Processor
+import javax.annotation.processing.RoundEnvironment
 import javax.lang.model.element.ExecutableElement
 import javax.lang.model.element.TypeElement
-import javax.lang.model.element.VariableElement
-import javax.lang.model.util.Elements
-import javax.tools.Diagnostic
 
 @AutoService(Processor::class)
-class KotlinMvpProcessor : AbstractProcessor() {
+class KotlinMvpProcessor : BaseProcessor() {
     companion object {
         private val CLASS_NAME_TITLE_PARAM = ClassName("com.catchpig.mvp.entity", "TitleParam")
         private val CLASS_NAME_STATUS_BAR_PARAM = ClassName("com.catchpig.mvp.entity", "StatusBarParam")
@@ -29,18 +25,6 @@ class KotlinMvpProcessor : AbstractProcessor() {
 
     }
 
-    private lateinit var elementUtils: Elements
-    private lateinit var messager: Messager
-    private lateinit var filer: Filer
-
-    @Synchronized
-    override fun init(processingEnv: ProcessingEnvironment) {
-        super.init(processingEnv)
-        elementUtils = processingEnv.elementUtils
-        messager = processingEnv.messager
-        filer = processingEnv.filer
-    }
-
     override fun getSupportedAnnotationTypes(): MutableSet<String> {
         var set = HashSet<String>()
         set.add(Title::class.java.canonicalName)
@@ -50,10 +34,6 @@ class KotlinMvpProcessor : AbstractProcessor() {
         set.add(OnClickSecondDrawable::class.java.canonicalName)
         set.add(OnClickSecondText::class.java.canonicalName)
         return set
-    }
-
-    override fun getSupportedSourceVersion(): SourceVersion {
-        return SourceVersion.latestSupported()
     }
 
     override fun process(annotations: MutableSet<out TypeElement>, roundEnv: RoundEnvironment): Boolean {
@@ -313,11 +293,5 @@ class KotlinMvpProcessor : AbstractProcessor() {
         return false
     }
 
-    private fun warning(msg: String) {
-        messager.printMessage(Diagnostic.Kind.WARNING, msg)
-    }
 
-    private fun error(msg: String) {
-        messager.printMessage(Diagnostic.Kind.ERROR, msg)
-    }
 }

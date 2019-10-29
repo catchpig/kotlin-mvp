@@ -15,6 +15,9 @@ import com.catchpig.mvp.lifecycle.ActivityManagerLifeCycleCallbacksImpl
  * 描述:
  */
 class KotlinMvpContentProvider : ContentProvider() {
+    companion object{
+        lateinit var application: Application
+    }
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
         return null
     }
@@ -24,7 +27,7 @@ class KotlinMvpContentProvider : ContentProvider() {
     }
 
     override fun onCreate(): Boolean {
-        val application = context!!.applicationContext as Application
+        application = context!!.applicationContext as Application
         application.registerActivityLifecycleCallbacks(ActivityManagerLifeCycleCallbacksImpl())
         return true
     }

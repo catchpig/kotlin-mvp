@@ -1,5 +1,6 @@
 package com.catchpig.kotlin_mvp.mvp.recycle
 
+import android.content.Context
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.catchpig.annotation.TimeLog
@@ -28,7 +29,6 @@ class RecycleActivity : BaseActivity() {
         userAdapter.onItemClickListener { id, m, position ->
             "dada".logd("adsd")
         }
-
         var linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
         recycle_view.layoutManager = linearLayoutManager
