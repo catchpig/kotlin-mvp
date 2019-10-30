@@ -1,6 +1,5 @@
 package com.catchpig.kotlin_mvp.mvp.recycle
 
-import android.content.Context
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.catchpig.annotation.TimeLog
@@ -14,6 +13,7 @@ import io.reactivex.subscribers.ResourceSubscriber
 import kotlinx.android.synthetic.main.activity_recycle.*
 import kotlinx.android.synthetic.main.layout_header.view.*
 import luyao.util.ktx.ext.logd
+import luyao.util.ktx.ext.longToast
 import java.util.concurrent.TimeUnit
 
 class RecycleActivity : BaseActivity() {
@@ -37,6 +37,8 @@ class RecycleActivity : BaseActivity() {
         userAdapter.headerView {
             header_name.text = "我是头部"
         }
+        UserSharedPrefs.setName("niha")
+        longToast(UserSharedPrefs.getName()!!)
         refresh.setOnRefreshLoadMoreListener(object :OnRefreshListener(){
             override fun update(refreshLayout: RefreshLayout) {
                 Flowable.timer(3,TimeUnit.SECONDS)
