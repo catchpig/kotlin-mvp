@@ -6,31 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".mvp.recycle.RecycleActivity">
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
-        <!--<com.google.android.material.appbar.CollapsingToolbarLayout
+        android:layout_height="200dp">
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar">
+            app:contentScrim="@color/colorPrimary"
+            app:expandedTitleGravity="center_horizontal|bottom"
+            app:expandedTitleTextAppearance="@style/ExpandedTitleAppearance"
+            app:collapsedTitleTextAppearance="@style/CollapsedTitleAppearance"
+            app:collapsedTitleGravity="left|center_vertical"
+            app:scrimVisibleHeightTrigger="100dp"
+            app:titleEnabled="true"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
-                android:id="@+id/mIv"
+                android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop" />
-
-            <android.support.v7.widget.Toolbar
+                android:scaleType="centerCrop"/>
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/detail_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
-                android:layout_below="@+id/view"
+                app:contentInsetStart="0dp"
+                app:contentInsetLeft="0dp"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:title="结合CoordinatorLayout使用" />
-        </com.google.android.material.appbar.CollapsingToolbarLayout>-->
+                app:title="RecycleView列表">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="center"
+                    android:src="@drawable/back"/>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
     <com.catchpig.mvp.widget.refresh.RefreshLayoutWrapper
         android:id="@+id/refresh"
