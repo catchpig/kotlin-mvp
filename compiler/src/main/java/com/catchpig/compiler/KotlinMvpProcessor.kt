@@ -68,7 +68,7 @@ class KotlinMvpProcessor : BaseProcessor() {
             FileSpec
                     .builder(fullPackageName, typeSpec.name!!)
                     .addType(typeSpec)
-                    .addImport("com.catchpig.kotlin_mvp", "R")
+                    .addImport("com.catchpig.mvp", "R")
                     .build()
                     .writeTo(filer)
         }
