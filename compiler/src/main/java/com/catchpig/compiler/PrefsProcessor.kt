@@ -130,7 +130,7 @@ class PrefsProcessor : BaseProcessor() {
             TypeKind.DECLARED -> {
                 if (element.asType().toString() == JAVA_STRING) {
                     getFunSpecBuilder = getFunSpecBuilder
-                            .returns(STRING.copy(nullable = true))
+                            .returns(STRING)
                             .addStatement("return sharedPrefs.getString(%S,%S)",prefsKey,"")
                 }
             }
