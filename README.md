@@ -205,9 +205,9 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
      ```
 ## 第三方库
 
-[SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout)
+[SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout)-刷新控件
 
-[Immersionbar](https://github.com/gyf-dev/ImmersionBar)
+[Immersionbar](https://github.com/gyf-dev/ImmersionBar)-状态栏
 
 [Dagger2](https://github.com/google/dagger)
 
@@ -221,6 +221,6 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
 
 [Gson](https://github.com/google/gson)
 
-[AndroidUtilKTX](https://github.com/lulululbj/AndroidUtilCodeKTX)
+[AndroidUtilKTX](https://github.com/lulululbj/AndroidUtilCodeKTX)-工具类
 
-[LoadingView](https://github.com/catch-pig/LoadingView)
+[LoadingView](https://github.com/catch-pig/LoadingView)-Loading动画
