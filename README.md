@@ -1,6 +1,24 @@
 # kotlin-mvp
 [![](https://jitpack.io/v/catch-pig/kotlin-mvp.svg)](https://jitpack.io/#catch-pig/kotlin-mvp)
 
+## 技术要点
+
+### 1. RxJava+Retrofit+OkHttp实现链式http请求
+
+### 2. 封装基类:BaseActivity、BasePresenterActivity、BaseFragment、BasePresenterFragment、RecycleAdapter、BasePresenter
+
+### 3. 封装工具扩展类：CalendarExt、ContextExt、DateExt、EditTextExt、GsonExt、RxJavaExt、StringExt
+
+### 4. 引入LifeCycle，将Presenter和Activity的生命周期绑定在一起
+
+### 5. 将在Application中初始化移至到ContentProvider中,从而不用封装BaseApplication
+
+### 6. AOP(面向切面)封装注解:TimeLog、ClickGap
+
+### 7. APT(编译时注解)封装注解：OnClickFirstDrawable、OnClickFirstText、OnClickSecondDrawable、OnClickSecondText、Prefs、PrefsField、StatusBar
+
+### 8. Dagger2对类的生命周期做一个管理
+
 ## 最低兼容:19
 ## Gradle
 ### 1. 在Project的build.gradle中添加
@@ -185,3 +203,24 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
      //下一页的页码
      RecyclerAdapter.nextPageIndex = 1
      ```
+## 第三方库
+
+[SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout)
+
+[Immersionbar](https://github.com/gyf-dev/ImmersionBar)
+
+[Dagger2](https://github.com/google/dagger)
+
+[RxJava](https://github.com/ReactiveX/RxJava)
+
+[RxAndroid](https://github.com/ReactiveX/RxAndroid)
+
+[OkHttp](https://github.com/square/okhttp)
+
+[Retrofit](https://github.com/square/retrofit)
+
+[Gson](https://github.com/google/gson)
+
+[AndroidUtilKTX](https://github.com/lulululbj/AndroidUtilCodeKTX)
+
+[LoadingView](https://github.com/catch-pig/LoadingView)
