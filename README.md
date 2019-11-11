@@ -143,6 +143,19 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
 |---|:---:|:---|:---|:---|
 |value|Long|否|800毫秒|重复点击间隔|
 
+#### 5.9 [Prefs](./annotation/src/main/java/com/catchpig/annotation/Prefs.kt)-SharedPreferences注解生成器
+
+|属性|类型|必须|默认|说明|
+|---|:---:|:---|:---|:---|
+|value|String|否|""|别名|
+|mode|[PrefsMode](./annotation/src/main/java/com/catchpig/annotation/enums/PrefsMode.kt)|否|PrefsMode.MODE_PRIVATE|别名|
+
+#### 5.10 [PrefsField](./annotation/src/main/java/com/catchpig/annotation/PrefsField.kt)-SharedPreferences字段注解
+
+|属性|类型|必须|默认|说明|
+|---|:---:|:---|:---|:---|
+|value|String|否|""|字段别名,如果为空则取修饰字段的参数名称|
+
 ### 6. 刷新分页
     
 #### 使用RefreshLayoutWrapper+RecyclerAdapter控件实现刷新功能
