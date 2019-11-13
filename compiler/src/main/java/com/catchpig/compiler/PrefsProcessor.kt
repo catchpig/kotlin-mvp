@@ -88,8 +88,8 @@ class PrefsProcessor : BaseProcessor() {
         }
         val clearFunSpec = FunSpec
                 .builder("clear")
-                .addStatement("sharedEditor.commit()")
                 .addStatement("sharedEditor.clear()")
+                .addStatement("sharedEditor.commit()")
                 .build()
         funSpecs.add(clearFunSpec)
         return funSpecs
