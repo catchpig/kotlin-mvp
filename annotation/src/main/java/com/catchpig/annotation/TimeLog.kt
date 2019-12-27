@@ -1,5 +1,7 @@
 package com.catchpig.annotation
 
+import com.catchpig.annotation.enums.LEVEL
+
 /**
  * 创建时间:2019/10/20 0020<br/>
  * 创建人: 李涛<br/>
@@ -15,9 +17,3 @@ annotation class TimeLog(
          */
         val value:LEVEL = LEVEL.D
 )
-/**
- * 日志等级
- */
-enum class LEVEL{
-        V, D, I, W, E
-}

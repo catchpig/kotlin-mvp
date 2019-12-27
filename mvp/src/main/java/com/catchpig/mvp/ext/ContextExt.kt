@@ -9,7 +9,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
 import com.catchpig.mvp.R
-import luyao.util.ktx.ext.logd
+import com.catchpig.utils.ext.logd
 
 /**
  * 创建时间:2019/8/19 0019<br/>

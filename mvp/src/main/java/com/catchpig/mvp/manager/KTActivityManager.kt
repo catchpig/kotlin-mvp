@@ -1,7 +1,6 @@
 package com.catchpig.mvp.manager
 
 import android.app.Activity
-import android.content.Intent
 import java.util.*
 
 object KTActivityManager {
@@ -25,15 +24,6 @@ object KTActivityManager {
      */
     fun getTopActivity():Activity{
         return activities.last()
-    }
-
-    /**
-     * 打开activity
-     */
-    inline fun <reified A : Activity> startActivity(){
-        var activity = getTopActivity()
-        var intent = Intent(activity,A::class.java)
-        activity.startActivity(intent)
     }
     /**
      * 删除除最上层之外的所有activity

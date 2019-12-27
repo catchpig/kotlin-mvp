@@ -12,11 +12,11 @@ import com.catchpig.kotlin_mvp.mvp.main.presenter.MainPresenter
 import com.catchpig.kotlin_mvp.mvp.recycle.RecycleActivity
 import com.catchpig.kotlin_mvp.mvp.transparent.TransparentActivity
 import com.catchpig.annotation.ClickGap
-import com.catchpig.annotation.LEVEL
 import com.catchpig.annotation.StatusBar
 import com.catchpig.annotation.TimeLog
-import com.catchpig.aop.TimeLogAspectJ
+import com.catchpig.annotation.enums.LEVEL
 import com.catchpig.mvp.base.activity.BasePresenterActivity
+import com.catchpig.utils.ext.startKtActivity
 
 @StatusBar(enabled = true)
 class MainActivity : BasePresenterActivity<MainPresenter>(),MainContract.View {
@@ -37,23 +37,21 @@ class MainActivity : BasePresenterActivity<MainPresenter>(),MainContract.View {
     }
     @ClickGap(2000)
     fun openChild(v:View){
-        var intent = Intent()
         when (v.id) {
             R.id.is_title -> {
-                intent.setClass(this,ChildActivity::class.java)
+                startKtActivity<ChildActivity>()
             }
             R.id.transparent -> {
-                intent.setClass(this,TransparentActivity::class.java)
+                startKtActivity<TransparentActivity>()
             }
             R.id.full_screen -> {
-                intent.setClass(this,FullScreenActivity::class.java)
+                startKtActivity<FullScreenActivity>()
             }
             R.id.recycle -> {
-                intent.setClass(this,RecycleActivity::class.java)
+                startKtActivity<RecycleActivity>()
             }
             else -> {
             }
         }
-        startActivity(intent)
     }
 }

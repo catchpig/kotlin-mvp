@@ -12,8 +12,8 @@ import com.catchpig.mvp.R
 import com.catchpig.mvp.apt.KotlinMvpCompiler
 import com.catchpig.mvp.base.BaseContract
 import com.catchpig.mvp.controller.LoadingViewController
+import com.catchpig.utils.ext.longToast
 import kotlinx.android.synthetic.main.view_root.*
-import luyao.util.ktx.ext.longToast
 
 /**
  * 创建时间:2019/4/4 00:09<br></br>

@@ -7,7 +7,6 @@ import io.reactivex.Flowable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.subscribers.ResourceSubscriber
-import luyao.util.ktx.ext.logd
 
 
 /**
@@ -18,15 +17,6 @@ import luyao.util.ktx.ext.logd
  * 描述:
  */
 open class BasePresenter: BaseContract.Presenter {
-    companion object {
-        const val TAG = "BasePresenter"
-        const val ON_CREATE = "onCreate"
-        const val ON_START = "onStart"
-        const val ON_RESUME = "onResume"
-        const val ON_PAUSE = "onPause"
-        const val ON_STOP = "onStop"
-        const val ON_DESTROY = "onDestroy"
-    }
     private var mCompositeDisposable: CompositeDisposable = CompositeDisposable()
     @CallSuper
     override fun onCreate() {

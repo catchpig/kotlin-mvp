@@ -3,12 +3,11 @@ package com.catchpig.mvp.di.module
 import android.app.Application
 import com.catchpig.mvp.config.Config
 import com.catchpig.mvp.gson.DateJsonDeserializer
+import com.catchpig.utils.ext.logd
 import com.google.gson.*
 import dagger.Module
 import dagger.Provides
-import luyao.util.ktx.ext.logd
 import okhttp3.logging.HttpLoggingInterceptor
-import java.lang.reflect.Type
 import java.util.*
 import javax.inject.Singleton
 

@@ -1,6 +1,5 @@
 package com.catchpig.mvp.apt
 
-import android.view.ViewStub
 import com.catchpig.mvp.base.activity.BaseActivity
 
 /**

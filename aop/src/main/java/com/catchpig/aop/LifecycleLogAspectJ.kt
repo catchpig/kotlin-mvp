@@ -1,6 +1,6 @@
 package com.catchpig.aop
 
-import luyao.util.ktx.ext.logd
+import com.catchpig.utils.ext.logd
 import org.aspectj.lang.JoinPoint
 import org.aspectj.lang.annotation.*
 

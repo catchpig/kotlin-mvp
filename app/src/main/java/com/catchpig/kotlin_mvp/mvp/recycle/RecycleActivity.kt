@@ -8,6 +8,7 @@ import com.catchpig.annotation.TimeLog
 import com.catchpig.kotlin_mvp.R
 import com.catchpig.mvp.base.activity.BaseActivity
 import com.catchpig.mvp.widget.refresh.OnRefreshListener
+import com.catchpig.utils.ext.logd
 import com.google.android.material.appbar.AppBarLayout
 import com.gyf.immersionbar.ktx.immersionBar
 import com.scwang.smart.refresh.layout.api.RefreshLayout
@@ -16,8 +17,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subscribers.ResourceSubscriber
 import kotlinx.android.synthetic.main.activity_recycle.*
 import kotlinx.android.synthetic.main.layout_header.view.*
-import luyao.util.ktx.ext.logd
-import luyao.util.ktx.ext.longToast
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList

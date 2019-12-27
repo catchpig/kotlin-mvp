@@ -1,7 +1,7 @@
 package com.catchpig.mvp.apt
 
 import com.catchpig.mvp.base.activity.BaseActivity
-import luyao.util.ktx.ext.logd
+import com.catchpig.utils.ext.logd
 
 /**
  * 创建时间:2019/10/17 0017<br/>
