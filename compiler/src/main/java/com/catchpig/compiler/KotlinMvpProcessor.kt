@@ -56,15 +56,19 @@ class KotlinMvpProcessor : BaseProcessor() {
 
             val className = it.simpleName.toString()
             val fullPackageName = elementUtils.getPackageOf(it).qualifiedName.toString()
-            val typeSpec = TypeSpec
+            val typeSpecBuilder = TypeSpec
                     .classBuilder(className + "_MvpCompiler")
                     .addModifiers(KModifier.FINAL, KModifier.PUBLIC)
                     .addSuperinterface(CLASS_NAME_MVP_COMPILER)
-                    .addProperty(initTitleProperty(title,className))
-                    .addProperty(initStatusBarProperty(statusBar,className))
-                    .addFunction(injectFun(className))
-                    .addFunction(initTitleMenuOnClick(it, title))
-                    .build()
+                    .addProperty(initTitleProperty(title, className))
+                    .addProperty(initStatusBarProperty(statusBar, className))
+            val funSpec = initTitleMenuOnClick(it, title)
+            funSpec?.let { funSpec ->
+                typeSpecBuilder.addFunction(funSpec)
+            }
+            typeSpecBuilder.addFunction(injectFun(className,funSpec!=null))
+
+            val typeSpec = typeSpecBuilder.build()
             FileSpec
                     .builder(fullPackageName, typeSpec.name!!)
                     .addType(typeSpec)
@@ -78,8 +82,14 @@ class KotlinMvpProcessor : BaseProcessor() {
     /**
      * 初始化标题栏的点击事件
      */
-    private fun initTitleMenuOnClick(element: TypeElement, title: Title?): FunSpec {
+    private fun initTitleMenuOnClick(element: TypeElement, title: Title?): FunSpec? {
         val elements = elementUtils.getAllMembers(element)
+        /**
+         * OnClickFirstText,OnClickFirstDrawable,OnClickSecondText,OnClickSecondDrawable是否有注解
+         *
+         * 只要其中有一个注解,则为true
+         */
+        var flag = false
         var builder = FunSpec
                 .builder("initTitleMenuOnClick")
                 .addParameter("activity", element.asType().asTypeName())
@@ -94,6 +104,7 @@ class KotlinMvpProcessor : BaseProcessor() {
             }?.run {
                 val onClickFirstText = getAnnotation(OnClickFirstText::class.java)
                 if (onClickFirstText != null) {
+                    flag = true
                     builder = builder
                             .addStatement("//第一个文字按钮")
                             .addStatement("var rightFirstText = activity.findViewById<%T>(R.id.rightFirstText)", TYPE_TEXT_VIEW)
@@ -127,6 +138,7 @@ class KotlinMvpProcessor : BaseProcessor() {
             }?.run {
                 val onClickFirstDrawable = getAnnotation(OnClickFirstDrawable::class.java)
                 if (onClickFirstDrawable != null) {
+                    flag = true
                     builder = builder
                             .addStatement("//第一个图片按钮")
                             .addStatement("var rightFirstDrawable = activity.findViewById<%T>(R.id.rightFirstDrawable)", TYPE_IMAGE_VIEW)
@@ -160,6 +172,7 @@ class KotlinMvpProcessor : BaseProcessor() {
             }?.run {
                 val onClickSecondText = getAnnotation(OnClickSecondText::class.java)
                 if (onClickSecondText != null) {
+                    flag = true
                     builder = builder
                             .addStatement("//第二个文字按钮")
                             .addStatement("var rightSecondText = activity.findViewById<%T>(R.id.rightSecondText)", TYPE_TEXT_VIEW)
@@ -193,6 +206,7 @@ class KotlinMvpProcessor : BaseProcessor() {
             }?.run {
                 val onClickSecondDrawable = getAnnotation(OnClickSecondDrawable::class.java)
                 if (onClickSecondDrawable != null) {
+                    flag = true
                     builder = builder
                             .addStatement("//第二个图片按钮")
                             .addStatement("var rightSecondDrawable = activity.findViewById<%T>(R.id.rightSecondDrawable)", TYPE_IMAGE_VIEW)
@@ -220,11 +234,16 @@ class KotlinMvpProcessor : BaseProcessor() {
             }
 
         }
-        return builder.build()
+        return if (flag) {
+            builder.build()
+        } else {
+            null
+        }
+
     }
 
-    private fun injectFun(className: String): FunSpec {
-        return FunSpec
+    private fun injectFun(className: String,isInitMenuFun:Boolean): FunSpec {
+        var funSpecBuilder = FunSpec
                 .builder("inject")
                 .addModifiers(KModifier.PUBLIC, KModifier.OVERRIDE)
                 .addParameter("activity", CLASS_NAME_BASE_ACTIVITY)
@@ -234,7 +253,10 @@ class KotlinMvpProcessor : BaseProcessor() {
                 .addStatement("  titleBarViewStub.setOnInflateListener { _, _ ->")
                 .addStatement("    val titleBarController = %T(activity,it)", TYPE_TITLE_BAR_CONTROLLER)
                 .addStatement("    titleBarController.initTitleBar()")
-                .addStatement("    initTitleMenuOnClick(activity as $className)")
+        if (isInitMenuFun) {
+            funSpecBuilder.addStatement("    initTitleMenuOnClick(activity as $className)")
+        }
+        return funSpecBuilder
                 .addStatement("  }")
                 .addStatement("  titleBarViewStub.inflate()")
                 .addStatement("}")
@@ -247,7 +269,7 @@ class KotlinMvpProcessor : BaseProcessor() {
     /**
      * 添加StatusBar属性
      */
-    private fun initStatusBarProperty(statusBar: StatusBar?,className: String): PropertySpec {
+    private fun initStatusBarProperty(statusBar: StatusBar?, className: String): PropertySpec {
         var builder = PropertySpec
                 .builder("statusBar", CLASS_NAME_STATUS_BAR_PARAM.copy(nullable = true))
                 .addModifiers(KModifier.PRIVATE)
@@ -266,7 +288,7 @@ class KotlinMvpProcessor : BaseProcessor() {
     /**
      * 添加title属性
      */
-    private fun initTitleProperty(title: Title?,className: String): PropertySpec {
+    private fun initTitleProperty(title: Title?, className: String): PropertySpec {
         var builder = PropertySpec
                 .builder("title", CLASS_NAME_TITLE_PARAM.copy(nullable = true))
                 .addModifiers(KModifier.PRIVATE)
@@ -285,7 +307,7 @@ class KotlinMvpProcessor : BaseProcessor() {
     /**
      * 判断父类是否是BaseActivity
      */
-    private fun superClassIsBaseActivity(typeElement: TypeElement):Boolean{
+    private fun superClassIsBaseActivity(typeElement: TypeElement): Boolean {
         val className = typeElement.superclass.toString()
         if (className.contains("com.catchpig.mvp.base.activity")) {
             return true
