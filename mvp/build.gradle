@@ -83,3 +83,8 @@ dependencies {
     //刷新
     api "com.scwang.smart:refresh-layout-kernel:$SmartRefreshLayout_version"
 }
+
+ask sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
