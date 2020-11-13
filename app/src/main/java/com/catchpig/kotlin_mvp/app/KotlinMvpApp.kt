@@ -41,19 +41,13 @@ class KotlinMvpApp:Application() {
     }
     init {
         //设置全局的Header构建器
-        SmartRefreshLayout.setDefaultRefreshHeaderCreator(object : DefaultRefreshHeaderCreator {
-            override fun createRefreshHeader(context: Context, layout: RefreshLayout): RefreshHeader {
-                //全局设置主题颜色
-                layout.setPrimaryColorsId(R.color.c_333)
-                return MaterialHeader(context)
-            }
-        })
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout -> //全局设置主题颜色
+            layout.setPrimaryColorsId(R.color.c_333)
+            MaterialHeader(context)
+        }
         //设置全局的Footer构建器
-        SmartRefreshLayout.setDefaultRefreshFooterCreator(object : DefaultRefreshFooterCreator {
-            override fun createRefreshFooter(context: Context, layout: RefreshLayout): RefreshFooter {
-                //指定为经典Footer，默认是 BallPulseFooter
-                return ClassicsFooter(context).setDrawableSize(20f)
-            }
-        })
+        SmartRefreshLayout.setDefaultRefreshFooterCreator { context, layout -> //指定为经典Footer，默认是 BallPulseFooter
+            ClassicsFooter(context).setDrawableSize(20f)
+        }
     }
 }

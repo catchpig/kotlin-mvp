@@ -12,6 +12,7 @@ import com.catchpig.kotlin_mvp.mvp.main.presenter.MainPresenter
 import com.catchpig.kotlin_mvp.mvp.recycle.RecycleActivity
 import com.catchpig.kotlin_mvp.mvp.transparent.TransparentActivity
 import com.catchpig.annotation.ClickGap
+import com.catchpig.annotation.MethodLog
 import com.catchpig.annotation.StatusBar
 import com.catchpig.annotation.TimeLog
 import com.catchpig.annotation.enums.LEVEL
@@ -28,13 +29,16 @@ class MainActivity : BasePresenterActivity<MainPresenter>(),MainContract.View {
         KotlinMvpApp.getAppComponent().mianComponent(MainModule(this)).inject(this)
     }
 
-
+    @MethodLog(LEVEL.I)
     override fun initView() {
+
     }
 
     override fun layoutId(): Int {
         return R.layout.activity_main
     }
+
+    @MethodLog(LEVEL.V)
     @ClickGap(2000)
     fun openChild(v:View){
         when (v.id) {

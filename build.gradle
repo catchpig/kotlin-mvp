@@ -30,7 +30,7 @@ buildscript {
         immersionbar_version = '3.0.0-beta05'
         loading_version = '1.0.2'
         SmartRefreshLayout_version = '2.0.0-alpha-1'
-        aspectj_version = '1.9.4'
+        aspectj_version = '1.9.6'
         auto_service_version = '1.0-rc6'
         kotlinpoet_version = '1.4.0'
     }
@@ -40,12 +40,12 @@ buildscript {
         maven { url 'https://jitpack.io' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath 'com.android.tools.build:gradle:4.1.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
-        classpath 'com.github.franticn:gradle_plugin_android_aspectjx:2.0.6'
+        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.10'
     }
 }
 
