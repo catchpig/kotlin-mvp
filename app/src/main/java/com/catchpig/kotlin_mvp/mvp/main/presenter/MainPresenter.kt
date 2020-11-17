@@ -11,7 +11,7 @@ import com.catchpig.mvp.base.BasePresenter
  * 修改时间: 2019/8/18 0018<br/>
  * 描述:
  */
-class MainPresenter @TimeLog constructor(private val view:MainContract.View): BasePresenter() {
+class MainPresenter @TimeLog constructor(private val view:MainContract.View): BasePresenter(),MainContract.Presenter {
     override fun onCreate() {
         super.onCreate()
         view.toast("123")

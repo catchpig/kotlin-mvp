@@ -2,6 +2,7 @@ package com.catchpig.mvp.base.activity
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -60,6 +61,11 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
     }
 
     @CallSuper
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+    }
+
+    @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.setContentView(R.layout.view_root)
         super.onCreate(savedInstanceState)
@@ -90,6 +96,11 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
     @CallSuper
     override fun onDestroy() {
         super.onDestroy()
+    }
+
+    @CallSuper
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
     }
 
     override fun setContentView(view: View?) {

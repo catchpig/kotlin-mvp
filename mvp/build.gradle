@@ -49,13 +49,21 @@ dependencies {
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api project(path: ':annotation')
     api project(path: ':aop')
-    //dagger2
-    api "com.google.dagger:dagger:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    api "com.google.dagger:dagger-android:$dagger_version"
-    api "com.google.dagger:dagger-android-support:$dagger_version"
-    // if you use the support libraries
-    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    //koin
+    // Koin for Android
+//    api "org.koin:koin-android:$koin_version"
+    // Koin AndroidX Scope features
+    api "org.koin:koin-androidx-scope:$koin_version"
+    // Koin AndroidX ViewModel features
+//    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+    // Koin AndroidX Fragment features
+//    api "org.koin:koin-androidx-fragment:$koin_version"
+    // Koin AndroidX WorkManager
+//    api "org.koin:koin-androidx-workmanager:$koin_version"
+    // Koin AndroidX Jetpack Compose
+//    api "org.koin:koin-androidx-compose:$koin_version"
+    // Koin AndroidX Experimental features
+//    api "org.koin:koin-androidx-ext:$koin_version"
 
     //okhttp3
     api "com.squareup.okhttp3:okhttp:$okhttp3_version"

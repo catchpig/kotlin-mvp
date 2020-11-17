@@ -63,8 +63,8 @@ class KotlinMvpProcessor : BaseProcessor() {
                     .addProperty(initTitleProperty(title, className))
                     .addProperty(initStatusBarProperty(statusBar, className))
             val funSpec = initTitleMenuOnClick(it, title)
-            funSpec?.let { funSpec ->
-                typeSpecBuilder.addFunction(funSpec)
+            funSpec?.let { fsc ->
+                typeSpecBuilder.addFunction(fsc)
             }
             typeSpecBuilder.addFunction(injectFun(className,funSpec!=null))
 

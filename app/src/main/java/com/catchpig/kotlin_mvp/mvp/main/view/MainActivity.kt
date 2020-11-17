@@ -1,32 +1,26 @@
 package com.catchpig.kotlin_mvp.mvp.main.view
 
-import android.content.Intent
 import android.view.View
-import com.catchpig.kotlin_mvp.R
-import com.catchpig.kotlin_mvp.app.KotlinMvpApp
-import com.catchpig.kotlin_mvp.di.module.MainModule
-import com.catchpig.kotlin_mvp.mvp.child.ChildActivity
-import com.catchpig.kotlin_mvp.mvp.fullscreen.FullScreenActivity
-import com.catchpig.kotlin_mvp.mvp.main.MainContract
-import com.catchpig.kotlin_mvp.mvp.main.presenter.MainPresenter
-import com.catchpig.kotlin_mvp.mvp.recycle.RecycleActivity
-import com.catchpig.kotlin_mvp.mvp.transparent.TransparentActivity
 import com.catchpig.annotation.ClickGap
 import com.catchpig.annotation.MethodLog
 import com.catchpig.annotation.StatusBar
-import com.catchpig.annotation.TimeLog
 import com.catchpig.annotation.enums.LEVEL
+import com.catchpig.kotlin_mvp.R
+import com.catchpig.kotlin_mvp.mvp.child.ChildActivity
+import com.catchpig.kotlin_mvp.mvp.fullscreen.FullScreenActivity
+import com.catchpig.kotlin_mvp.mvp.main.MainContract
+import com.catchpig.kotlin_mvp.mvp.recycle.RecycleActivity
+import com.catchpig.kotlin_mvp.mvp.transparent.TransparentActivity
 import com.catchpig.mvp.base.activity.BasePresenterActivity
 import com.catchpig.utils.ext.startKtActivity
+import org.koin.core.parameter.parametersOf
+import org.koin.core.scope.inject
 
 @StatusBar(enabled = true)
-class MainActivity : BasePresenterActivity<MainPresenter>(),MainContract.View {
+class MainActivity : BasePresenterActivity<MainContract.Presenter>(),MainContract.View {
+    override val mPresenter: MainContract.Presenter by inject{ parametersOf(this) }
+
     override fun initParam() {
-    }
-    
-    @TimeLog(LEVEL.V)
-    override fun injectComponent() {
-        KotlinMvpApp.getAppComponent().mianComponent(MainModule(this)).inject(this)
     }
 
     @MethodLog(LEVEL.I)

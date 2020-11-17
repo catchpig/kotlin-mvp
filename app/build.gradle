@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt' // 使用 kapt 注解处理工具
 
-apply plugin: 'android-aspectjx'
+apply from: '../aspectjx.gradle'
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
@@ -33,9 +33,7 @@ android {
         experimental = true
     }
 }
-//aspectjx {
-//    include 'com.catchpig.kotlin_mvp'
-//}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -51,8 +49,6 @@ dependencies {
     kapt project(path: ':compiler')
 //    implementation "com.github.catch-pig.kotlin-mvp:mvp:$kotlin_mvp"
 //    kapt "com.github.catch-pig.kotlin-mvp:compiler:$kotlin_mvp"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
     //刷新-头部
     api "com.scwang.smart:refresh-header-material:$SmartRefreshLayout_version"
     //刷新-底部

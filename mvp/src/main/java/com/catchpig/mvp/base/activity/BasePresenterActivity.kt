@@ -1,9 +1,13 @@
 package com.catchpig.mvp.base.activity
 
 import android.os.Bundle
+import androidx.annotation.CallSuper
 import com.catchpig.mvp.base.BaseContract
-import com.catchpig.mvp.base.BasePresenter
-import javax.inject.Inject
+import org.koin.androidx.scope.activityScope
+import org.koin.core.parameter.parametersOf
+import org.koin.core.scope.KoinScopeComponent
+import org.koin.core.scope.Scope
+import org.koin.core.scope.inject
 
 /**
  * 创建时间:2019/4/6 11:07<br></br>
@@ -12,19 +16,19 @@ import javax.inject.Inject
  * 修改时间: 2019/4/6 11:07<br></br>
  * 描述:
  */
-abstract class BasePresenterActivity<P : BaseContract.Presenter> : BaseActivity() {
-    @Inject
-    lateinit var mPresenter: P
+abstract class BasePresenterActivity<P : BaseContract.Presenter> : BaseActivity(),KoinScopeComponent {
 
+    override val scope: Scope by lazy { activityScope() }
+    abstract val mPresenter:P
+
+    @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        injectComponent()
         initParam()
         lifecycle.addObserver(mPresenter)
         initView()
     }
 
     protected abstract fun initParam()
-    protected abstract fun injectComponent()
     protected abstract fun initView()
 }
