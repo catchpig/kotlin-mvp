@@ -17,7 +17,7 @@
 
 ### 7. APT(编译时注解)封装注解：OnClickFirstDrawable、OnClickFirstText、OnClickSecondDrawable、OnClickSecondText、Prefs、PrefsField、StatusBar
 
-### 8. Dagger2对类的生命周期做一个管理
+### 8. Koin对类的生命周期做一个管理
 
 ## 最低兼容:19
 ## Gradle
@@ -34,7 +34,7 @@ allprojects {
     
 ```
 dependencies {
-    classpath 'com.github.franticn:gradle_plugin_android_aspectjx:2.0.6'
+    classpath 'com.github.franticn:gradle_plugin_android_aspectjx:2.0.10'
 }
 ```
 ### 3. 在app的build.gradle的添加
@@ -42,13 +42,15 @@ dependencies {
 apply plugin: 'kotlin-kapt' // 使用 kapt 注解处理工具
 
 apply plugin: 'android-aspectjx'
+
+aspectjx {
+    exclude 'versions.9'
+}
 ```
 ### 4. 添加依赖
 ```
 implementation "com.github.catch-pig.kotlin-mvp:mvp:last_version"
 kapt "com.github.catch-pig.kotlin-mvp:compiler:last_version"
-kapt "com.google.dagger:dagger-compiler:2.23.2"
-kapt "com.google.dagger:dagger-android-processor:2.23.2"
 ```
 ## 使用
 
@@ -209,7 +211,7 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
 
 ### [Immersionbar](https://github.com/gyf-dev/ImmersionBar)-状态栏
 
-### [Dagger2](https://github.com/google/dagger)
+### [Koin](https://github.com/InsertKoinIO/koin)
 
 ### [RxJava](https://github.com/ReactiveX/RxJava)
 
