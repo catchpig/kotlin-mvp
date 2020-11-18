@@ -2,8 +2,9 @@ package com.catchpig.kotlin_mvp.app
 
 import android.app.Application
 import com.catchpig.kotlin_mvp.R
-import com.catchpig.kotlin_mvp.di.module.presenterModule
-import com.catchpig.mvp.di.module.appModule
+import com.catchpig.kotlin_mvp.di.networkModule
+import com.catchpig.kotlin_mvp.di.mainModule
+import com.catchpig.mvp.di.appModule
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.MaterialHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
@@ -24,9 +25,10 @@ class KotlinMvpApp:Application(){
     override fun onCreate() {
         super.onCreate()
         startKoin {
+            printLogger(Level.DEBUG)
             androidLogger(Level.DEBUG)
             androidContext(this@KotlinMvpApp)
-            modules(appModule, presenterModule)
+            modules(appModule, networkModule, mainModule)
         }
     }
     init {

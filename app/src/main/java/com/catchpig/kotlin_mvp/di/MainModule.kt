@@ -1,6 +1,7 @@
-package com.catchpig.kotlin_mvp.di.module
+package com.catchpig.kotlin_mvp.di
 
 import com.catchpig.kotlin_mvp.mvp.main.MainContract
+import com.catchpig.kotlin_mvp.mvp.main.model.MainModel
 import com.catchpig.kotlin_mvp.mvp.main.presenter.MainPresenter
 import com.catchpig.kotlin_mvp.mvp.main.view.MainActivity
 import org.koin.dsl.bind
@@ -13,10 +14,14 @@ import org.koin.dsl.module
  * 修改时间: 2019/8/18 0018<br/>
  * 描述:
  */
-val presenterModule = module() {
+val mainModule = module() {
     scope<MainActivity> {
         scoped { (view:MainContract.View)->
-            MainPresenter(view)
+            MainPresenter(view,get())
         } bind MainContract.Presenter::class
+
+        scoped {
+            MainModel(get())
+        } bind MainContract.Model::class
     }
 }

@@ -1,10 +1,13 @@
-package com.catchpig.mvp.di.module
+package com.catchpig.mvp.di
 
 import com.catchpig.mvp.config.Config
 import com.catchpig.mvp.gson.DateJsonDeserializer
 import com.catchpig.utils.ext.logd
 import com.google.gson.GsonBuilder
+import okhttp3.Interceptor
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.core.context.loadKoinModules
+import org.koin.dsl.bind
 import org.koin.dsl.module
 import java.util.*
 
@@ -30,5 +33,5 @@ val appModule = module {
         }
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         httpLoggingInterceptor
-    }
+    } bind Interceptor::class
 }
