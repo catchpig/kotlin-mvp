@@ -1,5 +1,4 @@
 # [kotlin-mvp](https://github.com/catch-pig/kotlin-mvp)
-[![](https://jitpack.io/v/catch-pig/kotlin-mvp.svg)](https://jitpack.io/#catch-pig/kotlin-mvp)
 
 ## 技术要点
 
@@ -34,7 +33,7 @@ allprojects {
     
 ```
 dependencies {
-    classpath 'com.github.franticn:gradle_plugin_android_aspectjx:2.0.6'
+    classpath 'com.github.franticn:gradle_plugin_android_aspectjx:2.0.10'
 }
 ```
 ### 3. 在app的build.gradle的添加
@@ -44,6 +43,10 @@ apply plugin: 'kotlin-kapt' // 使用 kapt 注解处理工具
 apply plugin: 'android-aspectjx'
 ```
 ### 4. 添加依赖
+```
+last_version = 1.5.10
+```
+
 ```
 implementation "com.github.catch-pig.kotlin-mvp:mvp:last_version"
 kapt "com.github.catch-pig.kotlin-mvp:compiler:last_version"
@@ -150,11 +153,11 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
 |transparent|boolean|否|false|状态栏透明|
 
 #### 5.7 [TimeLog](./annotation/src/main/java/com/catchpig/annotation/TimeLog.kt)-打印方法和构造方法执行的时间
-    
+
 |属性|类型|必须|默认|说明|
 |---|:---:|:---|:---|:---|
 |value|[LEVEL](./annotation/src/main/java/com/catchpig/annotation/TimeLog.kt)|否|[LEVEL.D](./annotation/src/main/java/com/catchpig/annotation/TimeLog.kt)|日志等级|
-    
+
 #### 5.8 [ClickGap](./annotation/src/main/java/com/catchpig/annotation/ClickGap.kt)-重复点击延时
 
 |属性|类型|必须|默认|说明|
@@ -173,6 +176,13 @@ kapt "com.google.dagger:dagger-android-processor:2.23.2"
 |属性|类型|必须|默认|说明|
 |---|:---:|:---|:---|:---|
 |value|String|否|""|字段别名,如果为空则取修饰字段的参数名称|
+
+#### 5.11 [MethodLog](./annotation/src/main/java/com/catchpig/annotation/MethodLog.kt)-打印方法和构造方法以及参数的值
+
+|属性|类型|必须|默认|说明|
+|---|:---:|:---|:---|:---|
+|value|[LEVEL](./annotation/src/main/java/com/catchpig/annotation/MethodLog.kt)|否|[LEVEL.D](./annotation/src/main/java/com/catchpig/annotation/MethodLog.kt)|日志等级|
+
 
 ### 6. 刷新分页
     
