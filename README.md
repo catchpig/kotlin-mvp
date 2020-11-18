@@ -152,11 +152,11 @@ kapt "com.github.catch-pig.kotlin-mvp:compiler:last_version"
 |transparent|boolean|否|false|状态栏透明|
 
 #### 5.7 [TimeLog](./annotation/src/main/java/com/catchpig/annotation/TimeLog.kt)-打印方法和构造方法执行的时间
-    
+
 |属性|类型|必须|默认|说明|
 |---|:---:|:---|:---|:---|
 |value|[LEVEL](./annotation/src/main/java/com/catchpig/annotation/TimeLog.kt)|否|[LEVEL.D](./annotation/src/main/java/com/catchpig/annotation/TimeLog.kt)|日志等级|
-    
+
 #### 5.8 [ClickGap](./annotation/src/main/java/com/catchpig/annotation/ClickGap.kt)-重复点击延时
 
 |属性|类型|必须|默认|说明|
@@ -175,6 +175,13 @@ kapt "com.github.catch-pig.kotlin-mvp:compiler:last_version"
 |属性|类型|必须|默认|说明|
 |---|:---:|:---|:---|:---|
 |value|String|否|""|字段别名,如果为空则取修饰字段的参数名称|
+
+#### 5.11 [MethodLog](./annotation/src/main/java/com/catchpig/annotation/MethodLog.kt)-打印方法和构造方法以及参数的值
+
+|属性|类型|必须|默认|说明|
+|---|:---:|:---|:---|:---|
+|value|[LEVEL](./annotation/src/main/java/com/catchpig/annotation/MethodLog.kt)|否|[LEVEL.D](./annotation/src/main/java/com/catchpig/annotation/MethodLog.kt)|日志等级|
+
 
 ### 6. 刷新分页
     
