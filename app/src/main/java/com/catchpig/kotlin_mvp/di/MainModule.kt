@@ -21,7 +21,7 @@ val mainModule = module() {
         } bind MainContract.Presenter::class
 
         scoped {
-            MainModel(get())
+            MainModel(get(),get())
         } bind MainContract.Model::class
     }
 }

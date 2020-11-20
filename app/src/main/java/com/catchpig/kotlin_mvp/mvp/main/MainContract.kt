@@ -2,6 +2,8 @@ package com.catchpig.kotlin_mvp.mvp.main
 
 import com.catchpig.kotlin_mvp.network.Result
 import com.catchpig.mvp.base.BaseContract
+import com.catchpig.mvp.bean.DownloadInfo
+import com.catchpig.mvp.network.listener.DownloadCallback
 import io.reactivex.Flowable
 
 /**
@@ -20,5 +22,7 @@ interface MainContract {
     }
     interface Model{
         fun banner():Flowable<Result<Any>>
+
+        fun download(downloadInfo: DownloadInfo, downloadCallback: DownloadCallback)
     }
 }

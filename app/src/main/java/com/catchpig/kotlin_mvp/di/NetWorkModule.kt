@@ -12,25 +12,10 @@ import java.util.concurrent.TimeUnit
 val networkModule = module {
 
     single {
-        OkHttpClient
-                .Builder()
-                .connectTimeout(Config.TIME_OUT,TimeUnit.MILLISECONDS)
-                .readTimeout(Config.TIME_OUT,TimeUnit.MILLISECONDS)
-                .writeTimeout(Config.TIME_OUT,TimeUnit.MILLISECONDS)
-                .addInterceptor(get())
-                .build()
-    }
-    single {
-        Retrofit
-                .Builder()
-                .baseUrl(Config.WANG_ANDROID_URL)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        get(Retrofit.Builder::class)
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(get())
+                .baseUrl(Config.WANG_ANDROID_URL)
                 .build()
-    }
-    single {
-        val retrofit:Retrofit = get()
-        retrofit.create(WanAndroidService::class.java)
+                .create(WanAndroidService::class.java)
     }
 }

@@ -10,6 +10,7 @@ import com.google.gson.GsonBuilder
  * 描述:配置
  */
 object Config {
+    const val TIME_OUT = 5000L
     //时间格式化规则
     const val DATE_FORMAT = "yyyy-MM-dd HH:mm:ss"
     //没有赋值
