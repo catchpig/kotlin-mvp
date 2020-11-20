@@ -39,4 +39,12 @@
         android:clickable="true"
         android:onClick="openChild"
         android:text="Recycle列表显示"/>
+    <Button
+        android:id="@+id/installApk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:onClick="openChild"
+        android:text="下载并安装apk"/>
 </LinearLayout>

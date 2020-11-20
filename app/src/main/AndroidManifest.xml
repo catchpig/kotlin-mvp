@@ -27,8 +27,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- 适配小米（xiaomi）刘海屏 -->
+        </activity>
+        <!-- 适配小米（xiaomi）刘海屏 -->
         <activity android:name=".mvp.child.ChildActivity" />
+        <activity android:name=".mvp.apk.view.InstallApkActivity"/>
 
         <meta-data
             android:name="android.notch_support"

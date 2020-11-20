@@ -5,11 +5,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.fragment.app.Fragment
 
-/**
- * 李涛
- */
-
-
 inline fun <reified T : Activity> Context.startKtActivity(
         intent: Intent = Intent()
 ) {

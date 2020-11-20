@@ -19,7 +19,5 @@ interface MainContract {
     }
     interface Model{
         fun banner():Flowable<Result<Any>>
-
-        fun download(downloadInfo: DownloadInfo, downloadCallback: DownloadCallback)
     }
 }

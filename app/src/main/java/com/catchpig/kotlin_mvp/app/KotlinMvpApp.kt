@@ -3,7 +3,7 @@ package com.catchpig.kotlin_mvp.app
 import android.app.Application
 import com.catchpig.kotlin_mvp.R
 import com.catchpig.kotlin_mvp.di.networkModule
-import com.catchpig.kotlin_mvp.di.mainModule
+import com.catchpig.kotlin_mvp.di.scopeModule
 import com.catchpig.mvp.di.appModule
 import com.catchpig.mvp.di.downloadModule
 import com.scwang.smart.refresh.footer.ClassicsFooter
@@ -26,7 +26,7 @@ class KotlinMvpApp:Application(){
             printLogger(Level.DEBUG)
             androidLogger(Level.DEBUG)
             androidContext(this@KotlinMvpApp)
-            modules(appModule, downloadModule, networkModule, mainModule)
+            modules(appModule, downloadModule, networkModule, scopeModule)
         }
     }
     init {

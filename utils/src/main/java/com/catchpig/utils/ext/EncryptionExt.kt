@@ -44,7 +44,7 @@ fun ByteArray.md5():String{
         var hexString = Integer.toHexString(i)
         if (hexString.length < 2) {
             //如果是一位的话，补0
-            hexString = "0" + hexString
+            hexString = "0$hexString"
         }
         sb.append(hexString)
     }

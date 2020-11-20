@@ -6,6 +6,7 @@ import com.catchpig.annotation.MethodLog
 import com.catchpig.annotation.StatusBar
 import com.catchpig.annotation.enums.LEVEL
 import com.catchpig.kotlin_mvp.R
+import com.catchpig.kotlin_mvp.mvp.apk.view.InstallApkActivity
 import com.catchpig.kotlin_mvp.mvp.child.ChildActivity
 import com.catchpig.kotlin_mvp.mvp.fullscreen.FullScreenActivity
 import com.catchpig.kotlin_mvp.mvp.main.MainContract
@@ -25,6 +26,7 @@ class MainActivity : BasePresenterActivity<MainContract.Presenter>(),MainContrac
 
     @MethodLog(LEVEL.I)
     override fun initView() {
+
 
     }
 
@@ -47,6 +49,9 @@ class MainActivity : BasePresenterActivity<MainContract.Presenter>(),MainContrac
             }
             R.id.recycle -> {
                 startKtActivity<RecycleActivity>()
+            }
+            R.id.installApk ->{
+                startKtActivity<InstallApkActivity>()
             }
             else -> {
             }

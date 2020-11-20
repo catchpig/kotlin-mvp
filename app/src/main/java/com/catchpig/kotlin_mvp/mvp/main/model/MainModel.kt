@@ -8,12 +8,8 @@ import com.catchpig.mvp.network.listener.DownloadCallback
 import com.catchpig.mvp.network.download.DownloadManager
 import io.reactivex.Flowable
 
-class MainModel(private val wanAndroidService: WanAndroidService, private val downloadManager: DownloadManager):MainContract.Model {
+class MainModel(private val wanAndroidService: WanAndroidService):MainContract.Model {
     override fun banner(): Flowable<Result<Any>> {
         return wanAndroidService.banner()
-    }
-
-    override fun download(downloadInfo: DownloadInfo,downloadCallback: DownloadCallback) {
-        downloadManager.download(downloadInfo,downloadCallback)
     }
 }

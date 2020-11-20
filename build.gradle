@@ -30,6 +30,7 @@ buildscript {
         aspectj_version = '1.9.6'
         auto_service_version = '1.0-rc6'
         kotlinpoet_version = '1.4.0'
+        rxpermissions_version = "0.11"
     }
     repositories {
         google()
