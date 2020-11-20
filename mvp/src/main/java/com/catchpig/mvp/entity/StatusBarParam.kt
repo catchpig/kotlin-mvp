@@ -1,11 +1,8 @@
 package com.catchpig.mvp.entity
 
 /**
- * 创建时间:2019/10/18 0018<br/>
- * 创建人: 李涛<br/>
- * 修改人: 李涛<br/>
- * 修改时间: 2019/10/18 0018<br/>
- * 描述:
+ * @author catchpig
+ * @date 2019/10/18 0018
  */
 data class StatusBarParam (
         /**

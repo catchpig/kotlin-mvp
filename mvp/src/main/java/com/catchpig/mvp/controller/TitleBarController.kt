@@ -15,11 +15,9 @@ import kotlinx.android.synthetic.main.layout_title_bar.*
 import kotlinx.android.synthetic.main.layout_title_bar.view.*
 
 /**
- * 创建时间:2019/8/18 0018<br/>
- * 创建人: 李涛<br/>
- * 修改人: 李涛<br/>
- * 修改时间: 2019/8/18 0018<br/>
- * 描述:标题栏处理器
+ * 标题栏处理器
+ * @author catchpig
+ * @date 2019/8/18 00:18
  */
 class TitleBarController(private val baseActivity: BaseActivity, private val title: TitleParam) : View.OnClickListener {
 

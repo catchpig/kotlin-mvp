@@ -19,7 +19,7 @@ import java.nio.channels.FileChannel
 
 /**
  * 描述:下载工具类
- * @author catchpig
+  * @author catchpig
  * @date 2020/11/20 10:25
  */
 class DownloadManager {

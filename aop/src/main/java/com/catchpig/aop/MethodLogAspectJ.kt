@@ -8,11 +8,9 @@ import org.aspectj.lang.annotation.Aspect
 import org.aspectj.lang.annotation.Pointcut
 
 /**
- * 创建时间:2019/10/20 0020<br/>
- * 创建人: 李涛<br/>
- * 修改人: 李涛<br/>
- * 修改时间: 2019/10/20 0020<br/>
- * 描述:打印方法和构造函数的方法和参数值
+ * 打印方法和构造函数的方法和参数值
+ * @author catchpig
+ * @date 2019/10/20 0020
  */
 @Aspect
 class MethodLogAspectJ {

@@ -8,7 +8,7 @@ import java.io.IOException
 
 /**
  * 下载进度处理,并将进度下发给进度回调接口
- * @author catchpig
+  * @author catchpig
  * @date 2020/11/20 10:25
  */
 class DownloadResponseBody(private val responseBody: ResponseBody,private val progressListener: DownloadProgressListener) :ResponseBody() {

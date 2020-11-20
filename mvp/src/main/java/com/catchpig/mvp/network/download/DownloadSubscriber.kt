@@ -7,7 +7,7 @@ import io.reactivex.subscribers.ResourceSubscriber
 import java.lang.ref.WeakReference
 /**
  * 下载观察者
- * @author catchpig
+  * @author catchpig
  * @date 2020/11/20 10:25
  */
 class DownloadSubscriber(downloadCallback: DownloadCallback):ResourceSubscriber<String>(), DownloadProgressListener {

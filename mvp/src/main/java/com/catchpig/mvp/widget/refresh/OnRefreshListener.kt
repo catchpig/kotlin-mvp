@@ -5,11 +5,9 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 
 /**
- * 创建时间:2017/12/20 18:13<br></br>
- * 创建人: 李涛<br></br>
- * 修改人: 李涛<br></br>
- * 修改时间: 2017/12/20 18:13<br></br>
- * 描述:下拉刷新和上拉加载更多的封装类
+ * 下拉刷新和上拉加载更多的封装类
+ * @author catchpig
+ * @date 2017/12/20 18:13
  */
 
 abstract class OnRefreshListener : OnRefreshLoadMoreListener {

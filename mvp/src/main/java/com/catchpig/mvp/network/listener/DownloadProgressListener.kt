@@ -1,7 +1,7 @@
 package com.catchpig.mvp.network.listener
 /**
  * 下载进度回调接口
- * @author catchpig
+  * @author catchpig
  * @date 2020/11/20 10:25
  */
 interface DownloadProgressListener {

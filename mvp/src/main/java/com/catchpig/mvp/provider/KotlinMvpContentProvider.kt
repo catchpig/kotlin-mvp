@@ -8,11 +8,8 @@ import android.net.Uri
 import com.catchpig.mvp.lifecycle.ActivityManagerLifeCycleCallbacksImpl
 
 /**
- * 创建时间:2019/10/21 0021<br/>
- * 创建人: 李涛<br/>
- * 修改人: 李涛<br/>
- * 修改时间: 2019/10/21 0021<br/>
- * 描述:
+ * @author catchpig
+ * @date 2019/10/21 00:21
  */
 class KotlinMvpContentProvider : ContentProvider() {
     companion object{

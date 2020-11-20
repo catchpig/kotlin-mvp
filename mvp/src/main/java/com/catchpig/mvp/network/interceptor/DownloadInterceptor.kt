@@ -7,7 +7,7 @@ import okhttp3.Response
 import java.io.IOException
 /**
  * 下载拦截器
- * @author catchpig
+  * @author catchpig
  * @date 2020/11/20 10:25
  */
 class DownloadInterceptor(private val downloadProgressListener: DownloadProgressListener):Interceptor {

@@ -3,11 +3,9 @@ package com.catchpig.mvp.widget.refresh
 import com.scwang.smart.refresh.layout.constant.RefreshState
 
 /**
- * 创建时间:2017/12/21  19:49<br></br>
- * 创建人: 李涛<br></br>
- * 修改人: 李涛<br></br>
- * 修改时间: 2017/12/21  19:49<br></br>
- * 描述: 页码关联
+ * 页码关联
+ * @author catchpig
+ * @date 2017/12/21  19:49
  */
 interface IPageControl {
     /**

@@ -22,11 +22,8 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 /**
- * 创建时间:2019/4/6 10:24<br></br>
- * 创建人: 李涛<br></br>
- * 修改人: 李涛<br></br>
- * 修改时间: 2019/4/6 10:24<br></br>
- * 描述:
+ * @author catchpig
+ * @date 2019/4/6 10:24
  */
 
 val appModule = module {

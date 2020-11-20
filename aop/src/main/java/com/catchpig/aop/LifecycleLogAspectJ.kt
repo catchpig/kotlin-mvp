@@ -5,11 +5,9 @@ import org.aspectj.lang.JoinPoint
 import org.aspectj.lang.annotation.*
 
 /**
- * 创建时间:2019/9/26 0026<br/>
- * 创建人: 李涛<br/>
- * 修改人: 李涛<br/>
- * 修改时间: 2019/9/26 0026<br/>
- * 描述:打印生命周期日志
+ * 打印生命周期日志
+ * @author catchpig
+ * @date 2019/9/26 00:26
  */
 @Aspect
 class LifecycleLogAspectJ {

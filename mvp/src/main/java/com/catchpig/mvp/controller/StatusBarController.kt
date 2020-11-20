@@ -11,11 +11,9 @@ import com.gyf.immersionbar.ImmersionBar
 import com.gyf.immersionbar.ktx.immersionBar
 
 /**
- * 创建时间:2019/8/18 0018<br/>
- * 创建人: 李涛<br/>
- * 修改人: 李涛<br/>
- * 修改时间: 2019/8/18 0018<br/>
- * 描述:状态栏处理器
+ * 状态栏处理器
+ * @author catchpig
+ * @date 2019/8/18 00:18
  */
 class StatusBarController(private val baseActivity: BaseActivity, private val title: TitleParam?, private val statusBar: StatusBarParam?) {
 

@@ -1,11 +1,9 @@
 package com.catchpig.mvp.base.adapter
 
 /**
- * 创建时间:2017/12/21  19:49<br></br>
- * 创建人: 廖斌<br></br>
- * 修改人: 廖斌<br></br>
- * 修改时间: 2017/12/21  19:49<br></br>
- * 描述: 数据填充接口
+ * 数据填充接口
+ * @author catchpig
+ * @date 2017/12/21 19:49
  */
 interface IAdapterListControl<T> {
 

@@ -9,11 +9,9 @@ import com.scwang.smart.refresh.layout.constant.RefreshState
 
 
 /**
- * 创建时间:2017/12/20 16:44<br></br>
- * 创建人: 李涛<br></br>
- * 修改人: 廖斌<br></br>
- * 修改时间: 2017/12/21 20:10<br></br>
- * 描述: 刷新界面
+ * 刷新界面
+ * @author catchpig
+ * @date 2017/12/21 20:10
  */
 
 class RefreshLayoutWrapper(

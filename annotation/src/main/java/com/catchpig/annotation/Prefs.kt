@@ -3,11 +3,9 @@ package com.catchpig.annotation
 import com.catchpig.annotation.enums.PrefsMode
 
 /**
- * 创建时间:2019/10/29 0029<br/>
- * 创建人: 李涛<br/>
- * 修改人: 李涛<br/>
- * 修改时间: 2019/10/29 0029<br/>
- * 描述:SharedPreferences注解,可生成对应的文件
+ * SharedPreferences注解,可生成对应的文件
+ * @author catchpig
+ * @date 2019/10/29 00:29
  */
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.CLASS)

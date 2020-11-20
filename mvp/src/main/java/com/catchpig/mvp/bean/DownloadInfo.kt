@@ -2,7 +2,7 @@ package com.catchpig.mvp.bean
 
 /**
  * 下载信息
- * @author catchpig
+  * @author catchpig
  * @date 2020/11/20 10:34
  */
 data class DownloadInfo(

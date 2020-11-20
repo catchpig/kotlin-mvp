@@ -15,11 +15,8 @@ import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 
 /**
- * 创建时间:2019/8/18 0018<br/>
- * 创建人: 李涛<br/>
- * 修改人: 李涛<br/>
- * 修改时间: 2019/8/18 0018<br/>
- * 描述:
+ * @author catchpig
+ * @date 2019/8/18 00:18
  */
 class KotlinMvpApp:Application(){
 

@@ -8,7 +8,7 @@ import retrofit2.http.Streaming
 import retrofit2.http.Url
 /**
  * 下载网络接口服务
- * @author catchpig
+  * @author catchpig
  * @date 2020/11/20 10:25
  */
 interface DownloadService {

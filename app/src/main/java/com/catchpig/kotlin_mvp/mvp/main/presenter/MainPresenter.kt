@@ -9,11 +9,8 @@ import com.catchpig.mvp.bean.DownloadInfo
 import com.catchpig.mvp.network.listener.DownloadCallback
 
 /**
- * 创建时间:2019/8/18 0018<br/>
- * 创建人: 李涛<br/>
- * 修改人: 李涛<br/>
- * 修改时间: 2019/8/18 0018<br/>
- * 描述:
+ * @author catchpig
+ * @date 2019/8/18 00:18
  */
 class MainPresenter @TimeLog constructor(private val view:MainContract.View,private val model:MainContract.Model): BasePresenter(),MainContract.Presenter {
     override fun onCreate() {

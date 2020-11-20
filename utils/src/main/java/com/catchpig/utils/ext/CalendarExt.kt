@@ -3,16 +3,6 @@ package com.catchpig.utils.ext
 import java.util.*
 
 /**
- * 创建时间:2019/9/28 0028<br/>
- * 创建人: 李涛<br/>
- * 修改人: 李涛<br/>
- * 修改时间: 2019/9/28 0028<br/>
- * 描述:
- */
-
-
-
-/**
  * 字符串转化为时间
  */
 fun String.calendar(format:String=DATE_FORMAT):Calendar{

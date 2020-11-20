@@ -14,11 +14,9 @@ import com.catchpig.mvp.base.BaseContract
 import com.catchpig.mvp.base.activity.BaseActivity
 
 /**
- * 创建时间:2019/4/4 23:14<br></br>
- * 创建人: 李涛<br></br>
- * 修改人: 李涛<br></br>
- * 修改时间: 2019/4/4 23:14<br></br>
- * 描述:
+ * Fragment封装基类
+ * @author catchpig
+ * @date 2019/4/4 23:14
  */
 abstract class BaseFragment : Fragment(), BaseContract.View {
     override fun baseActivity(): BaseActivity? {
@@ -29,7 +27,7 @@ abstract class BaseFragment : Fragment(), BaseContract.View {
     }
 
     override fun activity(): Activity {
-        return activity!!
+        return requireActivity()
     }
 
     override fun applicationContext(): Context {

@@ -17,11 +17,6 @@ import com.catchpig.utils.ext.longToast
 import kotlinx.android.synthetic.main.view_root.*
 
 /**
- * 创建时间:2019/4/4 00:09<br></br>
- * 创建人: 李涛<br></br>
- * 修改人: 李涛<br></br>
- * 修改时间: 2019/4/4 00:09<br></br>
- * 描述:
  * --------------状态栏----------------
  * 请使用注解[com.catchpig.annotation.StatusBar]
  * 想让注解不可用,请设置[com.catchpig.annotation.StatusBar.enabled]为true
@@ -45,6 +40,8 @@ import kotlinx.android.synthetic.main.view_root.*
  * @[com.catchpig.annotation.OnClickSecondDrawable]
  * --------------标题栏右边按钮点击事件---------------
  *
+ * @author catchpig
+ * @date 2019/4/4 00:09
  */
 abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
     private var loadingViewController: LoadingViewController? = null

@@ -19,11 +19,9 @@ import java.util.*
 
 
 /**
- * 创建时间:2017/12/21  19:45<br></br>
- * 创建人: 李涛<br></br>
- * 修改人: 李涛<br></br>
- * 修改时间: 2017年12月22日13:43:56<br></br>
- * 描述: RecyclerViewAdapter基类
+ * RecyclerViewAdapter基类
+ * @author catchpig
+ * @date 2017年12月22日13:43:56
  */
 
 abstract class RecyclerAdapter<M>(private val iPageControl: IPageControl? = null) : RecyclerView.Adapter<CommonViewHolder>(), IAdapterListControl<M> {

@@ -10,11 +10,8 @@ import org.koin.core.scope.KoinScopeComponent
 import org.koin.core.scope.Scope
 
 /**
- * 创建时间:2019/4/6 11:25<br></br>
- * 创建人: 李涛<br></br>
- * 修改人: 李涛<br></br>
- * 修改时间: 2019/4/6 11:25<br></br>
- * 描述:
+ * @author catchpig
+ * @date 2019/4/6 11:25
  */
 abstract class BasePresenterFragment<P : BaseContract.Presenter> : BaseFragment(), LifecycleObserver,KoinScopeComponent  {
     override val scope: Scope by lazy { fragmentScope() }

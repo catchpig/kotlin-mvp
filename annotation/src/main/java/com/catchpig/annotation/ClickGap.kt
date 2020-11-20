@@ -1,11 +1,9 @@
 package com.catchpig.annotation
 
 /**
- * 创建时间:2019/9/26 0026<br/>
- * 创建人: 李涛<br/>
- * 修改人: 李涛<br/>
- * 修改时间: 2019/9/26 0026<br/>
- * 描述:防止重复点击注解
+ * 防止重复点击注解
+ * @author catchpig
+ * @date 2019/9/26 00:26
  */
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.FUNCTION)

@@ -3,15 +3,11 @@ package com.catchpig.annotation
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import javax.annotation.Resource
-import javax.annotation.Resources
 
 /**
- * 创建时间:2019/8/19 0019<br/>
- * 创建人: 李涛<br/>
- * 修改人: 李涛<br/>
- * 修改时间: 2019/8/19 0019<br/>
- * 描述:标题栏
+ * 标题栏
+ * @author catchpig
+ * @date 2019/8/19 00:19
  */
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)

@@ -3,14 +3,6 @@ package com.catchpig.utils.ext
 import java.text.SimpleDateFormat
 import java.util.*
 
-/**
- * 创建时间:2019/9/27 0027<br/>
- * 创建人: 李涛<br/>
- * 修改人: 李涛<br/>
- * 修改时间: 2019/9/27 0027<br/>
- * 描述:
- */
-
 const val DATE_FORMAT = "yyyy-MM-dd HH:mm:ss"
 /**
  * 字符串转化为时间
