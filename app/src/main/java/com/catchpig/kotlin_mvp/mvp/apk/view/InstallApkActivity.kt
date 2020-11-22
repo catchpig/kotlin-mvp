@@ -5,7 +5,7 @@ import com.catchpig.annotation.Title
 import com.catchpig.kotlin_mvp.R
 import com.catchpig.kotlin_mvp.mvp.apk.InstallApkContract
 import com.catchpig.mvp.base.activity.BasePresenterActivity
-import com.tbruyelle.rxpermissions2.RxPermissions
+import com.tbruyelle.rxpermissions3.RxPermissions
 import kotlinx.android.synthetic.main.activity_install_apk.*
 import org.koin.core.parameter.parametersOf
 import org.koin.core.scope.inject

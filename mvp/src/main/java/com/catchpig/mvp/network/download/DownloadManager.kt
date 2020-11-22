@@ -7,8 +7,8 @@ import com.catchpig.mvp.di.DOWNLOAD_NAME
 import com.catchpig.mvp.ext.io2main
 import com.catchpig.mvp.network.listener.DownloadCallback
 import com.catchpig.mvp.provider.KotlinMvpContentProvider
-import io.reactivex.Flowable
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import okhttp3.ResponseBody
 import org.koin.core.parameter.parametersOf
 import org.koin.core.qualifier.named
@@ -61,6 +61,11 @@ class DownloadManager {
         }.io2main().subscribeWith(downloadSubscriber)
     }
 
+    /**
+     * 生成文件的地址
+     * @param downloadUrl String
+     * @return String
+     */
     private fun localFileName(downloadUrl:String):String{
         val fileName = downloadUrl.replace("/","").replace("\\","")
         var cashDir = if (Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()) {

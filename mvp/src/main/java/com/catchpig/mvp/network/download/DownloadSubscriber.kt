@@ -3,7 +3,7 @@ package com.catchpig.mvp.network.download
 import com.catchpig.mvp.network.listener.DownloadCallback
 import com.catchpig.mvp.network.listener.DownloadProgressListener
 import com.catchpig.utils.ext.logd
-import io.reactivex.subscribers.ResourceSubscriber
+import io.reactivex.rxjava3.subscribers.ResourceSubscriber
 import java.lang.ref.WeakReference
 /**
  * 下载观察者

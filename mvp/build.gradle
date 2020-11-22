@@ -71,12 +71,12 @@ dependencies {
 
     //retrofit2
     api "com.squareup.retrofit2:retrofit:$retrofit2_version"
-    api "com.squareup.retrofit2:adapter-rxjava2:$retrofit2_version"
+    api "com.squareup.retrofit2:adapter-rxjava3:$retrofit2_version"
     api "com.squareup.retrofit2:converter-gson:$retrofit2_version"
 
-    //rxjava
-    api "io.reactivex.rxjava2:rxjava:$rxjava_version"
-    api "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    //rxjava3
+    api "io.reactivex.rxjava3:rxjava:$rxjava_version"
+    api "io.reactivex.rxjava3:rxandroid:$rxandroid_version"
 
 
 

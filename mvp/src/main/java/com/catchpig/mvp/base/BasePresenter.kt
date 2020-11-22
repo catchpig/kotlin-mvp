@@ -3,10 +3,10 @@ package com.catchpig.mvp.base
 
 import androidx.annotation.CallSuper
 import com.catchpig.mvp.ext.io2main
-import io.reactivex.Flowable
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
-import io.reactivex.subscribers.ResourceSubscriber
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.subscribers.ResourceSubscriber
 
 
 /**

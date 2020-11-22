@@ -12,9 +12,9 @@ import com.catchpig.utils.ext.logd
 import com.google.android.material.appbar.AppBarLayout
 import com.gyf.immersionbar.ktx.immersionBar
 import com.scwang.smart.refresh.layout.api.RefreshLayout
-import io.reactivex.Flowable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.subscribers.ResourceSubscriber
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.subscribers.ResourceSubscriber
 import kotlinx.android.synthetic.main.activity_recycle.*
 import kotlinx.android.synthetic.main.layout_header.view.*
 import java.util.*

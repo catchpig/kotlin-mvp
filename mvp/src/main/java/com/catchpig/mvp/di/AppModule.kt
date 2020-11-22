@@ -16,7 +16,7 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.bind
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -55,7 +55,7 @@ val appModule = module {
     factory {
         Retrofit
                 .Builder()
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .client(get())
     }
 }
@@ -79,7 +79,7 @@ val downloadModule = module {
         Retrofit
                 .Builder()
                 .baseUrl(baseUrl)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .client(get(named(DOWNLOAD_NAME)){ parametersOf(downloadProgressListener,timeout)})
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()

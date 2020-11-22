@@ -4,8 +4,8 @@ import android.view.View
 import com.catchpig.annotation.*
 import com.catchpig.kotlin_mvp.R
 import com.catchpig.mvp.base.activity.BaseActivity
-import io.reactivex.Flowable
-import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Flowable
 import java.util.concurrent.TimeUnit
 
 @Title(R.string.child_title)

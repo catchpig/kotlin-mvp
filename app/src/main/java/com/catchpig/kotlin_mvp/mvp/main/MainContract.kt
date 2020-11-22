@@ -2,9 +2,7 @@ package com.catchpig.kotlin_mvp.mvp.main
 
 import com.catchpig.kotlin_mvp.network.Result
 import com.catchpig.mvp.base.BaseContract
-import com.catchpig.mvp.bean.DownloadInfo
-import com.catchpig.mvp.network.listener.DownloadCallback
-import io.reactivex.Flowable
+import io.reactivex.rxjava3.core.Flowable
 
 /**
  * @author catchpig

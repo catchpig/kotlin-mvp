@@ -13,7 +13,7 @@
 
 ### 5. 将在Application中初始化移至到ContentProvider中,从而不用封装BaseApplication
 
-### 6. AOP(面向切面)封装注解:TimeLog、ClickGap
+### 6. AOP(面向切面)封装注解:TimeLog、ClickGap、MethodLog
 
 ### 7. APT(编译时注解)封装注解：OnClickFirstDrawable、OnClickFirstText、OnClickSecondDrawable、OnClickSecondText、Prefs、PrefsField、StatusBar
 
@@ -220,7 +220,7 @@ kapt "com.github.catch-pig.kotlin-mvp:compiler:last_version"
 
 ### [Koin](https://github.com/InsertKoinIO/koin)
 
-### [RxJava](https://github.com/ReactiveX/RxJava)
+### [RxJava3](https://github.com/ReactiveX/RxJava)
 
 ### [RxAndroid](https://github.com/ReactiveX/RxAndroid)
 

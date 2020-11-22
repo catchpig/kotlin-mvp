@@ -1,7 +1,7 @@
 package com.catchpig.kotlin_mvp.network
 
 import com.catchpig.utils.ext.loge
-import io.reactivex.subscribers.ResourceSubscriber
+import io.reactivex.rxjava3.subscribers.ResourceSubscriber
 
 abstract class Callback<T>:ResourceSubscriber<T>() {
     override fun onError(t: Throwable?) {

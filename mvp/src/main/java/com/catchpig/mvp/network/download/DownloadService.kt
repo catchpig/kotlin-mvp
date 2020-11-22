@@ -1,9 +1,8 @@
 package com.catchpig.mvp.network.download
 
-import io.reactivex.Flowable
+import io.reactivex.rxjava3.core.Flowable
 import okhttp3.ResponseBody
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.Streaming
 import retrofit2.http.Url
 /**

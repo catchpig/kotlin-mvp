@@ -6,9 +6,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.catchpig.mvp.base.activity.BaseActivity
-import io.reactivex.Flowable
-import io.reactivex.disposables.Disposable
-import io.reactivex.subscribers.ResourceSubscriber
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.subscribers.ResourceSubscriber
 
 /**
  * @author catchpig

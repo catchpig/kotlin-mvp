@@ -1,7 +1,7 @@
 package com.catchpig.kotlin_mvp.network.api
 
 import com.catchpig.kotlin_mvp.network.Result
-import io.reactivex.Flowable
+import io.reactivex.rxjava3.core.Flowable
 import retrofit2.http.GET
 
 

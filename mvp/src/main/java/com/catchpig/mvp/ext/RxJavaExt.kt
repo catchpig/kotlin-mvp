@@ -1,8 +1,9 @@
 package com.catchpig.mvp.ext
 
-import io.reactivex.Flowable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.schedulers.Schedulers
+
 
 /**
  * 被观察者在io线程中执行,观察者在主线程中执行
