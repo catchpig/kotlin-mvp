@@ -18,4 +18,8 @@ data class DownloadInfo(
          * 连接超时时间(单位:秒)
          */
         val connectTimeout:Long = 5
-)
+){
+        override fun toString(): String {
+                return "$baseUrl$url"
+        }
+}

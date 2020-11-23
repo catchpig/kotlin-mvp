@@ -3,7 +3,7 @@ package com.catchpig.kotlin_mvp.mvp.apk.presenter
 import com.catchpig.kotlin_mvp.mvp.apk.InstallApkContract
 import com.catchpig.mvp.base.BasePresenter
 import com.catchpig.mvp.bean.DownloadInfo
-import com.catchpig.mvp.network.listener.DownloadCallback
+import com.catchpig.mvp.listener.DownloadCallback
 import com.catchpig.utils.ext.installApk
 
 /**

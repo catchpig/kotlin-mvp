@@ -17,7 +17,7 @@ import org.koin.core.scope.inject
  */
 @Title(R.string.download_install_apk)
 class InstallApkActivity:BasePresenterActivity<InstallApkContract.Presenter>(),InstallApkContract.View {
-    override val mPresenter: InstallApkContract.Presenter by inject{ parametersOf(this) }
+    override val presenter: InstallApkContract.Presenter by inject{ parametersOf(this) }
     private val rxPermissions by lazy { RxPermissions(this) }
     override fun initParam() {
 
@@ -28,7 +28,7 @@ class InstallApkActivity:BasePresenterActivity<InstallApkContract.Presenter>(),I
                 .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe {
                     if (it) {
-                        mPresenter.download()
+                        presenter.download()
                     }
                 }
     }

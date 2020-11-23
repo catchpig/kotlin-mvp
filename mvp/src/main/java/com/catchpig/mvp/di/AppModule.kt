@@ -3,9 +3,9 @@ package com.catchpig.mvp.di
 import com.catchpig.mvp.config.Config
 import com.catchpig.mvp.gson.DateJsonDeserializer
 import com.catchpig.mvp.network.download.DownloadService
-import com.catchpig.mvp.network.interceptor.DownloadInterceptor
-import com.catchpig.mvp.network.download.DownloadManager
-import com.catchpig.mvp.network.listener.DownloadProgressListener
+import com.catchpig.mvp.interceptor.DownloadInterceptor
+import com.catchpig.mvp.manager.DownloadManager
+import com.catchpig.mvp.listener.DownloadProgressListener
 import com.catchpig.utils.ext.logd
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
@@ -21,10 +21,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-/**
- * @author catchpig
- * @date 2019/4/6 10:24
- */
 
 val appModule = module {
     single {
@@ -60,27 +56,30 @@ val appModule = module {
     }
 }
 
-const val DOWNLOAD_NAME = "download"
+/**
+ * 下载相关类的初始化管理
+ */
+const val NAMED_DOWNLOAD = "download"
 val downloadModule = module {
-    single(named(DOWNLOAD_NAME)) { (downloadProgressListener: DownloadProgressListener)->
+    single(named(NAMED_DOWNLOAD)) { (downloadProgressListener: DownloadProgressListener)->
         DownloadInterceptor(downloadProgressListener)
     } bind Interceptor::class
 
-    single(named(DOWNLOAD_NAME)) {(downloadProgressListener: DownloadProgressListener, timeout:Long)->
+    single(named(NAMED_DOWNLOAD)) { (downloadProgressListener: DownloadProgressListener, timeout:Long)->
         OkHttpClient
                 .Builder()
                 .connectTimeout(timeout, TimeUnit.SECONDS)
                 .addInterceptor(get())
-                .addInterceptor(get(named(DOWNLOAD_NAME)){ parametersOf(downloadProgressListener)})
+                .addInterceptor(get(named(NAMED_DOWNLOAD)){ parametersOf(downloadProgressListener)})
                 .build()
     }
 
-    single(named(DOWNLOAD_NAME)) {(baseUrl:String,timeout:Long,downloadProgressListener: DownloadProgressListener)->
+    single(named(NAMED_DOWNLOAD)) { (baseUrl:String,timeout:Long,downloadProgressListener: DownloadProgressListener)->
         Retrofit
                 .Builder()
                 .baseUrl(baseUrl)
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-                .client(get(named(DOWNLOAD_NAME)){ parametersOf(downloadProgressListener,timeout)})
+                .client(get(named(NAMED_DOWNLOAD)){ parametersOf(downloadProgressListener,timeout)})
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(DownloadService::class.java)
@@ -89,5 +88,4 @@ val downloadModule = module {
     single {
         DownloadManager()
     }
-
 }

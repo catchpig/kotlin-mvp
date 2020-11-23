@@ -14,16 +14,22 @@ import org.koin.core.scope.Scope
 abstract class BasePresenterActivity<P : BaseContract.Presenter> : BaseActivity(),KoinScopeComponent {
 
     override val scope: Scope by lazy { activityScope() }
-    abstract val mPresenter:P
+    abstract val presenter:P
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initParam()
-        lifecycle.addObserver(mPresenter)
+        lifecycle.addObserver(presenter)
         initView()
     }
 
     protected abstract fun initParam()
     protected abstract fun initView()
+
+    @CallSuper
+    override fun onDestroy() {
+        super.onDestroy()
+        scope.close()
+    }
 }

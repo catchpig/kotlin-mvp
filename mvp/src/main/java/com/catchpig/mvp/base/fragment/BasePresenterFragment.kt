@@ -15,13 +15,13 @@ import org.koin.core.scope.Scope
  */
 abstract class BasePresenterFragment<P : BaseContract.Presenter> : BaseFragment(), LifecycleObserver,KoinScopeComponent  {
     override val scope: Scope by lazy { fragmentScope() }
-    abstract val mPresenter: P
+    abstract val presenter: P
 
     @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initParam()
-        lifecycle.addObserver(mPresenter)
+        lifecycle.addObserver(presenter)
         initView()
     }
 

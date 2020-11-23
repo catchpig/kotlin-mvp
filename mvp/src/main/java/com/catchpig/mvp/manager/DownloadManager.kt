@@ -1,13 +1,15 @@
-package com.catchpig.mvp.network.download
+package com.catchpig.mvp.manager
 
-import android.net.Uri
 import android.os.Environment
 import com.catchpig.mvp.bean.DownloadInfo
-import com.catchpig.mvp.di.DOWNLOAD_NAME
+import com.catchpig.mvp.di.NAMED_DOWNLOAD
 import com.catchpig.mvp.ext.io2main
-import com.catchpig.mvp.network.listener.DownloadCallback
+import com.catchpig.mvp.listener.DownloadCallback
+import com.catchpig.mvp.network.download.DownloadService
+import com.catchpig.mvp.network.download.DownloadSubscriber
 import com.catchpig.mvp.provider.KotlinMvpContentProvider
 import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import okhttp3.ResponseBody
 import org.koin.core.parameter.parametersOf
@@ -18,6 +20,7 @@ import java.io.IOException
 import java.io.RandomAccessFile
 import java.net.URL
 import java.nio.channels.FileChannel
+import java.util.concurrent.Flow
 
 /**
  * 描述:下载工具类
@@ -25,20 +28,20 @@ import java.nio.channels.FileChannel
  * @date 2020/11/20 10:25
  */
 class DownloadManager {
-    private var downloadService:DownloadService? = null
-
+    private var downloadService: DownloadService? = null
     /**
      * 下载
      * @param downloadInfo DownloadInfo 下载信息
-     * @param downloadCallback DownLoadCallback 下载回调接口
+     * @param downloadCallback DownLoadCallback 下载回调接口,回调的方法已经切到主线程
+     * @return Disposable
      */
-    fun download(downloadInfo: DownloadInfo, downloadCallback: DownloadCallback){
+    fun download(downloadInfo: DownloadInfo, downloadCallback: DownloadCallback):Disposable{
         val downloadSubscriber = DownloadSubscriber(downloadCallback)
         if (downloadService==null) {
-            downloadService = KoinJavaComponent.getKoin().get(named(DOWNLOAD_NAME)) { parametersOf(downloadInfo.baseUrl,downloadInfo.connectTimeout, downloadSubscriber) }
+            downloadService = KoinJavaComponent.getKoin().get(named(NAMED_DOWNLOAD)) { parametersOf(downloadInfo.baseUrl,downloadInfo.connectTimeout, downloadSubscriber) }
         }
         val downloadUrl = "${downloadInfo.baseUrl}${downloadInfo.url}"
-        val localFilePath = localFileName(downloadUrl);
+        val localFilePath = localFileName(downloadUrl)
         Flowable.just(downloadUrl).flatMap {
             /**
              * 判断本地是否存在下载的文件,
@@ -50,15 +53,18 @@ class DownloadManager {
                 val fileLength = file.length()
                 val contentLength = URL(it).openConnection().contentLength
                 if(fileLength==contentLength.toLong()){
-                    downloadCallback.onProgress(fileLength,fileLength)
-                    downloadCallback.onSuccess(localFilePath)
-                    return@flatMap Flowable.empty<ResponseBody>()
+                    downloadSubscriber.update(fileLength,fileLength,true)
+                    return@flatMap Flowable.just(localFilePath)
                 }
             }
-            return@flatMap downloadService!!.download(downloadInfo.url)
-        }.subscribeOn(Schedulers.io()).map {
-            return@map writeCache(it, localFilePath)
+            return@flatMap httpDownload(downloadInfo.url,localFilePath)
         }.io2main().subscribeWith(downloadSubscriber)
+        return downloadSubscriber
+    }
+    private fun httpDownload(url:String,localFilePath:String):Flowable<String>{
+        return downloadService!!.download(url).subscribeOn(Schedulers.io()).map {
+            return@map writeCache(it, localFilePath)
+        }
     }
 
     /**

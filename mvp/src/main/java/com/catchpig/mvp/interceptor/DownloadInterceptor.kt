@@ -1,7 +1,7 @@
-package com.catchpig.mvp.network.interceptor
+package com.catchpig.mvp.interceptor
 
 import com.catchpig.mvp.network.download.DownloadResponseBody
-import com.catchpig.mvp.network.listener.DownloadProgressListener
+import com.catchpig.mvp.listener.DownloadProgressListener
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException

@@ -2,8 +2,8 @@ package com.catchpig.kotlin_mvp.mvp.apk.model
 
 import com.catchpig.kotlin_mvp.mvp.apk.InstallApkContract
 import com.catchpig.mvp.bean.DownloadInfo
-import com.catchpig.mvp.network.download.DownloadManager
-import com.catchpig.mvp.network.listener.DownloadCallback
+import com.catchpig.mvp.manager.DownloadManager
+import com.catchpig.mvp.listener.DownloadCallback
 
 /**
  *

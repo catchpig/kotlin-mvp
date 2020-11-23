@@ -2,7 +2,7 @@ package com.catchpig.kotlin_mvp.mvp.apk
 
 import com.catchpig.mvp.base.BaseContract
 import com.catchpig.mvp.bean.DownloadInfo
-import com.catchpig.mvp.network.listener.DownloadCallback
+import com.catchpig.mvp.listener.DownloadCallback
 
 /**
  *

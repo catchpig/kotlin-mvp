@@ -19,7 +19,7 @@ import org.koin.core.scope.inject
 
 @StatusBar(enabled = true)
 class MainActivity : BasePresenterActivity<MainContract.Presenter>(),MainContract.View {
-    override val mPresenter: MainContract.Presenter by inject{ parametersOf(this) }
+    override val presenter: MainContract.Presenter by inject{ parametersOf(this) }
 
     override fun initParam() {
     }

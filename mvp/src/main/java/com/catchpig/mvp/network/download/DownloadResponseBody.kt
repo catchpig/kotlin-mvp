@@ -1,6 +1,10 @@
 package com.catchpig.mvp.network.download
 
-import com.catchpig.mvp.network.listener.DownloadProgressListener
+import com.catchpig.mvp.listener.DownloadProgressListener
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.FlowableOnSubscribe
+import io.reactivex.rxjava3.functions.Consumer
 import okhttp3.MediaType
 import okhttp3.ResponseBody
 import okio.*
