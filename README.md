@@ -44,7 +44,8 @@ apply plugin: 'kotlin-kapt' // 使用 kapt 注解处理工具
 apply plugin: 'android-aspectjx'
 
 aspectjx {
-    exclude 'versions.9'
+    exclude 'versions.9.module-info.class'
+    exclude 'module-info.class' 
 }
 ```
 ### 4. 添加依赖
@@ -212,6 +213,11 @@ kapt "com.github.catch-pig.kotlin-mvp:compiler:last_version"
      //下一页的页码
      RecyclerAdapter.nextPageIndex = 1
      ```
+     
+### 7. 文件下载器([DownloadManager](./mvp/src/main/java/com/catchpig/mvp/manager/DownloadManager.kt)))
+       
+
+
 ## 第三方库
 
 ### [SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout)-刷新控件
