@@ -19,7 +19,7 @@
 
 ### 8. Koin对类的生命周期做一个管理
 
-## 最低兼容:19
+## 最低兼容:21
 ## Gradle
 ### 1. 在Project的build.gradle中添加
 ```
@@ -203,19 +203,122 @@ kapt "com.github.catch-pig.kotlin-mvp:compiler:last_version"
         获取数据成功之后,只需要调用autoUpdateList(list)方法,
         可以自动RefreshLayoutWrapper页码和刷新状态变化***
         
-   + ***数据更新失败可以调用RecyclerAdapter.updateFailed()***
+  + ***数据更新失败可以调用RecyclerAdapter.updateFailed()***
    
-   + ***获取每页的数据量和下一页的页码,可以调用一下方法***
+  + ***获取每页的数据量和下一页的页码,可以调用一下方法***
     
-     ```
-     //每页的数据量
-     RecyclerAdapter.pageSize = 16
-     //下一页的页码
-     RecyclerAdapter.nextPageIndex = 1
-     ```
+    ```
+    //每页的数据量
+    RecyclerAdapter.pageSize = 16
+    //下一页的页码
+    RecyclerAdapter.nextPageIndex = 1
+    ```
      
 ### 7. 文件下载器([DownloadManager](./mvp/src/main/java/com/catchpig/mvp/manager/DownloadManager.kt)))
-       
+ + 在application的onCreate中startKoin,加入[downloadModule](./mvp/src/main/java/com/catchpig/mvp/di/AppModule.kt)
+    
+    ```
+     startKoin {
+     modules(downloadModule)
+     }
+    ```
+        
+   * downloadModule
+   
+        ```
+        /**
+         * 下载相关类的初始化管理
+         */
+        const val NAMED_DOWNLOAD = "download"
+        val downloadModule = module {
+            single(named(NAMED_DOWNLOAD)) { (downloadProgressListener: DownloadProgressListener)->
+                DownloadInterceptor(downloadProgressListener)
+            } bind Interceptor::class
+        
+            single(named(NAMED_DOWNLOAD)) { (downloadProgressListener: DownloadProgressListener,         timeout:Long)->
+                OkHttpClient
+                        .Builder()
+                        .connectTimeout(timeout, TimeUnit.SECONDS)
+                        .addInterceptor(get<Interceptor>())
+                        .addInterceptor(get<Interceptor>(named(NAMED_DOWNLOAD)){         parametersOf(downloadProgressListener)})
+                        .build()
+            }
+        
+            single(named(NAMED_DOWNLOAD)) { (baseUrl:String,timeout:Long,downloadProgressListener:         DownloadProgressListener)->
+                Retrofit
+                        .Builder()
+                        .baseUrl(baseUrl)
+                        .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                        .client(get(named(NAMED_DOWNLOAD)){ parametersOf(downloadProgressListener,timeout)})
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build()
+                        .create(DownloadService::class.java)
+            }
+        
+            single {
+                DownloadManager()
+            }
+        }
+        ```
+   
+ + 调用下载方法download([DownloadInfo](./mvp/src/main/java/com/catchpig/mvp/bean/DownloadInfo.kt),[DownloadCallback](./mvp/src/main/java/com/catchpig/mvp/listener/DownloadCallback.kt))
+    * DownloadInfo
+  
+        ```
+        data class DownloadInfo(
+              /**
+               * 域名
+               */
+              val baseUrl:String,
+              /**
+               * 下载地址
+               */
+              val url:String,
+              /**
+               * 连接超时时间(单位:秒)
+               */
+              val connectTimeout:Long = 5
+        ){
+                override fun toString(): String {
+                        return "$baseUrl$url"
+                }
+        }
+        ```
+    * DownloadCallback
+    
+        ```
+        interface DownloadCallback {
+            /**
+             * 开始下载
+             */
+            fun onStart()
+        
+            /**
+             * 下载成功
+             * @param path 本地保存的地址
+             */
+            fun onSuccess(path:String)
+        
+            /**
+             * 下载完成
+             */
+            fun onComplete()
+        
+            /**
+             * 下载进度
+             * @param readLength 读取的进度
+             * @param countLength 总进度
+             */
+            fun onProgress(readLength:Long,countLength:Long)
+        
+            /**
+             * 下载错误
+             * @param t 错误信息
+             */
+            fun onError(t:Throwable)
+        }
+        ```
+  
 
 
 ## 第三方库
