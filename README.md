@@ -262,6 +262,29 @@ kapt "com.github.catch-pig.kotlin-mvp:compiler:last_version"
         ```
    
  + 调用下载方法download([DownloadInfo](./mvp/src/main/java/com/catchpig/mvp/bean/DownloadInfo.kt),[DownloadCallback](./mvp/src/main/java/com/catchpig/mvp/listener/DownloadCallback.kt))
+    ```
+    val downloadInfo = DownloadInfo("https://wanandroid.com/","blogimgs/2d120094-e1ee-47fb-a155-6eb4ca49d01f.apk")
+    model.download(downloadInfo,object : DownloadCallback {
+        override fun onStart() {
+    
+        }
+    
+        override fun onSuccess(path: String) {
+            view.activity().installApk(path)
+        }
+    
+        override fun onComplete() {
+        }
+    
+        override fun onProgress(readLength: Long, countLength: Long) {
+            view.setDownloadProgress((readLength*100/countLength).toInt())
+        }
+    
+        override fun onError(t: Throwable) {
+            println(t.message)
+        }
+    })
+    ```
     * DownloadInfo
   
         ```
