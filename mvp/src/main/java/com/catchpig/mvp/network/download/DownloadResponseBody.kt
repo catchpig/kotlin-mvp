@@ -19,7 +19,7 @@ class DownloadResponseBody(private val responseBody: ResponseBody,private val pr
     private var bufferedSource:BufferedSource? = null
     override fun source(): BufferedSource {
         if (bufferedSource==null) {
-            bufferedSource = Okio.buffer(source(responseBody.source()))
+            bufferedSource = source(responseBody.source()).buffer()
         }
         return bufferedSource!!
     }
@@ -30,7 +30,7 @@ class DownloadResponseBody(private val responseBody: ResponseBody,private val pr
      * @return Source?
      * @throws IOException
      */
-    private fun source(source: Source): Source? {
+    private fun source(source: Source): Source {
         return object : ForwardingSource(source) {
             var totalBytesRead = 0L
 
@@ -42,7 +42,7 @@ class DownloadResponseBody(private val responseBody: ResponseBody,private val pr
              * @throws IOException
              */
             @Throws(IOException::class)
-            override fun read(sink: Buffer?, byteCount: Long): Long {
+            override fun read(sink: Buffer, byteCount: Long): Long {
                 val bytesRead = super.read(sink, byteCount)
                 // read() returns the number of bytes read, or -1 if this source is exhausted.
                 totalBytesRead += if (bytesRead != -1L) bytesRead else 0

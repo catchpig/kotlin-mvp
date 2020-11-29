@@ -31,9 +31,7 @@ val appModule = module {
     }
 
     single {
-        val httpLoggingInterceptor = HttpLoggingInterceptor { message ->
-            message.logd(Config.APP_MODULE_TAG)
-        }
+        val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         httpLoggingInterceptor
     } bind Interceptor::class
@@ -44,7 +42,7 @@ val appModule = module {
                 .connectTimeout(Config.TIME_OUT, TimeUnit.MILLISECONDS)
                 .readTimeout(Config.TIME_OUT, TimeUnit.MILLISECONDS)
                 .writeTimeout(Config.TIME_OUT, TimeUnit.MILLISECONDS)
-                .addInterceptor(get())
+                .addInterceptor(get<Interceptor>())
                 .build()
     }
 
@@ -69,8 +67,8 @@ val downloadModule = module {
         OkHttpClient
                 .Builder()
                 .connectTimeout(timeout, TimeUnit.SECONDS)
-                .addInterceptor(get())
-                .addInterceptor(get(named(NAMED_DOWNLOAD)){ parametersOf(downloadProgressListener)})
+                .addInterceptor(get<Interceptor>())
+                .addInterceptor(get<Interceptor>(named(NAMED_DOWNLOAD)){ parametersOf(downloadProgressListener)})
                 .build()
     }
 

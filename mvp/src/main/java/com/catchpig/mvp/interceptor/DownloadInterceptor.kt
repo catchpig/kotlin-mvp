@@ -13,10 +13,10 @@ import java.io.IOException
 class DownloadInterceptor(private val downloadProgressListener: DownloadProgressListener):Interceptor {
 
     @Throws(IOException::class)
-    override fun intercept(chain: Interceptor.Chain): Response? {
+    override fun intercept(chain: Interceptor.Chain): Response {
         val originalResponse: Response = chain.proceed(chain.request())
         return originalResponse.newBuilder()
-                .body(DownloadResponseBody(originalResponse.body()!!, downloadProgressListener!!))
+                .body(DownloadResponseBody(originalResponse.body!!, downloadProgressListener!!))
                 .build()
     }
 }

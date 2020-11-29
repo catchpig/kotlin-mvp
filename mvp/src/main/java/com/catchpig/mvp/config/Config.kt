@@ -14,7 +14,5 @@ object Config {
     //没有赋值
     const val NO_ASSIGNMENT = -1
 
-    const val APP_MODULE_TAG = "AppModule"
-
     val gson = GsonBuilder().setDateFormat(DATE_FORMAT).create()
 }
