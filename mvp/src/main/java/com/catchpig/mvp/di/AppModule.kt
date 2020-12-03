@@ -2,11 +2,10 @@ package com.catchpig.mvp.di
 
 import com.catchpig.mvp.config.Config
 import com.catchpig.mvp.gson.DateJsonDeserializer
-import com.catchpig.mvp.network.download.DownloadService
 import com.catchpig.mvp.interceptor.DownloadInterceptor
-import com.catchpig.mvp.manager.DownloadManager
 import com.catchpig.mvp.listener.DownloadProgressListener
-import com.catchpig.utils.ext.logd
+import com.catchpig.mvp.manager.DownloadManager
+import com.catchpig.mvp.network.download.DownloadService
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -27,7 +26,10 @@ val appModule = module {
         DateJsonDeserializer()
     }
     single {
-        GsonBuilder().setDateFormat(Config.DATE_FORMAT).registerTypeAdapter(Date::class.java,get()).create()
+        GsonBuilder()
+                .setDateFormat(Config.DATE_FORMAT)
+                .registerTypeAdapter(Date::class.java,get<DateJsonDeserializer>())
+                .create()
     }
 
     single {
@@ -35,23 +37,6 @@ val appModule = module {
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         httpLoggingInterceptor
     } bind Interceptor::class
-
-    factory {
-        OkHttpClient
-                .Builder()
-                .connectTimeout(Config.TIME_OUT, TimeUnit.MILLISECONDS)
-                .readTimeout(Config.TIME_OUT, TimeUnit.MILLISECONDS)
-                .writeTimeout(Config.TIME_OUT, TimeUnit.MILLISECONDS)
-                .addInterceptor(get<Interceptor>())
-                .build()
-    }
-
-    factory {
-        Retrofit
-                .Builder()
-                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-                .client(get())
-    }
 }
 
 /**

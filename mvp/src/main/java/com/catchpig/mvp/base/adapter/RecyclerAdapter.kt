@@ -239,6 +239,11 @@ abstract class RecyclerAdapter<M>(private val iPageControl: IPageControl? = null
         }
     }
 
+    /**
+     *
+     * @param position Int
+     * @return Int
+     */
     override fun getItemViewType(position: Int): Int {
         return if (position == 0 && showEmpty) {
             //当前数据空位,展示空页面
@@ -254,7 +259,7 @@ abstract class RecyclerAdapter<M>(private val iPageControl: IPageControl? = null
 
     /**
      * 标准的item的类型
-     *
+     * @param position
      * @return 返回参数不能小于0
      */
     @IntRange(from = 0)

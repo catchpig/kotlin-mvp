@@ -9,10 +9,10 @@ import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import com.catchpig.mvp.R
 import com.catchpig.mvp.apt.KotlinMvpCompiler
 import com.catchpig.mvp.base.BaseContract
 import com.catchpig.mvp.controller.LoadingViewController
+import com.catchpig.mvp.databinding.ViewRootBinding
 import com.catchpig.utils.ext.longToast
 import kotlinx.android.synthetic.main.view_root.*
 
@@ -45,6 +45,9 @@ import kotlinx.android.synthetic.main.view_root.*
  */
 abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
     private var loadingViewController: LoadingViewController? = null
+    private val rootBinding:ViewRootBinding by lazy {
+        ViewRootBinding.inflate(layoutInflater)
+    }
     override fun baseActivity(): BaseActivity? {
         return this
     }
@@ -64,7 +67,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.setContentView(R.layout.view_root)
+        super.setContentView(rootBinding.root)
         super.onCreate(savedInstanceState)
         setContentView(layoutId())
         KotlinMvpCompiler.inject(this)
