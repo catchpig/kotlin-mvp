@@ -40,4 +40,8 @@ class InstallApkActivity:BasePresenterActivity<InstallApkContract.Presenter>(),I
     override fun setDownloadProgress(progress: Int) {
         progressBar.progress = progress
     }
+
+    override fun setDownloadProgress1(progress: Int) {
+        progressBar1.progress = progress
+    }
 }

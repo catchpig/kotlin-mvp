@@ -1,8 +1,8 @@
 package com.catchpig.kotlin_mvp.mvp.apk
 
 import com.catchpig.mvp.base.BaseContract
-import com.catchpig.mvp.bean.DownloadInfo
 import com.catchpig.mvp.listener.DownloadCallback
+import com.catchpig.mvp.listener.MultiDownloadCallback
 
 /**
  *
@@ -16,6 +16,7 @@ interface InstallApkContract {
          * @param progress Int
          */
         fun setDownloadProgress(progress:Int)
+        fun setDownloadProgress1(progress:Int)
     }
     interface Presenter:BaseContract.Presenter{
         fun download()
@@ -23,9 +24,16 @@ interface InstallApkContract {
     interface Model{
         /**
          * 下载
-         * @param downloadInfo DownloadInfo
+         * @param url String
          * @param downloadCallback DownloadCallback
          */
-        fun download(downloadInfo: DownloadInfo, downloadCallback: DownloadCallback)
+        fun download(url: String, downloadCallback: DownloadCallback)
+
+        /**
+         * 批量文件下载
+         * @param urls MutableList<String>
+         * @param multiDownloadCallback MultiDownloadCallback
+         */
+        fun multiDownload(urls:MutableList<String>,multiDownloadCallback: MultiDownloadCallback)
     }
 }

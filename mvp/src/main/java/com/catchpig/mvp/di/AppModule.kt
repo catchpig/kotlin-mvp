@@ -44,25 +44,32 @@ val appModule = module {
  */
 const val NAMED_DOWNLOAD = "download"
 val downloadModule = module {
-    single(named(NAMED_DOWNLOAD)) { (downloadProgressListener: DownloadProgressListener)->
-        DownloadInterceptor(downloadProgressListener)
-    } bind Interceptor::class
+    single(named(NAMED_DOWNLOAD)) {
+        DownloadInterceptor()
+    }
 
-    single(named(NAMED_DOWNLOAD)) { (downloadProgressListener: DownloadProgressListener, timeout:Long)->
+    single(named(NAMED_DOWNLOAD)) {
         OkHttpClient
                 .Builder()
-                .connectTimeout(timeout, TimeUnit.SECONDS)
+                /**
+                 * 连接超时时间5秒
+                 */
+                .connectTimeout(5, TimeUnit.SECONDS)
+                /**
+                 * 读取数据超时时间10分钟
+                 */
+                .readTimeout(10,TimeUnit.MINUTES)
                 .addInterceptor(get<Interceptor>())
-                .addInterceptor(get<Interceptor>(named(NAMED_DOWNLOAD)){ parametersOf(downloadProgressListener)})
+                .addInterceptor(get<DownloadInterceptor>(named(NAMED_DOWNLOAD)))
                 .build()
     }
 
-    single(named(NAMED_DOWNLOAD)) { (baseUrl:String,timeout:Long,downloadProgressListener: DownloadProgressListener)->
+    factory(named(NAMED_DOWNLOAD)) { (baseUrl:String)->
         Retrofit
                 .Builder()
                 .baseUrl(baseUrl)
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-                .client(get(named(NAMED_DOWNLOAD)){ parametersOf(downloadProgressListener,timeout)})
+                .client(get(named(NAMED_DOWNLOAD)))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(DownloadService::class.java)

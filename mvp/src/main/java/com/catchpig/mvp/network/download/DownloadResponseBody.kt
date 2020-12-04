@@ -15,7 +15,7 @@ import java.io.IOException
   * @author catchpig
  * @date 2020/11/20 10:25
  */
-class DownloadResponseBody(private val responseBody: ResponseBody,private val progressListener: DownloadProgressListener) :ResponseBody() {
+class DownloadResponseBody(private val responseBody: ResponseBody,private val progressListener: DownloadProgressListener?) :ResponseBody() {
     private var bufferedSource:BufferedSource? = null
     override fun source(): BufferedSource {
         if (bufferedSource==null) {
