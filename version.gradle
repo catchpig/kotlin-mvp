@@ -14,7 +14,7 @@ ext {
     retrofit2_version = '2.9.0'
     rxjava_version = '3.0.0'
     rxandroid_version = '3.0.0'
-    gson_version = '2.8.6'
+    gson_version = '2.8.7'
     glide_version = '4.11.0'
     immersionbar_version = '3.0.0'
     loading_version = '1.0.2'
